@@ -5,6 +5,7 @@ class AdminController extends AppController {
 	
 	public function beforeFilter()
 	{
+        $this->layout = 'admin';
 		parent::beforeFilter();
 	}
 
