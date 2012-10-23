@@ -6,6 +6,7 @@ class AdminController extends AppController {
 	public function beforeFilter()
 	{
         $this->layout = 'admin';
+		$this->set('title_for_layout', 'AGEA - Administration');
 		parent::beforeFilter();
 	}
 

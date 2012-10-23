@@ -45,10 +45,12 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         //Configure AuthComponent
+        $tabs = array("Accueil","Qui sommes-nous ?");
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
         $this->Auth->allow('display');
+        $this->set('tabs',$tabs);
     }
 
     public function isAuthorized($user) {

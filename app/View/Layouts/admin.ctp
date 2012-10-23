@@ -22,8 +22,7 @@
 		<a href=""></a>
 		</div>
 		<nav id="menu">
-		
-			
+			<?php echo $this->element('menu'); ?>
 		</nav>
 		<div id="add_this">
 				<ul>

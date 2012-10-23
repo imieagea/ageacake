@@ -406,3 +406,11 @@
 2012-10-23 10:07:08 Error: [MissingControllerException] Controller class CssController could not be found.
 #0 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2012-10-23 14:40:56 Error: Fatal Error (4): syntax error, unexpected 'endforeach' (T_ENDFOREACH) in [C:\wamp\www\ageacake\app\View\Elements\menu.ctp, line 4]
+2012-10-23 14:40:56 Error: [FatalErrorException] syntax error, unexpected 'endforeach' (T_ENDFOREACH)
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\wamp\www\age...', 4)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\wamp\www\age...', 4, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\wamp\www\age...', 4, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
