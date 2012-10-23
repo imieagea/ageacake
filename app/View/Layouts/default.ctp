@@ -1,35 +1,14 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       Cake.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
-
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html lang="fr-FR">
 <head>
-	<?php echo $this->Html->charset(); ?>
+	<meta charset="UTF-8">
 	<title>
-		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('style');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -37,25 +16,95 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+<header id="header">
+	<div id="header_content">
+		<div id="logo">
+		<a href=""></a>
 		</div>
-		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
+		<nav id="menu">
+		
+			
+		</nav>
+		<div id="add_this">
+				<ul>
+					<li><a href="" id="add_t"></a></li>
+					<li><a href="" id="add_g"></a></li>
+					<li><a href="" id="add_f"></a></li>
+				</ul>
+		</div>
+	</div>	
+</header>
+<div id="content_wrapper">
+	<div id="content">
+	<section id="contenu">
+		<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
+	</section>
+	<aside id="sidebar">
+			<div id="box_login">
+				<div class="bandeau login">Adhérents AGEA</div>
+				<form action="">
+				<span class="before_login_input"></span><input type="text" class="login_input" placeholder="Identifiant"/>
+				<span class="before_mdp_input"></span><input type="password" class="mdp_input" placeholder="Mot de passe"/>
+				<input type="submit" value="Connexion" class="right_button"/><div class="clear"></div>
+				</form>
+			</div>
+			<div id="box_actus">
+				<div class="bandeau actus">Actualités</div>
+				<ul id="list_actus">
+				<li>
+						<a href=""></a>
+						<p><em> 
+						</em></p>
+					
+					</li>
+					
+				</ul>
+				<a href="" class="all_actus">Voir toutes les actualités</a>
+				<div class="clear"></div>
+			</div>
+			<div id="box_contact">
+				<div class="bandeau contact">Contact</div>
+					<a href="" class="right_button contact_link">Contactez-nous</a><div class="clear"></div>
+			</div>
+		</aside>
+		<div class="clear"></div>
+</div>
+</div>
+<footer id="footer">
+	<div id="footer_content">
+		<div id="socials">
+			<div>Suivez-nous sur:</div>
+			<a href="" id="page_fb">Notre page Facebook</a>
+			<a href="" id="chaine_ytb">Notre chaine Youtube</a>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+		<div id="slogan">
+		AGENT GENERAL D'ASSURANCE ON ASSURE MIEUX QUAND ON CONNAIT BIEN
 		</div>
+		<div id="address"><address>© ageapaysdelaloire.fr   -   4, Rue De l'Héronnière   -   44000 Nantes  |  </address><a href="">Mentions légales</a></div>
+		
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<script type="text/javascript">
+	$(function(){ 
+ $('#list_actus') 
+  .anythingSlider({ 
+   toggleControls : true, 
+   theme          : 'min',  
+    buildArrows         : false,      // If true, builds the forwards and backwards buttons 
+	buildNavigation     : true,      // If true, builds a list of anchor links to link to each panel 
+	buildStartStop      : false,  
+toggleControls      : false,
+ autoPlay            : false,    
+  pauseOnHover        : true,
+  hashTags            : false,
+    delay               : 5000
+  }) 
+ 
+});
+	</script>
+	
+</footer>	
 </body>
 </html>
+	
