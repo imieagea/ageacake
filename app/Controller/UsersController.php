@@ -9,13 +9,15 @@ class UsersController extends AppController {
 
 
 	public function isAuthorized($user) {
+
 	    return parent::isAuthorized($user);
 	}
 
 
 	public function beforeFilter()
 	{
-		$this->Auth->allow('logout','add');
+		$this->Auth->allow('logout');
+		parent::beforeFilter();
 	}
 
 	public function login()
@@ -26,6 +28,10 @@ class UsersController extends AppController {
 	        } else {
 	            $this->Session->setFlash(__('Identifiant ou mot de passe incorrect.'));
 	        }
+	    }else
+	    {
+	    	$this->Session->setFlash(__('Non non noooooonn'));
+	    	$this->redirect(array('controller'=>'pages','action'=>'display','home'));
 	    }
 	}
 

@@ -19,7 +19,7 @@
 <header id="header">
 	<div id="header_content">
 		<div id="logo">
-		<a href=""></a>
+		<a href="<?php echo $this->base ?>"></a>
 		</div>
 		<nav id="menu">
 			<?php echo $this->element('menu'); ?>
@@ -43,9 +43,9 @@
 	<aside id="sidebar">
 			<div id="box_login">
 				<div class="bandeau login">Adhérents AGEA</div>
-				<form action="">
-				<span class="before_login_input"></span><input type="text" class="login_input" placeholder="Identifiant"/>
-				<span class="before_mdp_input"></span><input type="password" class="mdp_input" placeholder="Mot de passe"/>
+				<form action="<?php echo $this->base.'/users/login' ?>" method="POST">
+				<span class="before_login_input"></span><input type="text" class="login_input" name="data[User][username]" placeholder="Identifiant"/>
+				<span class="before_mdp_input"></span><input type="password" class="mdp_input" name="data[User][password]" placeholder="Mot de passe"/>
 				<input type="submit" value="Connexion" class="right_button"/><div class="clear"></div>
 				</form>
 			</div>

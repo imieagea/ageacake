@@ -33,6 +33,9 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+
+    var $uses = array('Contenus');
+
 	public $components = array(
         'Auth' => array(
             'loginRedirect' => array('controller' => 'pages', 'action' => 'display','home'),
@@ -45,12 +48,16 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         //Configure AuthComponent
-        $tabs = array("Accueil","Qui sommes-nous ?");
+        
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
+        $this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display','home');
+        $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'display','home');
         $this->Auth->allow('display');
+
+        //Menu initialisation
+        $tabs = $this->Contenus->find('all');
         $this->set('tabs',$tabs);
+        $this->set('session',$this->Session);
     }
 
     public function isAuthorized($user) {

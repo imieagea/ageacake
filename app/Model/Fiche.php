@@ -13,6 +13,7 @@ class Fiche extends AppModel {
  * @var string
  */
 	public $displayField = 'nom';
+	var $uses = array('CritereValue') ;
 
 /**
  * Validation rules
