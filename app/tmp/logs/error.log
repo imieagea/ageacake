@@ -1,0 +1,125 @@
+2012-10-23 08:02:02 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Users\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:14:34 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\wamp\www\ageacake\app\Controller\FichesController.php, line 51]
+2012-10-23 08:14:34 Error: [FatalErrorException] Call to a member function find() on a non-object
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\age...', 51)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\age...', 51, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\age...', 51, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-23 08:14:59 Error: Fatal Error (4): syntax error, unexpected '$this' (T_VARIABLE), expecting function (T_FUNCTION) in [C:\wamp\www\ageacake\app\Controller\FichesController.php, line 9]
+2012-10-23 08:14:59 Error: [FatalErrorException] syntax error, unexpected '$this' (T_VARIABLE), expecting function (T_FUNCTION)
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\wamp\www\age...', 9)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\wamp\www\age...', 9, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\wamp\www\age...', 9, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-23 08:16:32 Error: Fatal Error (1): Call to a member function find() on a non-object in [C:\wamp\www\ageacake\app\Controller\FichesController.php, line 49]
+2012-10-23 08:16:32 Error: [FatalErrorException] Call to a member function find() on a non-object
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\age...', 49)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\age...', 49, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\age...', 49, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-23 08:19:13 Error: [MissingComponentException] Component class FicheComponent could not be found.
+#0 C:\wamp\www\ageacake\lib\Cake\Controller\ComponentCollection.php(52): ComponentCollection->load('Fiche', Array)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(634): ComponentCollection->init(Object(FichesController))
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(182): Controller->constructClasses()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(FichesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:26:32 Error: [MissingActionException] Action CriteresController::index() could not be found.
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-23 08:27:35 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:28:01 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:28:04 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:28:04 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:28:04 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:28:04 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:28:05 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:28:05 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Criteres\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CriteresController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:41:26 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\CritereCategories\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(CritereCategoriesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:44:30 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Users\admin_index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:47:13 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Groups\admin_add.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(GroupsController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 08:51:43 Error: [MissingActionException] Action UsersController::admin_login() could not be found.
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

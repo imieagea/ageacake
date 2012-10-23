@@ -1,5 +1,5 @@
 <?php
-App::uses('AppModel', 'Model');
+App::uses('AppModel', 'Model','AuthComponent','Controller/Component');
 /**
  * User Model
  *
@@ -78,4 +78,9 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function beforeSave($options = array()) {
+        $this->data['User']['mot_passe'] = AuthComponent::password($this->data['User']['mot_passe']);
+        return true;
+    }
 }

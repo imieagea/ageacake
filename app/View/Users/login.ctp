@@ -1,10 +1,9 @@
 <?php
-echo $this->Session->flash('auth');
 echo $this->Form->create('User', array('action' => 'login'));
 echo $this->Form->inputs(array(
-	'legend' => __('Login', true),
-	'username',
-	'password'
+    'legend' => __('Login'),
+    'username',
+    'mot_passe'
 ));
 echo $this->Form->end('Login');
 ?>
