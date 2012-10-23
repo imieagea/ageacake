@@ -1,7 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * AvisFich Model
+ * AvisFiche Model
  *
  * @property Fiche $Fiche
  */

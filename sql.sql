@@ -1,14 +1,9 @@
+DROP TABLE users;
 CREATE TABLE users (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    pseudo VARCHAR(255) NOT NULL UNIQUE,
-    mot_passe CHAR(40) NOT NULL,
-    group_id INT(11) NOT NULL
-);
-
-
-CREATE TABLE groups (
-    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL,
+    role VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE contenus (
@@ -72,9 +67,6 @@ CREATE TABLE critere_value (
 	fiche_id INT(11) NOT NULL ,
 	value VARCHAR(255) NOT NULL
 );
-
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`);
 
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);

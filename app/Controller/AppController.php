@@ -31,9 +31,35 @@ App::uses('Controller', 'Controller');
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
- 
- 
 class AppController extends Controller {
-	// var $components = array('Acl','Auth','Session');
-	// var $helpers = array('Html','Form','Session');
+
+	public $components = array(
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'pages', 'action' => 'display','home'),
+            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display' , 'home'),
+            'authorize' => array('Controller')
+        ),
+        'Session'
+    );
+    public $helpers = array('Html', 'Form', 'Session');
+
+    public function beforeFilter() {
+        //Configure AuthComponent
+        $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+        $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
+        $this->Auth->allow('display');
+
+        $this->layout = 'admin';
+    }
+
+    public function isAuthorized($user) {
+    // Admin peut accéder à toute action
+    if (isset($user['role']) && $user['role'] === 'admin') {
+        return true;
+    }
+
+    // Refus par défaut
+    return false;
+}
 }
