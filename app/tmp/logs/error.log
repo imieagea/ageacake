@@ -414,3 +414,40 @@
 #3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2012-10-23 14:46:59 Error: [MissingActionException] Action ContenusesController::index() could not be found.
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ContenusesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-10-23 14:47:15 Error: [MissingControllerException] Controller class ContenusController could not be found.
+#0 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-23 14:49:17 Error: [MissingControllerException] Controller class ContenusController could not be found.
+#0 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-23 14:49:42 Error: [MissingControllerException] Controller class ContenusController could not be found.
+#0 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-23 14:49:53 Error: [MissingControllerException] Controller class ContenusController could not be found.
+#0 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-23 14:50:33 Error: [MissingControllerException] Controller class ContenusController could not be found.
+#0 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-23 14:50:41 Error: [MissingControllerException] Controller class ContenusController could not be found.
+#0 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-10-23 14:50:51 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Contenus\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ContenusController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-23 14:53:26 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Contenus\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ContenusController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}

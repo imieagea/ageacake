@@ -19,7 +19,7 @@
 <header id="header">
 	<div id="header_content">
 		<div id="logo">
-		<a href=""></a>
+		<a href="<?php echo $this->base ?>"></a>
 		</div>
 		<nav id="menu">
 			<?php echo $this->element('menu'); ?>

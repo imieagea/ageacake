@@ -1,18 +1,18 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Contenuses Controller
+ * Contenus Controller
  *
  * @property Contenus $Contenus
  */
-class ContenusesController extends AppController {
+class ContenusController extends AppController {
 
 /**
  * admin_index method
  *
  * @return void
  */
-	public function admin_index() {
+	public function index() {
 		$this->Contenus->recursive = 0;
 		$this->set('contenuses', $this->paginate());
 	}
@@ -24,7 +24,7 @@ class ContenusesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_view($id = null) {
+	public function view($id = null) {
 		$this->Contenus->id = $id;
 		if (!$this->Contenus->exists()) {
 			throw new NotFoundException(__('Invalid contenus'));
@@ -37,7 +37,7 @@ class ContenusesController extends AppController {
  *
  * @return void
  */
-	public function admin_add() {
+	public function add() {
 		if ($this->request->is('post')) {
 			$this->Contenus->create();
 			if ($this->Contenus->save($this->request->data)) {
@@ -56,7 +56,7 @@ class ContenusesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_edit($id = null) {
+	public function edit($id = null) {
 		$this->Contenus->id = $id;
 		if (!$this->Contenus->exists()) {
 			throw new NotFoundException(__('Invalid contenus'));
@@ -81,7 +81,7 @@ class ContenusesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_delete($id = null) {
+	public function delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
