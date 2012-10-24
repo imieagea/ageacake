@@ -8,6 +8,8 @@ App::uses('AppController', 'Controller');
 class ContenusController extends AppController {
 
 
+	var $uses = array('Post');
+
 	public function beforeFilter()
 	{
 		$this->Auth->allow('view');
@@ -33,6 +35,10 @@ class ContenusController extends AppController {
 	public function view($id = null) {
 		$c = $this->Contenus->find('first',array(
 				'conditions' => array('Contenus.slug' => $this->request->params['slug'])
+			));
+		if(!$c)
+			$this->Post->find('first',array(
+				'conditions' => array('Post.slug' => $this->request->params['slug'])
 			));
 		$this->set('contenus',$c);
 	}
