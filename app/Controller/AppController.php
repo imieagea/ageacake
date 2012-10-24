@@ -38,8 +38,8 @@ class AppController extends Controller {
 
 	public $components = array(
         'Auth' => array(
-            'loginRedirect' => array('controller' => 'pages', 'action' => 'display','home'),
-            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display' , 'home'),
+            'loginRedirect' => '/',
+            'logoutRedirect' => '/',
             'authorize' => array('Controller')
         ),
         'Session'
@@ -50,8 +50,8 @@ class AppController extends Controller {
         //Configure AuthComponent
         
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display','home');
-        $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'display','home');
+        $this->Auth->logoutRedirect = array('controller' => 'home', 'action' => 'index');
+        $this->Auth->loginRedirect = array('controller' => 'home', 'action' => 'index');
         $this->Auth->allow('display');
 
         //Menu initialisation

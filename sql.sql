@@ -28,6 +28,8 @@ CREATE TABLE categories (
 
 CREATE TABLE fiches (
 	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	statut VARCHAR(10) NOT NULL DEFAULT 'new',
+	auteur VARCHAR(70) NOT NULL DEFAULT 'anonyme',
 	nom VARCHAR(255) NOT NULL,
 	prenom VARCHAR(255) NOT NULL,
 	adresse VARCHAR(255) NOT NULL,
@@ -48,11 +50,17 @@ CREATE TABLE avis_fiches (
 	fiche_id INT(11) NOT NULL
 );
 
+CREATE TABLE partenaires (
+	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nom VARCHAR(255) NOT NULL,
+	link VARCHAR(255),
+	pdf VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE criteres (
 	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nom VARCHAR(255) NOT NULL,
-	critere_category_id INT(11) NOT NULL
+	critere_category_id INT(11)
 );
 
 
@@ -66,6 +74,12 @@ CREATE TABLE critere_value (
 	critere_id INT(11) NOT NULL,
 	fiche_id INT(11) NOT NULL ,
 	value VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE meta_data (
+	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name INT(11) NOT NULL,
+	value TEXT NOT NULL
 );
 
 ALTER TABLE `posts`
