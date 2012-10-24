@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mer 24 Octobre 2012 à 21:37
--- Version du serveur: 5.5.24-log
--- Version de PHP: 5.4.3
+-- Serveur: localhost
+-- Généré le : Mer 24 Octobre 2012 à 23:19
+-- Version du serveur: 5.1.53
+-- Version de PHP: 5.3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,7 +31,12 @@ CREATE TABLE IF NOT EXISTS `avis_fiches` (
   `fiche_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fiches_ibfk_1` (`fiche_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `avis_fiches`
+--
+
 
 -- --------------------------------------------------------
 
@@ -48,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `categories`
@@ -56,7 +60,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 INSERT INTO `categories` (`id`, `parent_id`, `slug`, `nom`) VALUES
 (1, NULL, '0', 'Actualités -  Bretagne'),
-(4, NULL, 'a-la-une', 'A la une');
+(4, NULL, 'a-la-une', 'A la une'),
+(5, NULL, 'texte-recrutement', 'Texte recrutement');
 
 -- --------------------------------------------------------
 
@@ -71,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `contenus` (
   `contenu` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `contenus`
@@ -93,7 +98,12 @@ CREATE TABLE IF NOT EXISTS `criteres` (
   `critere_category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `criteres_ibfk_1` (`critere_category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `criteres`
+--
+
 
 -- --------------------------------------------------------
 
@@ -105,7 +115,12 @@ CREATE TABLE IF NOT EXISTS `critere_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `critere_categories`
+--
+
 
 -- --------------------------------------------------------
 
@@ -121,7 +136,12 @@ CREATE TABLE IF NOT EXISTS `critere_value` (
   PRIMARY KEY (`id`),
   KEY `fiches_ibfk_2` (`fiche_id`),
   KEY `criteres_ibfk_2` (`critere_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `critere_value`
+--
+
 
 -- --------------------------------------------------------
 
@@ -146,7 +166,12 @@ CREATE TABLE IF NOT EXISTS `fiches` (
   `pdf` varchar(255) DEFAULT NULL,
   `exp` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `fiches`
+--
+
 
 -- --------------------------------------------------------
 
@@ -158,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `groups`
@@ -180,7 +205,12 @@ CREATE TABLE IF NOT EXISTS `partenaires` (
   `link` varchar(255) DEFAULT NULL,
   `pdf` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `partenaires`
+--
+
 
 -- --------------------------------------------------------
 
@@ -192,19 +222,20 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `corps` text NOT NULL,
-  `slug` varchar(255) NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8 NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
   KEY `posts_ibfk_1` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `posts`
 --
 
 INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`) VALUES
-(1, 'A la une, c''est super', 'super', 'c-super', 4);
+(1, 'A la une, c''est super', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. Phasellus auctor, sem quis vestibulum hendrerit, mauris elit gravida lacus, id dignissim magna nunc at nibh. Cras viverra eleifend est, in rhoncus massa porta sed. Integer cursus tincidunt libero, non venenatis quam placerat id. Praesent molestie ultrices velit a posuere. Sed a magna sagittis odio sagittis egestas. Nullam imperdiet venenatis ullamcorper. Donec tempus leo ac justo ornare et accumsan augue euismod.</p>', 'c-super', 4),
+(3, 'Les agents généraux recrutent', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. Phasellus auctor, sem quis vestibulum hendrerit, mauris elit gravida lacus, id dignissim magna nunc at nibh. Cras viverra eleifend est, in rhoncus massa porta.', 'les-agents-generaux-recrutent', 5);
 
 -- --------------------------------------------------------
 
@@ -219,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `users`
@@ -264,7 +295,3 @@ ALTER TABLE `critere_value`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
