@@ -20,6 +20,7 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+App::import('Lib', 'Routing/Route/SlugRoute');
 /**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file
@@ -30,7 +31,7 @@
 /*
 	On ajoute le routage pour les pages de contenu
 */
-	Router::connect('/*', array('controller' => 'contenus', 'action' => 'view'));
+	Router::connect('/:slug', array('controller' => 'contenus', 'action' => 'view'),array('routeClass'=>'SlugRoute'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

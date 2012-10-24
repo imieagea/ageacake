@@ -31,17 +31,10 @@ class ContenusController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$slug = func_get_args();
-		if(!count($slug) || count($slug) > 1)
-		{
-			$this->redirect('/');
-		}else
-		{
-			$c = $this->Contenus->find('first',array(
-					'conditions' => array('Contenus.slug' => $slug[0])
-				));
-			$this->set('contenus',$c);
-		}
+		$c = $this->Contenus->find('first',array(
+				'conditions' => array('Contenus.slug' => $this->request->params['slug'])
+			));
+		$this->set('contenus',$c);
 	}
 
 /**

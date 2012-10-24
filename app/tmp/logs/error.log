@@ -550,3 +550,213 @@
 #3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(HomeController), Object(CakeRequest), Object(CakeResponse))
 #4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #5 {main}
+2012-10-24 14:14:26 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Home\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(HomeController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-24 14:14:29 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Home\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(HomeController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-24 14:18:33 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Home\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(HomeController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-24 14:18:42 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Home\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(HomeController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-24 14:18:49 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Home\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(HomeController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-24 14:19:02 Error: [MissingViewException] View file "C:\wamp\www\ageacake\app\View\Home\index.ctp" is missing.
+#0 C:\wamp\www\ageacake\lib\Cake\View\View.php(473): View->_getViewFileName(NULL)
+#1 C:\wamp\www\ageacake\lib\Cake\Controller\Controller.php(956): View->render(NULL, NULL)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(HomeController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-10-24 14:27:14 Error: Fatal Error (4): syntax error, unexpected ';' in [C:\wamp\www\ageacake\app\Controller\ContenusController.php, line 40]
+2012-10-24 14:27:14 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\wamp\www\age...', 40)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\wamp\www\age...', 40, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\wamp\www\age...', 40, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:44:02 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:44:02 Error: Fatal Error (1): Call to a member function check() on a non-object in [C:\wamp\www\ageacake\app\View\Elements\menu.ctp, line 5]
+2012-10-24 14:44:02 Error: [FatalErrorException] Call to a member function check() on a non-object
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'C:\wamp\www\age...', 5)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'C:\wamp\www\age...', 5, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'C:\wamp\www\age...', 5, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:44:32 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:45:16 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:45:36 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:45:39 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:45:40 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:46:49 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:46:50 Error: [RouterException] Route classes must extend CakeRoute
+#0 C:\wamp\www\ageacake\lib\Cake\Routing\Router.php(307): Router::_validateRouteClass('SlugRoute')
+#1 C:\wamp\www\ageacake\app\Config\routes.php(34): Router::connect('/:slug', Array, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(278): include('C:\wamp\www\age...')
+#3 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(215): Dispatcher->_loadRoutes()
+#4 [internal function]: Dispatcher->parseParams(Object(CakeEvent))
+#5 C:\wamp\www\ageacake\lib\Cake\Event\CakeEventManager.php(246): call_user_func(Array, Object(CakeEvent))
+#6 C:\wamp\www\ageacake\lib\Cake\Routing\Dispatcher.php(141): CakeEventManager->dispatch(Object(CakeEvent))
+#7 C:\wamp\www\ageacake\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-10-24 14:48:32 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:48:32 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:48:51 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:48:51 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:49:23 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:49:23 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:49:29 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:49:29 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:49:52 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:49:52 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:50:38 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:50:38 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:50:47 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:50:47 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:50:48 Error: Fatal Error (1): Class 'Contenus' not found in [C:\wamp\www\ageacake\app\Lib\Routing\Route\SlugRoute.php, line 10]
+2012-10-24 14:50:48 Error: [FatalErrorException] Class 'Contenus' not found
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Contenus...', 'C:\wamp\www\age...', 10, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2012-10-24 14:56:52 Error: Fatal Error (4): syntax error, unexpected ';' in [C:\wamp\www\ageacake\app\Controller\ContenusController.php, line 34]
+2012-10-24 14:56:52 Error: [FatalErrorException] syntax error, unexpected ';'
+#0 C:\wamp\www\ageacake\lib\Cake\Error\ErrorHandler.php(161): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\wamp\www\age...', 34)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\wamp\www\age...', 34, Array)
+#2 C:\wamp\www\ageacake\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\wamp\www\age...', 34, Array)
+#3 C:\wamp\www\ageacake\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

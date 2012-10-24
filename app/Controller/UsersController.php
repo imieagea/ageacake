@@ -16,7 +16,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter()
 	{
-		$this->Auth->allow('logout');
+		$this->Auth->allow('logout','login');
 		parent::beforeFilter();
 	}
 
@@ -32,7 +32,7 @@ class UsersController extends AppController {
 	    }else
 	    {
 	    	$this->Session->setFlash(__('Non non noooooonn'));
-	    	$this->redirect(array('controller'=>'pages','action'=>'display','home'));
+	    	$this->redirect(array('controller'=>'home','action'=>'index'));
 	    }
 	}
 
