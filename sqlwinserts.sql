@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 24 Octobre 2012 à 19:30
+-- Généré le: Mer 24 Octobre 2012 à 21:37
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -42,17 +42,21 @@ CREATE TABLE IF NOT EXISTS `avis_fiches` (
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `slug` varchar(50) NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `nom` (`nom`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  UNIQUE KEY `nom` (`nom`),
+  KEY `parent_id` (`parent_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `categories`
 --
 
-INSERT INTO `categories` (`id`, `nom`) VALUES
-(1, 'ActualitÃ©s -  Bretagne');
+INSERT INTO `categories` (`id`, `parent_id`, `slug`, `nom`) VALUES
+(1, NULL, '0', 'Actualités -  Bretagne'),
+(4, NULL, 'a-la-une', 'A la une');
 
 -- --------------------------------------------------------
 
@@ -75,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `contenus` (
 
 INSERT INTO `contenus` (`id`, `titre`, `slug`, `contenu`) VALUES
 (1, 'Qui sommes-nous ?', 'qui-sommes-nous', 'Nous sommes des dÃ©mons ! Des dÃ©mooooooooons !'),
-(3, ' 	Espace Orientation Jeune', 'espace-orientation-jeune', 'Espace orientation.\r\n\r\n<b>Ce texte est en gras</b>');
+(3, '   Espace Orientation Jeune', 'espace-orientation-jeune', 'Espace orientation.\r\n\r\n<b>Ce texte est en gras</b>');
 
 -- --------------------------------------------------------
 
@@ -193,7 +197,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
   KEY `posts_ibfk_1` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `posts`
+--
+
+INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`) VALUES
+(1, 'A la une, c''est super', 'super', 'c-super', 4);
 
 -- --------------------------------------------------------
 
@@ -228,6 +239,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
 --
 ALTER TABLE `avis_fiches`
   ADD CONSTRAINT `fiches_ibfk_1` FOREIGN KEY (`fiche_id`) REFERENCES `fiches` (`id`);
+
+--
+-- Contraintes pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `criteres`
