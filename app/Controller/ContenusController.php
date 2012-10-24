@@ -7,6 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class ContenusController extends AppController {
 
+
+	public function beforeFilter()
+	{
+		$this->Auth->allow('view');
+		parent::beforeFilter();
+	}
 /**
  * admin_index method
  *
@@ -25,11 +31,17 @@ class ContenusController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$this->Contenus->id = $id;
-		if (!$this->Contenus->exists()) {
-			throw new NotFoundException(__('Invalid contenus'));
+		$slug = func_get_args();
+		if(!count($slug) || count($slug) > 1)
+		{
+			$this->redirect('/');
+		}else
+		{
+			$c = $this->Contenus->find('first',array(
+					'conditions' => array('Contenus.slug' => $slug[0])
+				));
+			$this->set('contenus',$c);
 		}
-		$this->set('contenus', $this->Contenus->read(null, $id));
 	}
 
 /**

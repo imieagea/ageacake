@@ -24,6 +24,7 @@ class UsersController extends AppController {
 	{
 		if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
+	        	$this->Session->setFlash(__('Vous êtes bien autentifiés.'));
 	            $this->redirect($this->Auth->redirect());
 	        } else {
 	            $this->Session->setFlash(__('Identifiant ou mot de passe incorrect.'));
