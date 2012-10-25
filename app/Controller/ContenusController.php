@@ -36,8 +36,10 @@ class ContenusController extends AppController {
 		$c = $this->Contenus->find('first',array(
 				'conditions' => array('Contenus.slug' => $this->request->params['slug'])
 			));
+			
 		if(!$c)
-			$this->Post->find('first',array(
+		
+		$c=	$this->Post->find('first',array(
 				'conditions' => array('Post.slug' => $this->request->params['slug'])
 			));
 		$this->set('contenus',$c);

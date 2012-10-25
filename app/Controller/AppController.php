@@ -55,7 +55,8 @@ class AppController extends Controller {
         $this->Auth->allow('display');
 
         //Menu initialisation
-        $tabs = $this->Contenus->find('all');
+		$options['order'] = 'Contenus.ordre ASC';
+        $tabs = $this->Contenus->find('all',$options);
         $this->set('tabs',$tabs);		
         $this->set('session',$this->Session);
 		
