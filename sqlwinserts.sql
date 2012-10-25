@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Jeu 25 Octobre 2012 à 10:00
+-- Généré le : Jeu 25 Octobre 2012 à 12:34
 -- Version du serveur: 5.0.27
 -- Version de PHP: 5.3.8
 
@@ -19,6 +19,174 @@ SET time_zone = "+00:00";
 --
 -- Base de données: `ageacake`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `avis_fiches`
+--
+
+CREATE TABLE IF NOT EXISTS `avis_fiches` (
+  `id` int(11) NOT NULL auto_increment,
+  `texte` text NOT NULL,
+  `fiche_id` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `fiches_ibfk_1` (`fiche_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL auto_increment,
+  `parent_id` int(11) default NULL,
+  `slug` varchar(50) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `nom` (`nom`),
+  KEY `parent_id` (`parent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Contenu de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `parent_id`, `slug`, `nom`) VALUES
+(1, NULL, 'actualites', 'Actualités'),
+(4, NULL, 'a-la-une', 'A la une'),
+(5, NULL, 'texte-recrutement', 'Texte recrutement'),
+(6, 1, 'bretagne', 'Actualités Bretagne'),
+(7, 1, 'pays-de-la-loire', 'Actualités Pays de la Loire'),
+(8, NULL, 'informations-de-contact', 'Informations de contact');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contenus`
+--
+
+CREATE TABLE IF NOT EXISTS `contenus` (
+  `id` int(11) NOT NULL auto_increment,
+  `titre` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `contenu` text NOT NULL,
+  `ordre` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `slug` (`slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `contenus`
+--
+
+INSERT INTO `contenus` (`id`, `titre`, `slug`, `contenu`, `ordre`) VALUES
+(1, 'Qui sommes-nous ?', 'qui-sommes-nous', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 1),
+(3, '   Espace Orientation Jeune', 'espace-orientation-jeune', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 3),
+(4, 'Adhérer', 'adherer', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `criteres`
+--
+
+CREATE TABLE IF NOT EXISTS `criteres` (
+  `id` int(11) NOT NULL auto_increment,
+  `nom` varchar(255) NOT NULL,
+  `critere_category_id` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `criteres_ibfk_1` (`critere_category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `critere_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `critere_categories` (
+  `id` int(11) NOT NULL auto_increment,
+  `nom` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `critere_value`
+--
+
+CREATE TABLE IF NOT EXISTS `critere_value` (
+  `id` int(11) NOT NULL auto_increment,
+  `critere_id` int(11) NOT NULL,
+  `fiche_id` int(11) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `fiches_ibfk_2` (`fiche_id`),
+  KEY `criteres_ibfk_2` (`critere_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fiches`
+--
+
+CREATE TABLE IF NOT EXISTS `fiches` (
+  `id` int(11) NOT NULL auto_increment,
+  `statut` varchar(10) NOT NULL default 'new',
+  `auteur` varchar(20) NOT NULL default 'anonyme',
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `code_postal` varchar(255) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `portable` varchar(20) NOT NULL,
+  `fixe` varchar(20) default NULL,
+  `email` varchar(255) NOT NULL,
+  `date_naissance` date default NULL,
+  `message` tinytext,
+  `pdf` varchar(255) default NULL,
+  `exp` int(1) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `groups`
+--
+
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` int(11) NOT NULL auto_increment,
+  `nom` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `groups`
+--
+
+INSERT INTO `groups` (`id`, `nom`) VALUES
+(4, 'Administrateurs'),
+(5, 'Agents');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `partenaires`
+--
+
+CREATE TABLE IF NOT EXISTS `partenaires` (
+  `id` int(11) NOT NULL auto_increment,
+  `nom` varchar(255) NOT NULL,
+  `link` varchar(255) default NULL,
+  `pdf` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -51,9 +219,58 @@ INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`) VALUES
 (8, 'actu en bretagne OMG2', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 'actu-en-bretagne-omg2', 6),
 (9, 'Informations de contact', '<p>Emné FAKHRY<br>\r\n4, rue de l’Héronnière<br>\r\n44000 Nantes<br>\r\n<strong>Mail</strong>&nbsp;: rg-paysloire@agea.fr<br>\r\n<strong>Portable</strong>&nbsp;: 06 58 69 00 73<br>\r\n<strong>Fax</strong>&nbsp;: 02 40 69 81 14</p>', 'informations-de-contact', 8);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL auto_increment,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `role` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
+(1, 'Admin', '035d9cd0f35e08faf59015dd18be6127fb00ce5f', 'admin'),
+(2, 'bobby', '94da1b94b8d4e5e5161d01369a92f50258682c75', 'admin'),
+(3, 'test', '8945c045f369958ee7fede1471b2780dee1424a0', 'agent');
+
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `avis_fiches`
+--
+ALTER TABLE `avis_fiches`
+  ADD CONSTRAINT `fiches_ibfk_1` FOREIGN KEY (`fiche_id`) REFERENCES `fiches` (`id`);
+
+--
+-- Contraintes pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `criteres`
+--
+ALTER TABLE `criteres`
+  ADD CONSTRAINT `criteres_ibfk_1` FOREIGN KEY (`critere_category_id`) REFERENCES `critere_categories` (`id`);
+
+--
+-- Contraintes pour la table `critere_value`
+--
+ALTER TABLE `critere_value`
+  ADD CONSTRAINT `criteres_ibfk_2` FOREIGN KEY (`critere_id`) REFERENCES `criteres` (`id`),
+  ADD CONSTRAINT `fiches_ibfk_2` FOREIGN KEY (`fiche_id`) REFERENCES `fiches` (`id`);
 
 --
 -- Contraintes pour la table `posts`

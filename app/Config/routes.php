@@ -21,6 +21,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::import('Lib', 'Routing/Route/SlugRoute');
+App::import('Lib', 'Routing/Route/CategorySlugRoute');
 /**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file
@@ -37,7 +38,7 @@ App::import('Lib', 'Routing/Route/SlugRoute');
 	/*
 	On ajoute le routage pour les pages de contenu
 */
-	Router::connect('/:category-slug/:ss-category-slug/:slug', array('controller' => 'posts', 'action' => 'view'),array('routeClass'=>'SlugRoute'));
+	Router::connect('/:category-slug/:ss-category-slug/:slug', array('controller' => 'posts', 'action' => 'view'),array('routeClass'=>'CategorySlugRoute'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

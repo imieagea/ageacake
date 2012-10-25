@@ -21,7 +21,7 @@
 		<ul id="list_actus">
 		<?php foreach($side_actus as $s): ?>
 				<li>
-				<a href="<?php echo $this->base."/".$s['Post']['slug'] ?>"><?php echo $s['Post']['titre'] ?></a>
+				<a href="<?php echo $this->base."/actualites/".$s['Category']['slug']."/".$s['Post']['slug'] ?>"><?php echo $s['Post']['titre'] ?></a>
 				<p><em><?php echo $s['Category']['nom'] ?> 
 				</em></p>
 			<?php echo $s['Post']['corps'] ?>
