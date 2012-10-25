@@ -6,21 +6,18 @@ class SlugRoute extends CakeRoute {
         if (empty ($params)) {
             return false;
         }
-        $count = 0;
-        App::import('Model', 'Contenus');
-        App::import('Model', 'Post');
-        $Contenus = new Contenus();
-        $count = $Contenus->find('count', array (
-            'conditions' => array ('Contenus.slug' => $params['slug']),
-            'recursive' => -1
-        ));
-        $Post = new Post();
-        $count += $Post->find('count', array (
-            'conditions' => array ('Post.slug' => $params['slug']),
-            'recursive' => -1
-        ));
-
-        if ($count) {
+        $slugs = Cache::read('contenus_slugs');
+        if (empty($slugs)) {
+            App::import('Model', 'Contenus');
+            $Post = new Post();
+            $posts = $Post->find('all', array(
+                'fields' => array('Contenus.slug'),
+                'recursive' => -1
+            ));
+            $slugs = array_flip(Set::extract('/Contenus/slug', $posts));
+            Cache::write('contenus_slugs', $slugs);
+        }
+        if (isset($slugs[$params['slug']])) {
             return $params;
         }
         return false;
