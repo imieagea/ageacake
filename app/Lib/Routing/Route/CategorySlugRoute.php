@@ -9,23 +9,24 @@ class CategorySlugRoute extends CakeRoute {
         $slugsPC = Cache::read('parents_categories_slugs');
         if (empty($slugsPC)) {
             App::import('Model', 'Category');
-            $Category = new Post();
+            $Category = new Category();
             $categories = $Category->find('all', array(
-                'fields' => array('ParentCategory.slug'),
-                'recursive' => -1
+                'fields' => array('Category.slug'),
+                'conditions' => array('Category.parent_id'=>null),
+                'recursive' => 1
             ));
-            $slugsPC = array_flip(Set::extract('/Contenus/slug', $categories));
+            $slugsPC = array_flip(Set::extract('/Category/slug', $categories));
             Cache::write('parents_categories_slugs', $slugsPC);
         }
 
         $slugsSC = Cache::read('categories_slugs');
         if (empty($slugsSC)) {
-            $Category = new Post();
+            $Category = new Category();
             $categories = $Category->find('all', array(
                 'fields' => array('Category.slug'),
                 'recursive' => -1
             ));
-            $slugsSC = array_flip(Set::extract('/Contenus/slug', $categories));
+            $slugsSC = array_flip(Set::extract('/Category/slug', $categories));
             Cache::write('categories_slugs', $slugsSC);
         }
 
@@ -40,7 +41,7 @@ class CategorySlugRoute extends CakeRoute {
             $slugsP = array_flip(Set::extract('/Post/slug', $posts));
             Cache::write('posts_slugs', $slugsP);
         }
-        if (isset($slugsPC[$params['category-slug']]) && isset($slugsSC[$params['ss-category-slug']])  && isset($slugsP[$params['slug']])) {
+        if (isset($slugsPC[$params['categoryslug']]) && isset($slugsSC[$params['sscategoryslug']])  && isset($slugsP[$params['slug']])) {
             return $params;
         }
         return false;

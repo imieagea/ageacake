@@ -38,7 +38,7 @@ App::import('Lib', 'Routing/Route/CategorySlugRoute');
 	/*
 	On ajoute le routage pour les pages de contenu
 */
-	Router::connect('/:category-slug/:ss-category-slug/:slug', array('controller' => 'posts', 'action' => 'view'),array('routeClass'=>'CategorySlugRoute'));
+	Router::connect('/:categoryslug/:sscategoryslug/:slug', array('controller' => 'posts', 'action' => 'view'),array('routeClass'=>'CategorySlugRoute'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

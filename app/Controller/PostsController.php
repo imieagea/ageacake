@@ -43,8 +43,8 @@ class PostsController extends AppController {
 				
 				);
 		$options['conditions'] = array( 'Post.slug' => $this->request->params['slug'],
-										'sscat.slug' => $this->request->params['ss-category-slug'],
-										'cat.slug' => $this->request->params['category-slug']
+										'sscat.slug' => $this->request->params['sscategoryslug'],
+										'cat.slug' => $this->request->params['categoryslug']
 		);
 	
 	$c=	$this->Post->find('first', $options);
