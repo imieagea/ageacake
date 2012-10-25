@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
 	
-	var $uses = array('Contenus','User','Fiche');
+	var $uses = array('Contenus','User','Fiche','Critere');
 
 	public function beforeFilter()
 	{
@@ -27,8 +27,30 @@ class AdminController extends AppController {
 
 	public function fiches()
 	{
+		if($this->request->is('post'))
+		{
+			$this->paginate = array(
+	        'condition' => array('Fiche.status ' => $this->data['status'])
+	        );
+		}
 		$this->Fiche->recursive = 0;
 		$this->set('fiches',$this->paginate('Fiche'));
+	}
+
+	public function criteres()
+	{
+		$this->Critere->recursive = 0;
+		$this->set('criteres',$this->paginate('Critere'));
+	}
+
+	public function add_fiche()
+	{
+
+	}
+
+	public function add_critere()
+	{
+
 	}
 
 }

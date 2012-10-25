@@ -38,7 +38,7 @@ class FichesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
 			if ($this->Fiche->save($this->request->data)) {
