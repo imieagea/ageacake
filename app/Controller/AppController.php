@@ -34,7 +34,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 
-    var $uses = array('Contenus');
+    var $uses = array('Contenus','Post');
 
 	public $components = array(
         'Auth' => array(
@@ -56,8 +56,31 @@ class AppController extends Controller {
 
         //Menu initialisation
         $tabs = $this->Contenus->find('all');
-        $this->set('tabs',$tabs);
+        $this->set('tabs',$tabs);		
         $this->set('session',$this->Session);
+		
+		$options['joins'] = array(    
+			array('table' => 'categories',
+			'alias' => 'cat',
+			'type' => 'INNER',
+			'conditions' => array( 
+				'cat.id= Post.category_id',
+				)    
+				),
+			array('table' => 'categories',
+			'alias' => 'cat2',
+			'type' => 'INNER',
+			'conditions' => array( 
+				'cat2.id= cat.parent_id',
+				)    
+				)	
+				
+				);
+			$options['limit'] = 3;
+			$options['order'] = 'Post.id DESC';
+		$options['conditions'] = array( 'cat2.slug' => 'actualites');
+		 $side_actus = $this->Post->find('all',$options);
+        $this->set('side_actus',$side_actus);
     }
 
     public function isAuthorized($user) {

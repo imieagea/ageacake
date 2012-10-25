@@ -1,3 +1,4 @@
+<?php  //echo $this->element('sql_dump'); ?>
 <aside id="sidebar">
 	<div id="box_login">
 		<div class="bandeau login">Adhérents AGEA</div>
@@ -18,13 +19,14 @@
 	<div id="box_actus">
 		<div class="bandeau actus">Actualités</div>
 		<ul id="list_actus">
-		<li>
-				<a href=""></a>
+		<?php foreach($side_actus as $s): ?>
+				<li>
+				<a href=""><?php echo $s['Post']['titre'] ?></a>
 				<p><em> 
 				</em></p>
 			
 			</li>
-			
+			<?php endforeach; ?>	
 		</ul>
 		<a href="" class="all_actus">Voir toutes les actualités</a>
 		<div class="clear"></div>

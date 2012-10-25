@@ -19,7 +19,7 @@ class HomeController extends AppController {
 		$alaune = $this->Post->find('first',$options);
 		$this->set('alaune', $alaune);
 		
-		$options['conditions'] = array(    'Category.slug' => 'texte-recrutement');
+		$options['conditions'] = array( 'Category.slug' => 'texte-recrutement');
 		$texte_recrutement = $this->Post->find('first',$options);
 		$this->set('texte_recrutement', $texte_recrutement);
 	}
