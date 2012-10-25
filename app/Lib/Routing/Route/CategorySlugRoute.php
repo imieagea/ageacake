@@ -37,10 +37,10 @@ class CategorySlugRoute extends CakeRoute {
                 'fields' => array('Post.slug'),
                 'recursive' => -1
             ));
-            $slugsP = array_flip(Set::extract('/Post/slug', $categories));
+            $slugsP = array_flip(Set::extract('/Post/slug', $posts));
             Cache::write('posts_slugs', $slugsP);
         }
-        if (isset($slugsPC[$params['category-slug']]) && isset($slugsSC[$params['sscategory-slug']])  && isset($slugsP[$params['post-slug']])) {
+        if (isset($slugsPC[$params['category-slug']]) && isset($slugsSC[$params['ss-category-slug']])  && isset($slugsP[$params['slug']])) {
             return $params;
         }
         return false;
