@@ -25,12 +25,32 @@ class PostsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$this->Post->id = $id;
-		if (!$this->Post->exists()) {
-			throw new NotFoundException(__('Invalid post'));
+	$options['joins'] = array(    
+			array('table' => 'categories',
+			'alias' => 'sscat',
+			'type' => 'INNER',
+			'conditions' => array( 
+				'sscat.id= Post.category_id',
+				)    
+				),
+			array('table' => 'categories',
+			'alias' => 'cat',
+			'type' => 'INNER',
+			'conditions' => array( 
+				'cat.id= sscat.parent_id',
+				)    
+				)	
+				
+				);
+		$options['conditions'] = array( 'Post.slug' => $this->request->params['slug'],
+										'sscat.slug' => $this->request->params['ss-category-slug'],
+										'cat.slug' => $this->request->params['category-slug']
+		);
+	
+	$c=	$this->Post->find('first', $options);
+		$this->set('posts',$c);
+		
 		}
-		$this->set('post', $this->Post->read(null, $id));
-	}
 
 /**
  * add method

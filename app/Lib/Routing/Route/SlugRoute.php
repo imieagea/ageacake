@@ -9,12 +9,12 @@ class SlugRoute extends CakeRoute {
         $slugs = Cache::read('contenus_slugs');
         if (empty($slugs)) {
             App::import('Model', 'Contenus');
-            $Post = new Post();
-            $posts = $Post->find('all', array(
+            $Contenu = new Contenus();
+            $contenus = $Contenu->find('all', array(
                 'fields' => array('Contenus.slug'),
                 'recursive' => -1
             ));
-            $slugs = array_flip(Set::extract('/Contenus/slug', $posts));
+            $slugs = array_flip(Set::extract('/Contenus/slug', $contenus));
             Cache::write('contenus_slugs', $slugs);
         }
         if (isset($slugs[$params['slug']])) {
