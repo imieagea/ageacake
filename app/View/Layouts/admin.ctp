@@ -37,12 +37,13 @@
 	<div id="content">
 	<section id="contenu">
 		<?php echo $this->Session->flash(); ?>
-
+			<?php echo $this->element('menu_admin'); ?>
 			<?php echo $this->fetch('content'); ?>
 	</section>
 		<div class="clear"></div>
 </div>
 </div>
+
 <footer id="footer">
 	<div id="footer_content">
 		<div id="socials">

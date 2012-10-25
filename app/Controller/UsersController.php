@@ -28,10 +28,10 @@ class UsersController extends AppController {
 	            $this->redirect($this->Auth->redirect());
 	        } else {
 	            $this->Session->setFlash(__('Identifiant ou mot de passe incorrect.'));
+	            $this->redirect(array('controller'=>'home','action'=>'index'));
 	        }
 	    }else
 	    {
-	    	$this->Session->setFlash(__('Non non noooooonn'));
 	    	$this->redirect(array('controller'=>'home','action'=>'index'));
 	    }
 	}
