@@ -36,6 +36,7 @@ class ContenusController extends AppController {
 		$c = $this->Contenus->find('first',array(
 				'conditions' => array('Contenus.slug' => $this->request->params['slug'])
 			));	
+		$this->set('contenus',$c);
 	}
 
 /**
