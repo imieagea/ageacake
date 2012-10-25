@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Jeu 25 Octobre 2012 à 12:34
--- Version du serveur: 5.0.27
--- Version de PHP: 5.3.8
+-- Généré le: Jeu 25 Octobre 2012 à 15:29
+-- Version du serveur: 5.5.24-log
+-- Version de PHP: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,10 +27,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `avis_fiches` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `texte` text NOT NULL,
   `fiche_id` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `fiches_ibfk_1` (`fiche_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -41,14 +41,14 @@ CREATE TABLE IF NOT EXISTS `avis_fiches` (
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL auto_increment,
-  `parent_id` int(11) default NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
   `slug` varchar(50) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `categories`
@@ -69,14 +69,14 @@ INSERT INTO `categories` (`id`, `parent_id`, `slug`, `nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `contenus` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `contenu` text NOT NULL,
-  `ordre` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `ordre` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `contenus`
@@ -94,10 +94,11 @@ INSERT INTO `contenus` (`id`, `titre`, `slug`, `contenu`, `ordre`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `criteres` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(20) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `critere_category_id` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `criteres_ibfk_1` (`critere_category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -108,9 +109,9 @@ CREATE TABLE IF NOT EXISTS `criteres` (
 --
 
 CREATE TABLE IF NOT EXISTS `critere_categories` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -120,11 +121,11 @@ CREATE TABLE IF NOT EXISTS `critere_categories` (
 --
 
 CREATE TABLE IF NOT EXISTS `critere_value` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `critere_id` int(11) NOT NULL,
   `fiche_id` int(11) NOT NULL,
   `value` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `fiches_ibfk_2` (`fiche_id`),
   KEY `criteres_ibfk_2` (`critere_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -136,22 +137,22 @@ CREATE TABLE IF NOT EXISTS `critere_value` (
 --
 
 CREATE TABLE IF NOT EXISTS `fiches` (
-  `id` int(11) NOT NULL auto_increment,
-  `statut` varchar(10) NOT NULL default 'new',
-  `auteur` varchar(20) NOT NULL default 'anonyme',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `statut` varchar(10) NOT NULL DEFAULT 'new',
+  `auteur` varchar(20) NOT NULL DEFAULT 'anonyme',
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `adresse` varchar(255) NOT NULL,
   `code_postal` varchar(255) NOT NULL,
   `ville` varchar(255) NOT NULL,
   `portable` varchar(20) NOT NULL,
-  `fixe` varchar(20) default NULL,
+  `fixe` varchar(20) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `date_naissance` date default NULL,
+  `date_naissance` date DEFAULT NULL,
   `message` tinytext,
-  `pdf` varchar(255) default NULL,
-  `exp` int(1) default NULL,
-  PRIMARY KEY  (`id`)
+  `pdf` varchar(255) DEFAULT NULL,
+  `exp` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -161,10 +162,10 @@ CREATE TABLE IF NOT EXISTS `fiches` (
 --
 
 CREATE TABLE IF NOT EXISTS `groups` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `groups`
@@ -181,11 +182,11 @@ INSERT INTO `groups` (`id`, `nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `partenaires` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
-  `link` varchar(255) default NULL,
+  `link` varchar(255) DEFAULT NULL,
   `pdf` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -195,15 +196,15 @@ CREATE TABLE IF NOT EXISTS `partenaires` (
 --
 
 CREATE TABLE IF NOT EXISTS `posts` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `corps` text NOT NULL,
   `slug` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
   KEY `posts_ibfk_1` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `posts`
@@ -226,13 +227,13 @@ INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role` varchar(20) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `users`

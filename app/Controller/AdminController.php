@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
 	
-	var $uses = array('Contenus','User','Fiche','Critere');
+	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory');
 
 	public function beforeFilter()
 	{
@@ -50,7 +50,21 @@ class AdminController extends AppController {
 
 	public function add_critere()
 	{
+		$critereCategories = $this->Critere->CritereCategory->find('list');
+		$this->set(compact('critereCategories'));
+	}
 
+	public function add_critere_category()
+	{
+		if ($this->request->is('post')) {
+			$this->CritereCategory->create();
+			if ($this->CritereCategory->save($this->request->data)) {
+				$this->Session->setFlash(__('The critere category has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The critere category could not be saved. Please, try again.'));
+			}
+		}
 	}
 
 }
