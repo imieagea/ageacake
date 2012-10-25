@@ -9,10 +9,13 @@
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('style');
-
+	
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
+		echo $this->Html->css('anythingslider'); 
+		echo $this->Html->script('jquery.min');
+		echo $this->Html->script('modernizr');
+		echo $this->Html->script('jquery.anythingslider.min');
 	?>
 </head>
 <body>
@@ -58,7 +61,7 @@
 		
 	</div>
 	<script type="text/javascript">
-	$(function(){ 
+	jQuery(function($){ 
  $('#list_actus') 
   .anythingSlider({ 
    toggleControls : true, 

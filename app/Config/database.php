@@ -66,8 +66,8 @@ class DATABASE_CONFIG {
 		'login' => 'root',
 		'password' => '',
 		'database' => 'ageacake',
-		'prefix' => ''
-		//'encoding' => 'utf8',
+		'prefix' => '',
+		'encoding' => 'utf8'
 	);
 
 	public $test = array(

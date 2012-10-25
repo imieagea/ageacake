@@ -81,6 +81,11 @@ class AppController extends Controller {
 		$options['conditions'] = array( 'cat2.slug' => 'actualites');
 		 $side_actus = $this->Post->find('all',$options);
         $this->set('side_actus',$side_actus);
+		
+		$options2['conditions'] = array( 'Category.slug' => 'informations-de-contact');
+		 $infos_contact = $this->Post->find('first',$options2);
+        $this->set('infos_contact',$infos_contact);
+		
     }
 
     public function isAuthorized($user) {

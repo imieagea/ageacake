@@ -22,9 +22,9 @@
 		<?php foreach($side_actus as $s): ?>
 				<li>
 				<a href=""><?php echo $s['Post']['titre'] ?></a>
-				<p><em> 
+				<p><em><?php echo $s['Category']['nom'] ?> 
 				</em></p>
-			
+			<?php echo $s['Post']['corps'] ?>
 			</li>
 			<?php endforeach; ?>	
 		</ul>
@@ -33,6 +33,7 @@
 	</div>
 	<div id="box_contact">
 		<div class="bandeau contact">Contact</div>
+		<?php echo $infos_contact['Post']['corps'] ?>
 			<a href="" class="right_button contact_link">Contactez-nous</a><div class="clear"></div>
 	</div>
 </aside>
