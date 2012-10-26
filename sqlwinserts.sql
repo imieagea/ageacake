@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 25 Octobre 2012 à 15:29
+-- Généré le: Ven 26 Octobre 2012 à 07:46
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `contenus` (
 
 INSERT INTO `contenus` (`id`, `titre`, `slug`, `contenu`, `ordre`) VALUES
 (1, 'Qui sommes-nous ?', 'qui-sommes-nous', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 1),
-(3, '   Espace Orientation Jeune', 'espace-orientation-jeune', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 3),
+(3, 'Espace Orientation Jeune', 'espace-orientation-jeune', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 3),
 (4, 'Adhérer', 'adherer', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 2);
 
 -- --------------------------------------------------------
@@ -100,7 +100,14 @@ CREATE TABLE IF NOT EXISTS `criteres` (
   `critere_category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `criteres_ibfk_1` (`critere_category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `criteres`
+--
+
+INSERT INTO `criteres` (`id`, `type`, `nom`, `critere_category_id`) VALUES
+(1, 'text', '44', 1);
 
 -- --------------------------------------------------------
 
@@ -110,9 +117,17 @@ CREATE TABLE IF NOT EXISTS `criteres` (
 
 CREATE TABLE IF NOT EXISTS `critere_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `critere_categories`
+--
+
+INSERT INTO `critere_categories` (`id`, `parent_id`, `nom`) VALUES
+(1, 0, 'Mobilité graphique');
 
 -- --------------------------------------------------------
 

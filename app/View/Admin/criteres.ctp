@@ -3,6 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('nom'); ?></th>
 			<th><?php echo $this->Paginator->sort('critere_category_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -11,6 +12,7 @@
 	foreach ($criteres as $critere): ?>
 	<tr>
 		<td><?php echo h($critere['Critere']['id']); ?>&nbsp;</td>
+		<td><?php echo h($critere['Critere']['type']); ?>&nbsp;</td>
 		<td><?php echo h($critere['Critere']['nom']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($critere['CritereCategory']['nom'], array('controller' => 'critere_categories', 'action' => 'view', $critere['CritereCategory']['id'])); ?>

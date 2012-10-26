@@ -50,6 +50,15 @@ class AdminController extends AppController {
 
 	public function add_critere()
 	{
+		if ($this->request->is('post')) {
+			$this->Critere->create();
+			if ($this->Critere->save($this->request->data)) {
+				$this->Session->setFlash(__('The critere has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The critere could not be saved. Please, try again.'));
+			}
+		}
 		$critereCategories = $this->Critere->CritereCategory->find('list');
 		$this->set(compact('critereCategories'));
 	}

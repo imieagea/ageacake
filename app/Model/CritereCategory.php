@@ -55,4 +55,15 @@ class CritereCategory extends AppModel {
 		)
 	);
 
+	public $belongsTo = array(
+		'ParentCategory' => array(
+			'className' => 'CritereCategory',
+			'foreignKey' => 'parent_id',
+			'conditions' => '',
+			'fields' => '',
+			'alias' => 'parent_category',
+			'order' => ''
+		)
+	);
+
 }
