@@ -45,7 +45,9 @@ class AdminController extends AppController {
 
 	public function add_fiche()
 	{
-
+		$this->CritereCategory->recursive = 2;
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('ParentCategory.parent_id'=>null)));
+		$this->set('criteres',$c);
 	}
 
 	public function add_critere()
@@ -74,6 +76,8 @@ class AdminController extends AppController {
 				$this->Session->setFlash(__('The critere category could not be saved. Please, try again.'));
 			}
 		}
+		$parentCategories = $this->CritereCategory->ParentCategory->find('list');
+		$this->set(compact('parentCategories'));
 	}
 
 }

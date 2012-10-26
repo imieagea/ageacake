@@ -43,6 +43,19 @@ class CritereCategory extends AppModel {
 		'Critere' => array(
 			'className' => 'Critere',
 			'foreignKey' => 'critere_category_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'ChildCategory' => array(
+			'className' => 'CritereCategory',
+			'foreignKey' => 'parent_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
