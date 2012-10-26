@@ -13,6 +13,10 @@
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+		echo $this->Html->css('anythingslider'); 
+		echo $this->Html->script('jquery.min');
+		echo $this->Html->script('modernizr');
+		echo $this->Html->script('jquery.anythingslider.min');
 	?>
 </head>
 <body>
@@ -35,10 +39,10 @@
 </header>
 <div id="content_wrapper">
 	<div id="content">
-	<section id="contenu">
+		<?php echo $this->element('menu_admin'); ?>
+	<section id="contenu" class="contenu_admin">
 		<?php echo $this->Session->flash(); ?>
-			<?php echo $this->element('menu_admin'); ?>
-			<?php echo $this->fetch('content'); ?>
+		<?php echo $this->fetch('content'); ?>
 	</section>
 		<div class="clear"></div>
 </div>

@@ -757,3 +757,131 @@ background: #ECF0F5;
 	-webkit-box-shadow: inset 1px 1px 3px 0px #C2C2C2;
 	box-shadow: inset 1px 1px 3px 0px #C2C2C2;
 }
+/* ---------------   ADMIN  ---------------- */
+#admin_menu {
+float: left;
+}
+#admin_menu {
+padding-top: 10px;
+padding-right: 10px;
+padding-bottom: 0px;
+padding-left: 10px;
+width: 270px;
+float: left;
+}
+#contenu.contenu_admin {
+padding: 10px;
+width: 650px;
+}
+
+#admin_menu ul li a {
+text-indent: 25px;
+position: relative;
+margin-left: -8px;
+margin-top: -15px;
+margin-right: -8px;
+display: block;
+text-shadow: 0px 1px 0px #888;
+color: white;
+font-size: 27px;
+font-family: equal_sans_demoregular;
+padding-top: 10px;
+padding-right: 10px;
+padding-bottom: 9px;
+padding-left: 20px;
+background: #B0CFEC;
+-webkit-box-shadow: 0px 3px 5px 0px #C5C5C5;
+box-shadow: 0px 3px 5px 0px #C5C5C5;
+margin-bottom: 25px;
+}
+
+#admin_menu ul li a::after {
+bottom: -5px;
+right: 0;
+border-right: 8px solid transparent;
+content: "";
+display: block;
+position: absolute;
+border-top: 5px solid #5B7A97;
+}
+#admin_menu ul li a::before {
+bottom: -5px;
+left: 0;
+border-left: 8px solid transparent;
+content: "";
+display: block;
+position: absolute;
+border-top: 5px solid #5B7A97;
+}
+
+#admin_menu ul .menu-child a {
+width: 264px;
+box-shadow: none;
+text-shadow: none;
+color: #555;
+background: none;
+padding: 5px;
+font-size: 23px;
+margin-left: 1px;
+text-indent: 5px;
+padding-left: 0;
+}
+
+#admin_menu ul .menu-child a:before {
+content:none;
+}
+#admin_menu ul .menu-child a:after {
+content:none;
+}
+
+#admin_menu ul .menu-child a:hover {
+background: #E0E0E0;
+}
+#admin_menu nav {
+box-shadow: 1px 3px 6px 0px rgba(0, 0, 0, 0.17),-1px 3px 6px 0px rgba(0, 0, 0, 0.17);
+}
+
+#admin_menu ul li a.tab_bord {
+background-image: url(../img/admin_sprite.png);
+background-repeat: no-repeat;
+background-position: -5px -1px;
+}
+
+#admin_menu ul li a#toggle_fiches {
+background-image: url(../img/admin_sprite.png);
+background-repeat: no-repeat;
+background-position: -5px -41px;
+}
+#admin_menu ul li a.gerer_pages {
+background-image: url(../img/admin_sprite.png);
+background-repeat: no-repeat;
+background-position: -5px -83px;
+}
+
+#admin_menu ul li a#toggle_actus {
+background-image: url(../img/admin_sprite.png);
+background-repeat: no-repeat;
+background-position: -5px -122px;
+}
+#admin_menu ul li a#toggle_actions {
+background-image: url(../img/admin_sprite.png);
+background-repeat: no-repeat;
+background-position: -5px -162px;
+}
+#admin_menu ul li a#toggle_bruis {
+background-image: url(../img/admin_sprite.png);
+background-repeat: no-repeat;
+background-position: -5px -202px;
+}
+#admin_menu ul li a.gerer_une {
+box-shadow: none;
+background-image: url(../img/admin_sprite.png);
+background-repeat: no-repeat;
+background-position: -5px -243px;
+}
+#admin_menu ul li a.gerer_une:before {
+left: 0;
+right: 8px;
+}
+
+/* ---------------  FIN ADMIN  ---------------- */
