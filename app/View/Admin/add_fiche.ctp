@@ -1,5 +1,5 @@
 <div class="fiches form">
-<?php echo $this->Form->create('Fiche',array('url'=>'/admin/save_fiche')); ?>
+<?php echo $this->Form->create('Fiche',array('url'=>'/admin/add_fiche')); ?>
 	<fieldset>
 		<legend><?php echo __('Créer une Fiche candidat'); ?></legend>
 	<?php
@@ -22,7 +22,7 @@
 			foreach($c['Critere'] as $sc)
 				{
 					if($sc['type'] == 'checkbox')
-						echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" name="'.$sc['id'].'">';
+						echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" name="criteres[]" value="'.$sc['id'].'">';
 					elseif($sc['type'] == 'textarea')
 						echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><textarea name="'.$sc['id'].'"></textarea>';
 				}
@@ -34,7 +34,7 @@
 					foreach($child['Critere'] as $sc)
 					{
 						if($sc['type'] == 'checkbox')
-							echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" name="'.$sc['id'].'">';
+							echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" name="criteres[]" value="'.$sc['id'].'">';
 						elseif($sc['type'] == 'textarea')
 							echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><textarea name="'.$sc['id'].'"></textarea>';
 					}

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 26 Octobre 2012 à 07:46
+-- Généré le: Ven 26 Octobre 2012 à 12:45
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -96,18 +96,24 @@ INSERT INTO `contenus` (`id`, `titre`, `slug`, `contenu`, `ordre`) VALUES
 CREATE TABLE IF NOT EXISTS `criteres` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) NOT NULL,
+  `position` int(5) DEFAULT NULL,
   `nom` varchar(255) NOT NULL,
   `critere_category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `criteres_ibfk_1` (`critere_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `criteres`
 --
 
-INSERT INTO `criteres` (`id`, `type`, `nom`, `critere_category_id`) VALUES
-(1, 'text', '44', 1);
+INSERT INTO `criteres` (`id`, `type`, `position`, `nom`, `critere_category_id`) VALUES
+(1, 'checkbox', 0, '44', 1),
+(2, 'checkbox', 0, '35', 1),
+(3, 'checkbox', 0, 'Attaché d''agence', 2),
+(5, 'checkbox', 0, 'Particulier', 5),
+(6, 'checkbox', 0, 'Collaborateur d''agence', 2),
+(7, 'checkbox', NULL, 'Chargé de clientèle', 2);
 
 -- --------------------------------------------------------
 
@@ -118,16 +124,20 @@ INSERT INTO `criteres` (`id`, `type`, `nom`, `critere_category_id`) VALUES
 CREATE TABLE IF NOT EXISTS `critere_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
+  `position` int(5) DEFAULT NULL,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `critere_categories`
 --
 
-INSERT INTO `critere_categories` (`id`, `parent_id`, `nom`) VALUES
-(1, 0, 'Mobilité graphique');
+INSERT INTO `critere_categories` (`id`, `parent_id`, `position`, `nom`) VALUES
+(1, 0, 0, 'Mobilité graphique'),
+(2, 0, 1, 'Type d''emploi recherché'),
+(3, 0, 2, 'Chargé de clientèle'),
+(5, 3, 0, 'Typologie de Clientèle');
 
 -- --------------------------------------------------------
 
@@ -279,7 +289,7 @@ ALTER TABLE `categories`
 -- Contraintes pour la table `criteres`
 --
 ALTER TABLE `criteres`
-  ADD CONSTRAINT `criteres_ibfk_1` FOREIGN KEY (`critere_category_id`) REFERENCES `critere_categories` (`id`);
+  ADD CONSTRAINT `criteres_ibfk_1` FOREIGN KEY (`critere_category_id`) REFERENCES `critere_categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `critere_value`

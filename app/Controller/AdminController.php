@@ -45,8 +45,19 @@ class AdminController extends AppController {
 
 	public function add_fiche()
 	{
+		if ($this->request->is('post')) {
+			$this->Fiche->create();
+			$this->Fiche->set($this->request->data);
+			var_dump($this->request->data->critetes);
+			/*if ($this->Fiche->save()) {
+				$this->Session->setFlash(__('The critere has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The critere could not be saved. Please, try again.'));
+			}*/
+		}
 		$this->CritereCategory->recursive = 2;
-		$c = $this->CritereCategory->find('all',array('conditions'=>array('ParentCategory.parent_id'=>null)));
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('ParentCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
 		$this->set('criteres',$c);
 	}
 
