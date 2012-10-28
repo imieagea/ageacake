@@ -116,7 +116,7 @@ class AdminController extends AppController {
 				$this->Session->setFlash(__('The critere category could not be saved. Please, try again.'));
 			}
 		}
-		$parentCategories = $this->CritereCategory->ParentCategory->find('list');
+		$parentCategories = $this->CritereCategory->find('list');
 		$this->set(compact('parentCategories'));
 	}
 
