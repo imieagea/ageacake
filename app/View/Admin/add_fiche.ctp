@@ -1,7 +1,7 @@
 <div class="fiches form">
 <?php echo $this->Form->create('Fiche',array('url'=>'/admin/add_fiche')); ?>
 	<fieldset>
-		<legend><?php echo __('Créer une Fiche candidat'); ?></legend>
+		<h1><?php echo __('Créer une Fiche candidat'); ?></h1>
 	<?php
 		echo $this->Form->input('nom');
 		echo $this->Form->input('prenom');
@@ -52,6 +52,7 @@
 	</fieldset>
 <?php echo $this->Form->end(__('Enregistrer')); ?>
 </div>
+<!--
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
@@ -59,3 +60,4 @@
 		<li><?php echo $this->Html->link(__('List Fiches'), array('action' => 'index')); ?></li>
 	</ul>
 </div>
+-->

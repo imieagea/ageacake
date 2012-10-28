@@ -946,10 +946,40 @@ height: auto;
 #FicheDateNaissanceDay {
 margin-right: 138px;
 }
-#FicheAddFicheForm legend {
+#FicheAddFicheForm legend,#contenu.contenu_admin h1  {
 margin-bottom: 10px;
 text-align: center;
 font-weight: bold;
 font-size: 20px;
 }
+.actions {
+margin-bottom: 10px;
+}
+.contenu_admin th {
+background: #ADADAD;
+text-align: left;
+font-weight: bold;
+vertical-align: middle;
+height: 30px;
+}
+
+.contenu_admin td {
+vertical-align: middle;
+height: 30px;
+}
+
+.contenu_admin a:hover {
+font-weight:bold;
+}
+.contenu_admin table {
+width: 100%;
+}
+.criteres.index .paging_counter{
+text-align:center;
+margin:10px;
+}
+.paging {
+text-align: center;
+}
+
 /* ---------------  FIN ADMIN  ---------------- */

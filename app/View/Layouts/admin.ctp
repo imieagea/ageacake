@@ -76,7 +76,7 @@ toggleControls      : false,
   hashTags            : false,
     delay               : 5000
   }) 
- 
+$("tr:odd").css("background-color", "#FCFCFC");
 });
 	</script>
 	
