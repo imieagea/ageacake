@@ -12,11 +12,13 @@
 		echo $this->Form->input('fixe');
 		echo $this->Form->input('email');
 		?>
+		<div class="select">
 		<label for="date_naissance">Date de naissance</label>
 		<?php
-		echo $this->Form->day('date_naissance',array('empty'=>false)).' - ';
-		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false)).' - ';
+		echo $this->Form->day('date_naissance',array('empty'=>false));
+		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false));
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false));
+		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea'));
 		echo $this->Form->input('pdf',array('type'=>'file'));
 		echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)'));
@@ -41,14 +43,14 @@
 						if($sc['type'] == 'checkbox')
 							echo '<label for="criteres[cb][]">'.$sc['nom'].'</label><input type="checkbox" name="criteres[cb][]" value="'.$sc['id'].'">';
 						elseif($sc['type'] == 'textarea')
-							echo '<textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea>';
+							echo '<textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea><div class="clear"></div>';
 					}
 				}
 			}
 		}
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Enregistrer')); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
