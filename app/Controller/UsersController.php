@@ -24,8 +24,17 @@ class UsersController extends AppController {
 	{
 		if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
-	        	$this->Session->setFlash(__('Vous êtes bien autentifiés.'));
-	            $this->redirect($this->Auth->redirect());
+	        	$role = $this->Session->read('Auth.User.role');
+	        	switch ($role) {
+	        		case 'admin':
+	        			 $this->redirect(array('controller'=>'admin','action'=>'index'));
+	        			break;
+	        		case 'agent':
+	        			$this->redirect(array('controller'=>'agent','action'=>'index'));
+	        			break;
+	        	}
+	        	/*$this->Session->setFlash(__('Vous êtes bien autentifiés.'));
+	            $this->redirect($this->Auth->redirect());*/
 	        } else {
 	            $this->Session->setFlash(__('Identifiant ou mot de passe incorrect.'));
 	            $this->redirect(array('controller'=>'home','action'=>'index'));

@@ -74,13 +74,6 @@ class CritereValue extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Fiche' => array(
-			'className' => 'Fiche',
-			'foreignKey' => 'fiche_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 }

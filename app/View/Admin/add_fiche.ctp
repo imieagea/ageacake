@@ -11,8 +11,13 @@
 		echo $this->Form->input('portable');
 		echo $this->Form->input('fixe');
 		echo $this->Form->input('email');
-		echo $this->Form->input('date_naissance');
-		echo $this->Form->input('message');
+		?>
+		<label for="date_naissance">Date de naissance</label>
+		<?php
+		echo $this->Form->day('date_naissance',array('empty'=>false)).' - ';
+		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false)).' - ';
+		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false));
+		echo $this->Form->input('message',array('type'=>'textarea'));
 		echo $this->Form->input('pdf',array('type'=>'file'));
 		echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)'));
 		foreach($criteres as $c)
@@ -22,9 +27,9 @@
 			foreach($c['Critere'] as $sc)
 				{
 					if($sc['type'] == 'checkbox')
-						echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" name="criteres[]" value="'.$sc['id'].'">';
+						echo '<label for="criteres[cb][]">'.$sc['nom'].'</label><input type="checkbox" name="criteres[cb][]" value="'.$sc['id'].'">';
 					elseif($sc['type'] == 'textarea')
-						echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><textarea name="'.$sc['id'].'"></textarea>';
+						echo '<textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea>';
 				}
 			if(count($c['ChildCategory']) > 0)
 			{
@@ -34,9 +39,9 @@
 					foreach($child['Critere'] as $sc)
 					{
 						if($sc['type'] == 'checkbox')
-							echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" name="criteres[]" value="'.$sc['id'].'">';
+							echo '<label for="criteres[cb][]">'.$sc['nom'].'</label><input type="checkbox" name="criteres[cb][]" value="'.$sc['id'].'">';
 						elseif($sc['type'] == 'textarea')
-							echo '<label for="'.$sc['id'].'">'.$sc['nom'].'</label><textarea name="'.$sc['id'].'"></textarea>';
+							echo '<textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea>';
 					}
 				}
 			}

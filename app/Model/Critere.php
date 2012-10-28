@@ -60,7 +60,7 @@ class Critere extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
+	/*public $belongsTo = array(
 		'CritereCategory' => array(
 			'className' => 'CritereCategory',
 			'foreignKey' => 'critere_category_id',
@@ -68,14 +68,14 @@ class Critere extends AppModel {
 			'fields' => '',
 			'order' => ''
 		)
-	);
+	);*/
 
 /**
  * hasMany associations
  *
  * @var array
  */
-	public $hasMany = array(
+	/*public $hasMany = array(
 		'CritereValue' => array(
 			'className' => 'CritereValue',
 			'foreignKey' => 'critere_id',
@@ -90,5 +90,5 @@ class Critere extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+*/
 }

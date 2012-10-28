@@ -14,6 +14,8 @@ class CritereCategory extends AppModel {
  */
 	public $displayField = 'nom';
 
+	public $order = 'position';
+
 /**
  * Validation rules
  *
@@ -67,16 +69,4 @@ class CritereCategory extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
-	public $belongsTo = array(
-		'ParentCategory' => array(
-			'className' => 'CritereCategory',
-			'foreignKey' => 'parent_id',
-			'conditions' => '',
-			'fields' => '',
-			'alias' => 'parent_category',
-			'order' => ''
-		)
-	);
-
 }

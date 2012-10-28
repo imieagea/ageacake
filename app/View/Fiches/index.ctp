@@ -3,6 +3,8 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('statut'); ?></th>
+			<th><?php echo $this->Paginator->sort('auteur'); ?></th>
 			<th><?php echo $this->Paginator->sort('nom'); ?></th>
 			<th><?php echo $this->Paginator->sort('prenom'); ?></th>
 			<th><?php echo $this->Paginator->sort('adresse'); ?></th>
@@ -18,25 +20,27 @@
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
-	foreach ($fiches as $fich): ?>
+	foreach ($fiches as $fiche): ?>
 	<tr>
-		<td><?php echo h($fich['Fich']['id']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['nom']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['prenom']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['adresse']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['code_postal']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['ville']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['portable']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['fixe']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['email']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['date_naissance']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['message']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['pdf']); ?>&nbsp;</td>
-		<td><?php echo h($fich['Fich']['exp']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['id']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['statut']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['auteur']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['nom']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['prenom']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['adresse']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['code_postal']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['ville']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['portable']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['fixe']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['email']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['date_naissance']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['message']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['pdf']); ?>&nbsp;</td>
+		<td><?php echo h($fiche['Fiche']['exp']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $fich['Fich']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $fich['Fich']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $fich['Fich']['id']), null, __('Are you sure you want to delete # %s?', $fich['Fich']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $fiche['Fiche']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $fiche['Fiche']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $fiche['Fiche']['id']), null, __('Are you sure you want to delete # %s?', $fiche['Fiche']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -60,5 +64,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Fich'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Avis Fiches'), array('controller' => 'avis_fiches', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Avis Fiche'), array('controller' => 'avis_fiches', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

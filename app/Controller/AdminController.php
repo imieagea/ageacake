@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
 	
-	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory');
+	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue');
 
 	public function beforeFilter()
 	{
@@ -22,7 +22,7 @@ class AdminController extends AppController {
 
 	public function index()
 	{
-		
+
 	}
 
 	public function fiches()
@@ -35,6 +35,7 @@ class AdminController extends AppController {
 		}
 		$this->Fiche->recursive = 0;
 		$this->set('fiches',$this->paginate('Fiche'));
+
 	}
 
 	public function criteres()
@@ -47,17 +48,45 @@ class AdminController extends AppController {
 	{
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
-			$this->Fiche->set($this->request->data);
-			var_dump($this->request->data->critetes);
-			/*if ($this->Fiche->save()) {
-				$this->Session->setFlash(__('The critere has been saved'));
+			 if($this->Fiche->save($this->request->data)) {
+			 	foreach ($this->request->data['criteres']['cb'] as $value)
+			 	{
+			 		$this->CritereValue->create();
+			 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+		 			$this->CritereValue->set('value',1);
+		 			$this->CritereValue->set('critere_id',$value);
+		 			$this->CritereValue->save();
+	 			}
+	 			foreach ($this->request->data['criteres']['text'] as $c => $value)
+			 	{
+			 		$this->CritereValue->create();
+			 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+		 			$this->CritereValue->set('value',$value);
+		 			$this->CritereValue->set('critere_id',$c);
+		 			$this->CritereValue->save();
+	 			}
+				$this->Session->setFlash(__('La fiche a bien été sauvegardée.'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The critere could not be saved. Please, try again.'));
-			}*/
+				$this->Session->setFlash(__('La fiche ne peut pas être sauvegardée.'));
+			}
 		}
+		$this->CritereCategory->recursive = 3;
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
+		$this->set('criteres',$c);
+	}
+
+	public function view_fiche($id = null)
+	{
+		$this->Fiche->recursive = 2;
+		$this->Fiche->id = $id;
+		if (!$this->Fiche->exists()) {
+			throw new NotFoundException(__('Fiche non trouvée'));
+		}
+		$this->set('fiche', $this->Fiche->read(null, $id));
+
 		$this->CritereCategory->recursive = 2;
-		$c = $this->CritereCategory->find('all',array('conditions'=>array('ParentCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
 		$this->set('criteres',$c);
 	}
 
