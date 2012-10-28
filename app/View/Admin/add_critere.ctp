@@ -1,7 +1,7 @@
 <div class="criteres form">
 <?php echo $this->Form->create('Critere'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Critere'); ?></legend>
+		<h1><?php echo __('Add Critere'); ?></h1>
 	<?php
 		echo $this->Form->input('nom');
 	?>

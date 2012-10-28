@@ -3,6 +3,7 @@
 		<th>Nom</th>
 		<th>Prénom</th>
 		<th>Statut de la fiche</th>
+		<th>Actions</th>
 	</tr>
 <?php if(isset($fiches[0])):?>	
 	<?php foreach ($fiches as $fiche): ?>

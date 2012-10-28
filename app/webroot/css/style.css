@@ -890,17 +890,17 @@ background-position: -5px -243px;
 left: 0;
 right: 8px;
 }
-#FicheAddFicheForm {
+.contenu_admin form {
 margin: 0 auto;
 width: 450px;
 }
-#FicheAddFicheForm .input.text input,#FicheAddFicheForm  select,#FicheAddFicheForm .input.checkbox input,#FicheAddFicheForm .input.file input  {
+.contenu_admin form .input.text input,.contenu_admin form  select,.contenu_admin form .input.checkbox input,.contenu_admin form .input.file input  {
 float: right;
 }
-#FicheAddFicheForm  label {
+.contenu_admin form  label {
 float: left;
 }
-#FicheAddFicheForm .input.text,#FicheAddFicheForm .input.textarea,#FicheAddFicheForm .select,#FicheAddFicheForm .input.checkbox,#FicheAddFicheForm .input.file {
+.contenu_admin form .input.text,.contenu_admin form .input.textarea,.contenu_admin form .select,.contenu_admin form .input.checkbox,.contenu_admin form .input.file {
 clear: both;
 }
 #FicheMessage {
@@ -908,7 +908,7 @@ clear: both;
 height: 200px;
 width: 100%;
 }
-#FicheAddFicheForm .input.text input{
+.contenu_admin form .input.text input{
 width: 280px;
 	vertical-align: middle;
 	padding: 0;
@@ -925,28 +925,28 @@ width: 280px;
 	transition: all linear 200ms;
 }
 
-#FicheAddFicheForm .input.text input:focus {
+.contenu_admin form .input.text input:focus {
 	outline: none;
 
 	-webkit-box-shadow: inset 1px 1px 3px 0px #C2C2C2;
 	box-shadow: inset 1px 1px 3px 0px #C2C2C2;
 }
 
-#FicheAddFicheForm .input.text input:hover {
+.contenu_admin form .input.text input:hover {
 	background: #ECF0F5;
 }
-#FicheAddFicheForm .input, #FicheAddFicheForm .select {
+.contenu_admin form .input, .contenu_admin form .select {
 width: 450px;
 height: 30px;
 margin-bottom: 10px;
 }
-#FicheAddFicheForm .input.textarea {
+.contenu_admin form .input.textarea {
 height: auto;
 }
 #FicheDateNaissanceDay {
 margin-right: 138px;
 }
-#FicheAddFicheForm legend,#contenu.contenu_admin h1  {
+.contenu_admin form legend,#contenu.contenu_admin h1  {
 margin-bottom: 10px;
 text-align: center;
 font-weight: bold;
@@ -969,7 +969,7 @@ height: 30px;
 }
 
 .contenu_admin a:hover {
-font-weight:bold;
+text-decoration:underline;
 }
 .contenu_admin table {
 width: 100%;
