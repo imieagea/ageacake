@@ -165,6 +165,7 @@ pip-log.txt
 
 #cache
 tmp/*
+app/Lib/Html2Pdf/_tcpdf_5.0.002/cache/*
 [Cc]onfig/core.php
 [Cc]onfig/database.php
 app/tmp/*
