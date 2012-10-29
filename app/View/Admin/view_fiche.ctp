@@ -1,5 +1,7 @@
-<h2><?php echo $fiche['Fiche']['nom'].' '.$fiche['Fiche']['prenom'] ?></h2>
-
+<h1>Fiche Candidat</h1>
+<p><strong>Nom: </strong><?php echo $fiche['Fiche']['nom']?><br />
+<strong>Prénom: </strong><?php echo $fiche['Fiche']['prenom'] ?>
+</p>
 
 <?php
 //On intialise le tableau avec les valeurs des critères et l'id du critère en index
@@ -13,7 +15,7 @@ foreach ($fiche['CritereValue'] as $value) {
 //Avec un peu plus de temps de dev on peut arriver à un développement plus optimisé et paufinné
 //Il m'es totalement impossible de prévoir l'optimisation de ce genre de fonctions dès la conception (compte tenu des délais)
 //</Parenthèse>;
-function recursAfficheCats($parents,$cv = null,$rang = 1)
+function recursAfficheCats($parents,$cv = null,$rang = 2)
 {
 	foreach ($parents as $parent) {
 		(isset($parent['CritereCategory']))? $titre = $parent['CritereCategory']['nom'] : $titre = $parent['nom'] ;
@@ -27,7 +29,7 @@ function recursAfficheCats($parents,$cv = null,$rang = 1)
 					echo "<label>".$critere['nom']."</label>";
 					if($critere['type'] == 'checkbox')
 					{
-						echo "<input type='checkbox' value = ".$cv[$critere['id']].">";
+						echo "<input type='checkbox' checked='checked' value = ".$cv[$critere['id']].">";
 					}else
 					{
 						echo "<textarea>".$cv[$critere['id']]."</textarea>";

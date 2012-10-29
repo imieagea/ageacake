@@ -1,8 +1,8 @@
 <table>
 	<tr>
-		<th>Nom</th>
-		<th>Prénom</th>
-		<th>Statut de la fiche</th>
+		<th><?php echo $this->Paginator->sort('nom'); ?></th>
+		<th><?php echo $this->Paginator->sort('prenom'); ?></th>
+		<th><?php echo $this->Paginator->sort('status'); ?></th>
 		<th>Actions</th>
 	</tr>
 <?php if(isset($fiches[0])):?>	
@@ -18,8 +18,8 @@
 </table>
 <div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->prev('< ' . __('Précédent'), array(), null, array('class' => 'prev disabled'));
 		echo $this->Paginator->numbers(array('separator' => '|'));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->next(__('Suivant') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 </div>

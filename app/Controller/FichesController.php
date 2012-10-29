@@ -14,7 +14,7 @@ class FichesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Fiche->recursive = 0;
+		$this->Fiche->recursive = 0;		
 		$this->set('fiches', $this->paginate());
 	}
 
