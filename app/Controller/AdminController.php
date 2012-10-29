@@ -134,10 +134,11 @@ class AdminController extends AppController {
 
 	}
 
-	public function add_actualites()
+	public function add_actualite()
 	{
 		if ($this->request->is('post')) {
 			$this->Post->create();
+			$this->request->data['Category']['slug'] = $this->slugify($this->request->data['Post']['titre']);
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash(__('L\'actualité à bien été enregistrée.'));
 				$this->redirect(array('action' => 'index'));
@@ -155,22 +156,65 @@ class AdminController extends AppController {
 		$this->set('categories',$this->paginate('Category'));
 	}
 
-	public function add_actualites_category()
+	public function add_actualite_category()
 	{
 		if ($this->request->is('post')) {
 			$this->Category->create();
+			$this->request->data['Category']['slug'] = $this->slugify($this->request->data['Category']['nom']);
 			if ($this->Category->save($this->request->data)) { 
-				$this->Session->setFlash(__('L\'actualité à bien été enregistrée.'));
+				$this->Session->setFlash(__('La catégorie a bien été créée.'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
 			}
 		}
+		$parentCategories = $this->Category->find('list');
+		$this->set(compact('parentCategories'));
 	}
 
 	public function alaune()
 	{
-		$this->Post->find('all',array('conditions'=>array('Post.c')));
+		$this->Post->recursive = 1;
+		$this->Post->find('all',array('conditions'=>array('Category.slug'=>'a-la-une')));
+	}
+
+	public function contenus()
+	{
+		$this->Contenus->recursive = 1;
+		$this->set('pages',$this->paginate('Contenus'));
+	}
+
+	public function edit_contenus($id=null)
+	{
+		if ($this->request->is('post')) {
+			$this->Contenu->id = $id;
+			if ($this->Contenu->save($this->request->data)) { 
+				$this->Session->setFlash(__('La page à bien été enregistrée.'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la page'));
+			}
+		}
+	}
+
+	public function edit_actualite($id=null)
+	{
+		if ($this->request->is('post')) {
+			$this->Post->id = $id;
+			if ($this->Post->save($this->request->data)) { 
+				$this->Session->setFlash(__('L\'actualité à bien été mise à jour.'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la page'));
+			}
+		}
+	}
+
+	public function bruissements($value='')
+	{
+		$this->Post->recursive = 1;
+		$b = $this->Post->find('all',array('conditions'=>array('Category.slug'=>'bruissements')));
+		$this->set('bruissements',$b);
 	}
 
 }
