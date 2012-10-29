@@ -36,7 +36,7 @@ class AppController extends Controller {
 
     var $uses = array('Contenus','Post');
     
-    public function slugify($text)
+    static public function slugify($text)
     {
         // replace non letter or digits by -
         $text = preg_replace ('~[^\\pL\d]+~u', '-', $text);

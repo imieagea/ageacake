@@ -134,6 +134,46 @@ class AdminController extends AppController {
 
 	}
 
+	public function edit_fiche($id=null)
+	{
+		if(!empty($id))
+		{
+			if ($this->request->is('post')) {
+				$this->Fiche->create();
+				$this->Fiche->set('statut','validated');
+				 if($this->Fiche->save($this->request->data)) {
+				 	foreach ($this->request->data['criteres']['cb'] as $value)
+				 	{
+				 		$this->CritereValue->create();
+				 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+			 			$this->CritereValue->set('value',1);
+			 			$this->CritereValue->set('critere_id',$value);
+			 			$this->CritereValue->save();
+		 			}
+		 			foreach ($this->request->data['criteres']['text'] as $c => $value)
+				 	{
+				 		$this->CritereValue->create();
+				 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+			 			$this->CritereValue->set('value',$value);
+			 			$this->CritereValue->set('critere_id',$c);
+			 			$this->CritereValue->save();
+		 			}
+					$this->Session->setFlash(__('La fiche a bien été sauvegardée.'));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('La fiche ne peut pas être sauvegardée.'));
+				}
+			}
+
+				$this->set('fiche',$this->Fiche->read(null,$id));
+
+				$this->CritereCategory->recursive = 3;
+				$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
+				$this->set('criteres',$c);
+			}
+		
+	}
+
 	public function add_actualite()
 	{
 		if ($this->request->is('post')) {
@@ -158,17 +198,19 @@ class AdminController extends AppController {
 
 	public function add_actualite_category()
 	{
+		$this->Category->recursive = -1;
+		
 		if ($this->request->is('post')) {
 			$this->Category->create();
 			$this->Category->set('slug',$this->slugify($this->request->data['Category']['nom']));
-			$this->Category->set($this->request->data);
-			if ($this->Category->save()) { 
+			if ($this->Category->save($this->request->data)) { 
 				$this->Session->setFlash(__('La catégorie a bien été créée.'));
 				//$this->redirect(array('action' => 'actualite_category'));
 			} else {
 				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
 			}
 		}
+
 		$parentCategories = $this->Category->find('list');
 		$this->set(compact('parentCategories'));
 	}

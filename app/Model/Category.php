@@ -44,6 +44,7 @@ class Category extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+
 /**
  * hasMany associations
  *
@@ -78,7 +79,8 @@ class Category extends AppModel {
 
 	public function beforeSave($options = array())
 	{
-		$this->set('slug',/*$this->nom*/'a-la-une');
+		$this->set('slug',AppController::slugify($this->data['Category']['nom']));
+		return true;
 	}
 
 }
