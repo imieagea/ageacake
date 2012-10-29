@@ -1,14 +1,14 @@
 <div class="criteres index">
 	<h1><?php echo __('Criteres'); ?></h1>
-	<div class="actions">
+	<!--<div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('Ajouter un critère'), array('action' => 'add')); ?></li>
 	<li><?php echo $this->Html->link(__('Gérer les Catégories de critère'), array('controller' => 'critere_categories', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('Ajouter une Catégorie de critère'), array('controller' => 'critere_categories', 'action' => 'add')); ?> </li>
 		<!-- <li><?php echo $this->Html->link(__('List Critere Values'), array('controller' => 'critere_values', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Critere Value'), array('controller' => 'critere_values', 'action' => 'add')); ?> </li> -->
-	</ul>
-</div>
+	<!--</ul>
+</div>-->
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			

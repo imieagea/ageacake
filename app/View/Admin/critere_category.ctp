@@ -1,6 +1,6 @@
 <div class="criteres index">
 
-	<h2><?php echo __('Catégories de critères'); ?></h2>
+	<h1><?php echo __('Catégories de critères'); ?></h1>
 	<!--<div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

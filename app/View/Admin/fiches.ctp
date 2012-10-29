@@ -1,3 +1,4 @@
+<h1>Fiches candidats</h1>
 <table>
 	<tr>
 		<th><?php echo $this->Paginator->sort('nom'); ?></th>
