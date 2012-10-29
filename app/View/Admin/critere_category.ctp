@@ -1,5 +1,13 @@
 <div class="criteres index">
-	<h2><?php echo __('Catégories'); ?></h2>
+
+	<h2><?php echo __('Catégories de critères'); ?></h2>
+	<!--<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+		
+		<li><?php echo $this->Html->link(__('New Critere Category'), array('controller' => 'critere_categories', 'action' => 'add')); ?> </li>
+	</ul>
+</div>-->
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -15,31 +23,23 @@
 		<td><ul><?php foreach ($categorie['ChildCategory'] as $cat) { ?>
 			<li><?php echo $cat['nom'] ?></li>
 		<?php } ?><ul></td>
+		<td></td>
 	</tr>
 <?php endforeach; ?>
 	</table>
-	<p>
+	<p class="paging_counter">
 	<?php
 	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+	'format' => __('Page {:page} sur {:pages}')
 	));
 	?>	</p>
 
 	<div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->prev('< ' . __('Précédent'), array(), null, array('class' => 'prev disabled'));
 		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->next(__('Suivant') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Critere'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Critere Categories'), array('controller' => 'critere_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Critere Category'), array('controller' => 'critere_categories', 'action' => 'add')); ?> </li>
-		<!-- <li><?php echo $this->Html->link(__('List Critere Values'), array('controller' => 'critere_values', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Critere Value'), array('controller' => 'critere_values', 'action' => 'add')); ?> </li> -->
-	</ul>
-</div>
+

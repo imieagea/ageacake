@@ -974,7 +974,7 @@ text-decoration:underline;
 .contenu_admin table {
 width: 100%;
 }
-.criteres.index .paging_counter{
+.contenu_admin .paging_counter{
 text-align:center;
 margin:10px;
 }

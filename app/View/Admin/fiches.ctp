@@ -16,6 +16,12 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
+<p class="paging_counter">
+	<?php
+	echo $this->Paginator->counter(array(
+	'format' => __('Page {:page} sur {:pages}')
+	));
+	?>	</p>
 <div class="paging">
 	<?php
 		echo $this->Paginator->prev('< ' . __('Précédent'), array(), null, array('class' => 'prev disabled'));
