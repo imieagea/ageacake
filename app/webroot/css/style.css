@@ -903,7 +903,7 @@ float: left;
 .contenu_admin form .input.text,.contenu_admin form .input.textarea,.contenu_admin form .select,.contenu_admin form .input.checkbox,.contenu_admin form .input.file {
 clear: both;
 }
-#FicheMessage {
+.contenu_admin  textarea {
 clear: both;
 height: 200px;
 width: 100%;
@@ -981,5 +981,20 @@ margin:10px;
 .paging {
 text-align: center;
 }
-
+.contenu_admin h2 {
+margin-bottom: 10px;
+text-align: left;
+font-weight: bold;
+font-size: 18px;
+}
+.contenu_admin h3 {
+margin-bottom: 10px;
+text-align: left;
+font-weight: bold;
+font-size: 14px;
+margin-left: 10px;
+}
+.contenu_admin .criteres {
+margin-left: 10px;
+}
 /* ---------------  FIN ADMIN  ---------------- */

@@ -29,9 +29,9 @@
 			foreach($c['Critere'] as $sc)
 				{
 					if($sc['type'] == 'checkbox')
-						echo '<label for="criteres[cb][]">'.$sc['nom'].'</label><input type="checkbox" name="criteres[cb][]" value="'.$sc['id'].'">';
+						echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'" name="criteres[cb][]" value="'.$sc['id'].'"></div>';
 					elseif($sc['type'] == 'textarea')
-						echo '<textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea>';
+						echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea></div>';
 				}
 			if(count($c['ChildCategory']) > 0)
 			{
@@ -41,9 +41,9 @@
 					foreach($child['Critere'] as $sc)
 					{
 						if($sc['type'] == 'checkbox')
-							echo '<label for="criteres[cb][]">'.$sc['nom'].'</label><input type="checkbox" name="criteres[cb][]" value="'.$sc['id'].'">';
+							echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'"  name="criteres[cb][]" value="'.$sc['id'].'"></div>';
 						elseif($sc['type'] == 'textarea')
-							echo '<textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea><div class="clear"></div>';
+							echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea><div class="clear"></div></div>';
 					}
 				}
 			}
