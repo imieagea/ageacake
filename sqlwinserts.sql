@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 26 Octobre 2012 à 12:45
+-- Généré le: Lun 29 Octobre 2012 à 08:38
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `avis_fiches` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `texte` text NOT NULL,
   `fiche_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `edited_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fiches_ibfk_1` (`fiche_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -101,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `criteres` (
   `critere_category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `criteres_ibfk_1` (`critere_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `criteres`
@@ -113,7 +115,8 @@ INSERT INTO `criteres` (`id`, `type`, `position`, `nom`, `critere_category_id`) 
 (3, 'checkbox', 0, 'Attaché d''agence', 2),
 (5, 'checkbox', 0, 'Particulier', 5),
 (6, 'checkbox', 0, 'Collaborateur d''agence', 2),
-(7, 'checkbox', NULL, 'Chargé de clientèle', 2);
+(7, 'checkbox', NULL, 'Chargé de clientèle', 2),
+(8, 'textarea', NULL, 'Autres : assurance crédit et crédits', 6);
 
 -- --------------------------------------------------------
 
@@ -123,21 +126,22 @@ INSERT INTO `criteres` (`id`, `type`, `position`, `nom`, `critere_category_id`) 
 
 CREATE TABLE IF NOT EXISTS `critere_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `position` int(5) DEFAULT NULL,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `critere_categories`
 --
 
 INSERT INTO `critere_categories` (`id`, `parent_id`, `position`, `nom`) VALUES
-(1, 0, 0, 'Mobilité graphique'),
-(2, 0, 1, 'Type d''emploi recherché'),
-(3, 0, 2, 'Chargé de clientèle'),
-(5, 3, 0, 'Typologie de Clientèle');
+(1, NULL, 0, 'Mobilité graphique'),
+(2, NULL, 1, 'Type d''emploi recherché'),
+(3, NULL, 2, 'Chargé de clientèle'),
+(5, 3, 0, 'Typologie de Clientèle'),
+(6, NULL, NULL, 'Techniques acquises');
 
 -- --------------------------------------------------------
 
@@ -153,7 +157,21 @@ CREATE TABLE IF NOT EXISTS `critere_value` (
   PRIMARY KEY (`id`),
   KEY `fiches_ibfk_2` (`fiche_id`),
   KEY `criteres_ibfk_2` (`critere_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Contenu de la table `critere_value`
+--
+
+INSERT INTO `critere_value` (`id`, `critere_id`, `fiche_id`, `value`) VALUES
+(1, 8, 1, 'Autres : assurance crédit et crédits'),
+(2, 1, 2, '1'),
+(3, 2, 2, '1'),
+(4, 7, 2, '1'),
+(5, 3, 2, '1'),
+(6, 6, 2, '1'),
+(7, 5, 2, '1'),
+(8, 8, 2, 'Autres : assurance crédit et crédits');
 
 -- --------------------------------------------------------
 
@@ -178,7 +196,15 @@ CREATE TABLE IF NOT EXISTS `fiches` (
   `pdf` varchar(255) DEFAULT NULL,
   `exp` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `fiches`
+--
+
+INSERT INTO `fiches` (`id`, `statut`, `auteur`, `nom`, `prenom`, `adresse`, `code_postal`, `ville`, `portable`, `fixe`, `email`, `date_naissance`, `message`, `pdf`, `exp`) VALUES
+(1, 'new', 'anonyme', 'Bobby', 'Joe', '44 rue', '44000', 'Nantes', '0616974929', '0616974929', 'bobby@gmail.com', '1991-01-01', 'Salut', '', 0),
+(2, 'new', 'anonyme', 'Bobby', 'Nazbrook', '44 rue', '44000', 'Nantes', '0616974929', '0616974929', 'bobby@gmail.com', '1954-01-01', 'Salut les djeuns', '', 0);
 
 -- --------------------------------------------------------
 
@@ -258,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `users`

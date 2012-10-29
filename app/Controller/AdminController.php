@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
 	
-	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue');
+	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue','Post','Category');
 
 	public function beforeFilter()
 	{
@@ -48,6 +48,7 @@ class AdminController extends AppController {
 	{
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
+			$this->Fiche->set('statut','validated');
 			 if($this->Fiche->save($this->request->data)) {
 			 	foreach ($this->request->data['criteres']['cb'] as $value)
 			 	{
@@ -118,6 +119,58 @@ class AdminController extends AppController {
 		}
 		$parentCategories = $this->CritereCategory->find('list');
 		$this->set(compact('parentCategories'));
+	}
+
+	public function critere_category()
+	{
+		$this->CritereCategory->recursive = 1;
+		$this->set('categories',$this->paginate('CritereCategory'));
+	}
+
+	public function actualites()
+	{
+		$this->Post->recursive = 0;
+		$this->set('actus',$this->paginate('Post'));
+
+	}
+
+	public function add_actualites()
+	{
+		if ($this->request->is('post')) {
+			$this->Post->create();
+			if ($this->Post->save($this->request->data)) {
+				$this->Session->setFlash(__('L\'actualité à bien été enregistrée.'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
+			}
+		}
+		$categories = $this->Category->find('list');
+		$this->set(compact('categories'));
+	}
+
+	public function actualites_category()
+	{
+		$this->Category->recursive = 0;
+		$this->set('categories',$this->paginate('Category'));
+	}
+
+	public function add_actualites_category()
+	{
+		if ($this->request->is('post')) {
+			$this->Category->create();
+			if ($this->Category->save($this->request->data)) { 
+				$this->Session->setFlash(__('L\'actualité à bien été enregistrée.'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
+			}
+		}
+	}
+
+	public function alaune()
+	{
+		$this->Post->find('all',array('conditions'=>array('Post.c')));
 	}
 
 }
