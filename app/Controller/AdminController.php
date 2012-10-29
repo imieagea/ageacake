@@ -138,7 +138,7 @@ class AdminController extends AppController {
 	{
 		if ($this->request->is('post')) {
 			$this->Post->create();
-			$this->request->data['Category']['slug'] = $this->slugify($this->request->data['Post']['titre']);
+			$this->Post->set('slug',$this->slugify($this->request->data['Post']['titre']));
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash(__('L\'actualité à bien été enregistrée.'));
 				$this->redirect(array('action' => 'index'));
@@ -160,10 +160,11 @@ class AdminController extends AppController {
 	{
 		if ($this->request->is('post')) {
 			$this->Category->create();
-			$this->request->data['Category']['slug'] = $this->slugify($this->request->data['Category']['nom']);
-			if ($this->Category->save($this->request->data)) { 
+			$this->Category->set('slug',$this->slugify($this->request->data['Category']['nom']));
+			$this->Category->set($this->request->data);
+			if ($this->Category->save()) { 
 				$this->Session->setFlash(__('La catégorie a bien été créée.'));
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'actualite_category'));
 			} else {
 				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
 			}

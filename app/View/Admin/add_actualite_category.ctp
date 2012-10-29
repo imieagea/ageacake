@@ -7,5 +7,5 @@
 		echo $this->Form->input('parent_category_id',array('label'=>'Catégorie parente','empty'=>true,'name'=>'data[Category][id]'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Créer')); ?>
 </div>
