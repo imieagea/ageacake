@@ -8,7 +8,7 @@
 	<th><?php echo $this->Paginator->sort('id'); ?>&nbsp;</th>
 		<th><?php echo $this->Paginator->sort('titre'); ?></th>
 		<th><?php echo $this->Paginator->sort('corps'); ?></th>
-		<th><?php echo $this->Paginator->sort('nom'); ?></th>
+		<th><?php echo $this->Paginator->sort('Category.nom','Nom de la catégorie'); ?></th>
 		<th>Actions</th>
 	</tr>
 <?php if(isset($actus[0])):?>	

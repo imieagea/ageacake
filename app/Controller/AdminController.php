@@ -129,7 +129,23 @@ class AdminController extends AppController {
 
 	public function actualites()
 	{
-		$this->Post->recursive = 0;
+		$this->paginate = array(
+		    'joins' => array(
+		    	array(
+		            'alias' => 'cat',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => '`Post`.`category_id` = `cat`.`id`'
+		        ),
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `cat`.`parent_id`','`ParentCategory`.`slug` LIKE'=>'%actualites%')
+		        )
+		    )
+		);
+		$this->Post->recursive = 1;
 		$this->set('actus',$this->paginate('Post'));
 
 	}
@@ -253,11 +269,24 @@ class AdminController extends AppController {
 		}
 	}
 
-	public function bruissements($value='')
+	public function bruissements()
 	{
 		$this->Post->recursive = 1;
-		$b = $this->Post->find('all',array('conditions'=>array('Category.slug'=>'bruissements')));
-		$this->set('bruissements',$b);
+		//$b = $this->Post->find('all',array('conditions'=>array('Category.slug'=>'bruissements')));
+		$this->set('bruissements',$this->paginate('Post',array('Category.slug LIKE'=>'%bruissements%')));
+	}
+
+	public function add_bruissement()
+	{
+		if ($this->request->is('post')) {
+			$this->Post->create();
+			if ($this->Post->save($this->request->data)) { 
+				$this->Session->setFlash(__('Le bruissement a été créé.'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la page'));
+			}
+		}
 	}
 
 }
