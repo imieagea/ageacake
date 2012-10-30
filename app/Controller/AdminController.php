@@ -279,12 +279,16 @@ class AdminController extends AppController {
 	public function add_bruissement()
 	{
 		if ($this->request->is('post')) {
+			$c = $this->Category->find('first', array(
+		        'conditions' => array('Category.slug' => 'bruissements')
+		    ));
 			$this->Post->create();
+			$this->Post->set('category_id',$c['Category']['id']);
 			if ($this->Post->save($this->request->data)) { 
 				$this->Session->setFlash(__('Le bruissement a été créé.'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Impossible d\'enregistrer la page'));
+				$this->Session->setFlash(__('Impossible d\'enregistrer le bruissement'));
 			}
 		}
 	}
