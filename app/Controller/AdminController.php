@@ -1,6 +1,12 @@
 <?php
 App::uses('AppController', 'Controller');
 
+//Status
+//	new
+//	validated
+//	refused
+
+
 class AdminController extends AppController {
 	
 	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue','Post','Category');
@@ -274,8 +280,9 @@ class AdminController extends AppController {
 
 	public function alaune()
 	{
+		$this->paginate = array('conditions'=>array('Category.slug'=>'a-la-une'));
 		$this->Post->recursive = 1;
-		$this->set('alaune',$this->Paginate('Post',array('conditions'=>array('Category.slug'=>'a-la-une'))));
+		$this->set('alaune',$this->Paginate('Post'));
 	}
 
 	public function contenus()
@@ -313,7 +320,6 @@ class AdminController extends AppController {
 	public function bruissements()
 	{
 		$this->Post->recursive = 1;
-		//$b = $this->Post->find('all',array('conditions'=>array('Category.slug'=>'bruissements')));
 		$this->set('bruissements',$this->paginate('Post',array('Category.slug LIKE'=>'%bruissements%')));
 	}
 

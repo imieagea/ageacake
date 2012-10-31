@@ -3,6 +3,7 @@
 	<tr>
 		<th><?php echo $this->Paginator->sort('nom'); ?></th>
 		<th><?php echo $this->Paginator->sort('prenom'); ?></th>
+		<th><?php echo $this->Paginator->sort('email'); ?></th>
 		<th><?php echo $this->Paginator->sort('status'); ?></th>
 		<th>Actions</th>
 	</tr>
@@ -11,6 +12,7 @@
 		<tr>
 			<td><?php echo h($fiche['Fiche']['nom']); ?>&nbsp;</td>
 			<td><?php echo h($fiche['Fiche']['prenom']); ?>&nbsp;</td>
+			<td><?php echo h($fiche['Fiche']['email']); ?>&nbsp;</td>
 			<td><?php echo h($fiche['Fiche']['statut']); ?>&nbsp;</td>
 			<td><a href="<?php echo $this->base ?>/admin/view_fiche/<?php echo $fiche['Fiche']['id'] ?>">Voir la fiche</a></td>
 		</tr>
