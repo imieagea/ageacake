@@ -32,7 +32,7 @@ class Fiche extends AppModel {
 		),
 		'nom' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('between', 1, 50),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				'required' => true,
@@ -42,7 +42,7 @@ class Fiche extends AppModel {
 		),
 		'prenom' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('between', 1, 50),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				'required' => true,

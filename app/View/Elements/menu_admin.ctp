@@ -19,7 +19,7 @@
 			<li>
 				<a href="javascript:void(0);" id="toggle_actus">Actualités</a>
 				<ul style="display:none">
-					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/actualites">Gérer les Actualité</a></li>
+					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/actualites">Gérer les Actualités</a></li>
 					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/add_actualite">Ajouter une Actualité</a></li>
 					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/actualites_category">Gérer les Catégories d'actualité</a></li>
 					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/add_actualite_category">Ajouter une Catégorie d'actualité</a></li>

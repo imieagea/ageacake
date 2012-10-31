@@ -2,9 +2,9 @@
 <table>
 	<tr>
 		<th><?php echo $this->Paginator->sort('nom'); ?></th>
-		<th><?php echo $this->Paginator->sort('prenom'); ?></th>
+		<th><?php echo $this->Paginator->sort('prenom','Prénom'); ?></th>
 		<th><?php echo $this->Paginator->sort('email'); ?></th>
-		<th><?php echo $this->Paginator->sort('status'); ?></th>
+		<th><?php echo $this->Paginator->sort('status','Statut'); ?></th>
 		<th>Actions</th>
 	</tr>
 <?php if(isset($fiches[0])):?>	

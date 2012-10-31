@@ -51,7 +51,7 @@
 <footer id="footer">
 	<div id="footer_content">
 		<div id="socials">
-			<div>Suivez-nous sur:</div>
+			<div>Suivez-nous sur :</div>
 			<a href="" id="page_fb">Notre page Facebook</a>
 			<a href="" id="chaine_ytb">Notre chaine Youtube</a>
 		</div>
