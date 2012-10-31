@@ -191,7 +191,18 @@ class AdminController extends AppController {
 	}
 
 	public function add_actualite()
-	{
+	{	
+		$options = array(
+		    'joins' => array(
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `Category`.`parent_id`','`ParentCategory`.`slug`'=>'actualites')
+		        )
+		    )
+		);
+
 		if ($this->request->is('post')) {
 			$this->Post->create();
 			$this->Post->set('slug',$this->slugify($this->request->data['Post']['titre']));
@@ -202,12 +213,23 @@ class AdminController extends AppController {
 				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
 			}
 		}
-		$categories = $this->Category->find('list');
+
+		$categories = $this->Category->find('list',$options);
 		$this->set(compact('categories'));
 	}
 
 	public function actualites_category()
 	{
+		$this->paginate = array(
+		    'conditions' => array('ParentCategory.slug'=>'actualites'));
+		$this->Category->recursive = 0;
+		$this->set('categories',$this->paginate('Category'));
+	}
+
+	public function action_category()
+	{
+		$this->paginate = array(
+		    'conditions' => array('ParentCategory.slug'=>'actions'));
 		$this->Category->recursive = 0;
 		$this->set('categories',$this->paginate('Category'));
 	}
@@ -227,14 +249,33 @@ class AdminController extends AppController {
 			}
 		}
 
-		$parentCategories = $this->Category->find('list');
+		$parentCategories = $this->Category->find('list',array('conditions'=>array('Category.slug'=>'actualites')));
+		$this->set(compact('parentCategories'));
+	}
+
+	public function add_action_category()
+	{
+		$this->Category->recursive = -1;
+		
+		if ($this->request->is('post')) {
+			$this->Category->create();
+			$this->Category->set('slug',$this->slugify($this->request->data['Category']['nom']));
+			if ($this->Category->save($this->request->data)) { 
+				$this->Session->setFlash(__('La catégorie a bien été créée.'));
+				//$this->redirect(array('action' => 'actualite_category'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
+			}
+		}
+
+		$parentCategories = $this->Category->find('list',array('conditions'=>array('Category.slug'=>'actions')));
 		$this->set(compact('parentCategories'));
 	}
 
 	public function alaune()
 	{
 		$this->Post->recursive = 1;
-		$this->Post->find('all',array('conditions'=>array('Category.slug'=>'a-la-une')));
+		$this->set('alaune',$this->Paginate('Post',array('conditions'=>array('Category.slug'=>'a-la-une'))));
 	}
 
 	public function contenus()
@@ -293,6 +334,46 @@ class AdminController extends AppController {
 		}
 	}
 
+	public function actions()
+	{
+		$this->paginate = array(
+		    'joins' => array(
+		    	array(
+		            'alias' => 'cat',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => '`Post`.`category_id` = `cat`.`id`'
+		        ),
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `cat`.`parent_id`','`ParentCategory`.`slug` LIKE'=>'%actions%')
+		        )
+		    )
+		);
+		$this->Post->recursive = 1;
+		$this->set('actions',$this->paginate('Post'));
+
+		
+	}
+
+	public function add_actions()
+	{
+		$options = array(
+		    'joins' => array(
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `Category`.`parent_id`','`ParentCategory`.`slug`'=>'actions')
+		        )
+		    )
+		);
+	
+		$categories = $this->Category->find('list',$options);
+		$this->set(compact('categories'));
+	}
 }
 
 ?>
