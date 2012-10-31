@@ -16,7 +16,7 @@
 		<tr>
 		<td><?php echo h($actu['Post']['id']); ?>&nbsp;</td>
 			<td><?php echo h($actu['Post']['titre']); ?>&nbsp;</td>
-			<td><?php echo $rest = substr(h($actu['Post']['corps']), 0, 20).'[...]'; ?>&nbsp;</td>
+			<td><?php echo $rest = substr(strip_tags ( h($actu['Post']['corps'])), 0, 20).'[...]'; ?>&nbsp;</td>
 			<td><?php echo h($actu['Category']['nom']); ?>&nbsp;</td>
 			<td><a href="<?php echo $this->base ?>/admin/view_actualite/<?php echo $actu['Post']['id'] ?>">Voir</a></td>
 		</tr>
