@@ -4,7 +4,7 @@
 		<legend><?php echo __('Ajouter une Categorie d\'actualité'); ?></legend>
 	<?php
 		echo $this->Form->input('nom');
-		echo $this->Form->input('parent_category_id',array('label'=>'Catégorie parente','empty'=>false,'name'=>'data[Category][category_id]'));
+		echo $this->Form->input('parent_category_id',array('label'=>'Catégorie parente','empty'=>false,'name'=>'data[Category][parent_id]'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Créer')); ?>

@@ -172,7 +172,42 @@ class AdminController extends AppController {
 		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
 		$this->set('criteres',$c);
 	}
+	
+	public function view_actualite($id = null)
+	{
+		$this->set('actu', $this->Post->read(null, $id));
+		$options = array(
+		    'joins' => array(
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `Category`.`parent_id`','`ParentCategory`.`slug`'=>'actualites')
+		        )
+		    )
+		);
+$categories = $this->Category->find('list',$options);
+		$this->set(compact('categories'));
+	}
 
+	public function view_action($id = null)
+	{
+		$this->set('action', $this->Post->read(null, $id));
+		$options = array(
+		    'joins' => array(
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `Category`.`parent_id`','`ParentCategory`.`slug`'=>'actions')
+		        )
+		    )
+		);
+$categories = $this->Category->find('list',$options);
+		$this->set(compact('categories'));
+	}
+
+	
 	public function add_critere()
 	{
 		if ($this->request->is('post')) {
