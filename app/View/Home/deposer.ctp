@@ -1,8 +1,7 @@
 <div class="fiches form">
 <?php echo $this->Form->create('Fiche',array('url'=>'/home/deposer','type'=>'file')); ?>
 	<fieldset>
-		<h1><?php echo __('Déposez votre CV'); ?></h1>
-	<?php
+		<div class="bandeau deposercv"><h1><?php echo __('Déposez votre CV'); ?></h1></div><?php 
 		echo $this->Form->input('nom');
 		echo $this->Form->input('prenom');
 		echo $this->Form->input('adresse');

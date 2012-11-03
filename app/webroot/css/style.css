@@ -900,25 +900,42 @@ background-position: -5px -243px;
 left: 0;
 right: 8px;
 }
-.contenu_admin form {
+.bandeau.deposercv{
+margin-left: -90px;
+margin-top:5px;
+margin-right:200px;
+}
+.fiches.form{
+margin-top: 10px;
+background: url("../img/bg.jpg");
+padding-right: 10px;
+padding-bottom: 10px;
+padding-left: 10px;
+width: 595px;
+}
+.contenu_admin form, .fiches.form form {
 margin: 0 auto;
 width: 450px;
 }
-.contenu_admin form .input.text input,.contenu_admin form  select,.contenu_admin form .input.checkbox input,.contenu_admin form .input.file input  {
+.contenu_admin form .input.text input,.contenu_admin form  select,.contenu_admin form .input.checkbox input,.contenu_admin form .input.file input,
+.fiches.form form .input.text input,.fiches.form form  select,.fiches.form form .input.checkbox input,.fiches.form form .input.file input
+  {
 float: right;
 }
-.contenu_admin form  label {
+.contenu_admin form  label, .fiches.form form  label{
 float: left;
 }
-.contenu_admin form .input.text,.contenu_admin form .input.textarea,.contenu_admin form .select,.contenu_admin form .input.checkbox,.contenu_admin form .input.file {
+.contenu_admin form .input.text,.contenu_admin form .input.textarea,.contenu_admin form .select,.contenu_admin form .input.checkbox,.contenu_admin form .input.file,
+.fiches.form  form .input.text,.fiches.form  form .input.textarea,.fiches.form  form .select,.fiches.form  form .input.checkbox,.fiches.form  form .input.file
+ {
 clear: both;
 }
-.contenu_admin  textarea {
+.contenu_admin  textarea, .fiches.form textarea  {
 clear: both;
 height: 200px;
 width: 100%;
 }
-.contenu_admin form .input.text input{
+.contenu_admin form .input.text input, .fiches.form form .input.text input{
 width: 280px;
 	vertical-align: middle;
 	padding: 0;
@@ -935,28 +952,34 @@ width: 280px;
 	transition: all linear 200ms;
 }
 
-.contenu_admin form .input.text input:focus {
+.contenu_admin form .input.text input:focus, .fiches.form form .input.text input:focus {
 	outline: none;
 
 	-webkit-box-shadow: inset 1px 1px 3px 0px #C2C2C2;
 	box-shadow: inset 1px 1px 3px 0px #C2C2C2;
 }
 
-.contenu_admin form .input.text input:hover {
+.contenu_admin form .input.text input:hover,  .fiches.form form .input.text input:hover{
 	background: #ECF0F5;
 }
-.contenu_admin form .input, .contenu_admin form .select {
+.contenu_admin form .input, .contenu_admin form .select,
+.fiches.form form .input, .fiches.form form .select
+{
 width: 450px;
 height: 30px;
 margin-bottom: 10px;
 }
-.contenu_admin form .input.textarea {
+.contenu_admin form .input.textarea,
+.fiches.form form .input.textarea
+ {
 height: auto;
 }
 #FicheDateNaissanceDay {
 margin-right: 138px;
 }
-.contenu_admin form legend,#contenu.contenu_admin h1  {
+.contenu_admin form legend,#contenu.contenu_admin h1,
+.fiches.form form legend,#contenu.fiches.form h1
+ {
 margin-bottom: 10px;
 text-align: center;
 font-weight: bold;
@@ -991,14 +1014,14 @@ margin:10px;
 .paging {
 text-align: center;
 }
-.contenu_admin h2 {
+.contenu_admin h2,.fiches.form h2 {
 margin-top: 10px;
 margin-bottom: 6px;
 text-align: left;
 font-weight: bold;
 font-size: 18px;
 }
-.contenu_admin h3 {
+.contenu_admin h3 ,.fiches.form h3{
 margin-top: 6px;
 margin-bottom: 3px;
 text-align: left;
@@ -1006,7 +1029,7 @@ font-weight: bold;
 font-size: 14px;
 margin-left: 10px;
 }
-.contenu_admin h4 {
+.contenu_admin h4 ,.fiches.form h4{
 margin-top: 6px;
 margin-bottom: 3px;
 text-align: left;
