@@ -318,17 +318,29 @@ $categories = $this->Category->find('list',$options);
 				break;
 
 			case 'Critere':
-				# code...
+					$c = $this->Critere->find('all',array('Critere.id'=>$id));
+					foreach ($c as $cri) {
+						$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$cri['Critere']['id']),false);
+					}
+					$this->Critere->delete($id);
 				break;
 
 			case 'CritereCategory':
-					//$this->CritereValue
+					$c = $this->Critere->find('all',array('Critere.parent_category_id'=>$id));
+					foreach ($c as $cri) {
+						$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$cri['Critere']['id']),false);
+					}
+					$this->Critere->deleteAll(array('Critere.critere_category_id'=>$id),false);
+					$this->CritereCategory->delete($id);
+
 				break;
 			
 			default:
 				# code...
 				break;
 		}
+		$this->Session->setFlash(__('Supression réussie.'));
+		$this->redirect(array('action'=>'index'));
 	}
 
 	public function add_actualite()

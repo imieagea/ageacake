@@ -29,7 +29,7 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('Voir'), array('action' => 'view', $critere['Critere']['id'])); ?>
 			<?php echo $this->Html->link(__('Editer'), array('action' => 'edit', $critere['Critere']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Supprimer'), array('action' => 'delete', $critere['Critere']['id']), null, __('Êtes-vous sûr de vouloir le supprimer # %s?', $critere['Critere']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Supprimer'), array('action' => 'delete/Critere/'.$critere['Critere']['id']), null, __('Êtes-vous sûr de vouloir le supprimer # %s?', $critere['Critere']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
