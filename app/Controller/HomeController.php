@@ -33,6 +33,7 @@ class HomeController extends AppController {
 
 	public function deposer()
 	{
+
 		$authTypes = array('application/pdf','application/msword');
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
@@ -42,7 +43,7 @@ class HomeController extends AppController {
 			{
 				$cv = $this->request->data['Fiche']['cv'];
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = WWW_ROOT.'cv\\';
+					$chemin_destination = ROOT.'\webroot\cv\\';
 					$name = AppController::slugify($cv['name']);
 					$path_parts = pathinfo($cv['name']);
 					$ext = $path_parts['extension'];

@@ -108,6 +108,61 @@ class AdminController extends AppController {
 	{
 		$this->Fiche->recursive = 2;
 		$this->Fiche->id = $id;
+
+		if ($this->request->is('post')) {
+			$this->Fiche->set('statut','validated');
+			
+			$authTypes = array('application/pdf','application/msword');
+
+			if(isset($this->request->data['Fiche']['cv']))
+			{
+				$fiche = $this->Fiche->read(null,$id);
+				if ($fiche['Fiche']['pdf']) {
+					unlink(filename);
+				}
+				$cv = $this->request->data['Fiche']['cv'];
+				if (in_array($cv['type'], $authTypes)) {
+					$chemin_destination = ROOT.'\webroot\cv\\';
+					$name = AppController::slugify($cv['name']);
+					$path_parts = pathinfo($cv['name']);
+					$ext = $path_parts['extension'];
+					$this->Fiche->set('pdf',$this->base.'/webroot/cv/'.$name.'.'.$ext);
+
+					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+
+	 			}else
+	 			{
+	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
+	 			}
+			}
+			$this->Fiche->set($this->request->data);
+			 if($this->Fiche->save()) {
+			 	foreach ($this->request->data['criteres']['cb'] as $value)
+			 	{
+			 		$this->CritereValue->create();
+			 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+		 			$this->CritereValue->set('value',1);
+		 			$this->CritereValue->set('critere_id',$value);
+		 			$this->CritereValue->save();
+	 			}
+	 			foreach ($this->request->data['criteres']['text'] as $c => $value)
+			 	{
+			 		$this->CritereValue->create();
+			 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+		 			$this->CritereValue->set('value',$value);
+		 			$this->CritereValue->set('critere_id',$c);
+		 			$this->CritereValue->save();
+	 			}
+				$this->Session->setFlash(__('La fiche a bien été sauvegardée.'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('La fiche ne peut pas être sauvegardée.'));
+			}
+		}
+		$this->CritereCategory->recursive = 3;
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
+		$this->set('criteres',$c);
+
 		if (!$this->Fiche->exists()) {
 			throw new NotFoundException(__('Fiche non trouvée'));
 		}
@@ -215,6 +270,27 @@ class AdminController extends AppController {
 				$this->set('criteres',$c);
 			}
 		
+	}
+
+	public function delete($type=null,$id=null)
+	{
+		switch ($type) {
+			case 'Fiche':
+				# code...
+				break;
+
+			case 'Critere':
+				# code...
+				break;
+
+			case 'CritereCategory':
+					//$this->CritereValue
+				break;
+			
+			default:
+				# code...
+				break;
+		}
 	}
 
 	public function add_actualite()
