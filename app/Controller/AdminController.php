@@ -64,8 +64,6 @@ class AdminController extends AppController {
 		 			$this->CritereValue->set('critere_id',$value);
 		 			$this->CritereValue->save();
 	 			}
-	 			if (isset($this->request->data['criteres']['text'])) {
-	 			
 	 			foreach ($this->request->data['criteres']['text'] as $c => $value)
 			 	{
 			 		$this->CritereValue->create();
