@@ -45,24 +45,33 @@ function recursAfficheCats($parents,$cv = null,$rang = 2)
 			foreach ($parent['Critere'] as $critere) {
 				if(isset($cv[$critere['id']]))
 				{
-					echo "<label>".$critere['nom']."</label>";
+					
 					if($critere['type'] == 'checkbox')
 					{
+					echo '<div class="input checkbox criteres">';
+					echo "<label>".$critere['nom']."</label>";
 						echo "<input type='checkbox' checked='checked' value = ".$cv[$critere['id']].">";
 					}else
 					{
+					echo '<div class="input textarea criteres">';
+					echo "<label>".$critere['nom']."</label>";
 						echo "<textarea>".$cv[$critere['id']]."</textarea>";
 					}
+					echo '</div>';
 				}else{
-				echo "<label>".$critere['nom']."</label>";
+				
 				if($critere['type'] == 'checkbox')
 					{
+						echo '<div class="input checkbox criteres">';
+					echo "<label>".$critere['nom']."</label>";
 						echo "<input type='checkbox' >";
 					}else
 					{
+					echo '<div class="input textarea criteres">';
+					echo "<label>".$critere['nom']."</label>";
 						echo "<textarea></textarea>";
 					}
-
+				echo '</div>';
 			}
 		}
 		if(isset($parent['ChildCategory']) && count($parent['ChildCategory']) > 0)
