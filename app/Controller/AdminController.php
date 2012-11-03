@@ -153,7 +153,7 @@ class AdminController extends AppController {
 		 			$this->CritereValue->set('critere_id',$c);
 		 			$this->CritereValue->save();
 	 			}
-				$this->Session->setFlash(__('La fiche a bien été sauvegardée.'));
+				$this->Session->setFlash(__('La fiche a bien été mise à jour.'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('La fiche ne peut pas être sauvegardée.'));
