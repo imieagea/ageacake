@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 29 Octobre 2012 à 08:38
+-- Généré le: Sam 03 Novembre 2012 à 17:33
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -45,12 +45,12 @@ CREATE TABLE IF NOT EXISTS `avis_fiches` (
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT NULL,
-  `slug` varchar(50) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- Contenu de la table `categories`
@@ -62,7 +62,9 @@ INSERT INTO `categories` (`id`, `parent_id`, `slug`, `nom`) VALUES
 (5, NULL, 'texte-recrutement', 'Texte recrutement'),
 (6, 1, 'bretagne', 'Actualités Bretagne'),
 (7, 1, 'pays-de-la-loire', 'Actualités Pays de la Loire'),
-(8, NULL, 'informations-de-contact', 'Informations de contact');
+(8, NULL, 'informations-de-contact', 'Informations de contact'),
+(31, NULL, 'bruissements', 'Bruissements'),
+(32, NULL, 'actions', 'Actions');
 
 -- --------------------------------------------------------
 
@@ -129,19 +131,20 @@ CREATE TABLE IF NOT EXISTS `critere_categories` (
   `parent_id` int(11) DEFAULT NULL,
   `position` int(5) DEFAULT NULL,
   `nom` varchar(255) NOT NULL,
+  `public` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `critere_categories`
 --
 
-INSERT INTO `critere_categories` (`id`, `parent_id`, `position`, `nom`) VALUES
-(1, NULL, 0, 'Mobilité graphique'),
-(2, NULL, 1, 'Type d''emploi recherché'),
-(3, NULL, 2, 'Chargé de clientèle'),
-(5, 3, 0, 'Typologie de Clientèle'),
-(6, NULL, NULL, 'Techniques acquises');
+INSERT INTO `critere_categories` (`id`, `parent_id`, `position`, `nom`, `public`) VALUES
+(1, NULL, 0, 'Mobilité graphique', 1),
+(2, NULL, 1, 'Type d''emploi recherché', 1),
+(3, NULL, 2, 'Chargé de clientèle', 0),
+(5, 3, 0, 'Typologie de Clientèle', 0),
+(6, NULL, NULL, 'Techniques acquises', 0);
 
 -- --------------------------------------------------------
 
@@ -157,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `critere_value` (
   PRIMARY KEY (`id`),
   KEY `fiches_ibfk_2` (`fiche_id`),
   KEY `criteres_ibfk_2` (`critere_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 
 --
 -- Contenu de la table `critere_value`
@@ -165,13 +168,74 @@ CREATE TABLE IF NOT EXISTS `critere_value` (
 
 INSERT INTO `critere_value` (`id`, `critere_id`, `fiche_id`, `value`) VALUES
 (1, 8, 1, 'Autres : assurance crédit et crédits'),
-(2, 1, 2, '1'),
-(3, 2, 2, '1'),
-(4, 7, 2, '1'),
-(5, 3, 2, '1'),
-(6, 6, 2, '1'),
-(7, 5, 2, '1'),
-(8, 8, 2, 'Autres : assurance crédit et crédits');
+(9, 8, 3, 'Autres : assurance crédit et crédits'),
+(26, 1, 8, '1'),
+(27, 2, 8, '1'),
+(28, 7, 8, '1'),
+(29, 3, 8, '1'),
+(30, 6, 8, '1'),
+(31, 5, 8, '1'),
+(32, 8, 8, 'Autres : assurance crédit et crédits'),
+(33, 1, 9, '1'),
+(34, 2, 9, '1'),
+(35, 7, 9, '1'),
+(36, 3, 9, '1'),
+(37, 6, 9, '1'),
+(38, 5, 9, '1'),
+(39, 8, 9, 'Autres : assurance crédit et crédits'),
+(47, 1, 11, '1'),
+(48, 2, 11, '1'),
+(49, 3, 11, '1'),
+(50, 5, 11, '1'),
+(51, 8, 11, 'Autres : assurance crédit et crédits'),
+(52, 1, 12, '1'),
+(53, 3, 12, '1'),
+(54, 6, 12, '1'),
+(55, 5, 12, '1'),
+(56, 8, 12, 'Gestion des assurances de voitures de prestige'),
+(57, 1, 14, '1'),
+(58, 3, 14, '1'),
+(59, 6, 14, '1'),
+(60, 5, 14, '1'),
+(61, 8, 14, 'Gestion des assurances de voitures de prestige'),
+(62, 2, 17, '1'),
+(63, 7, 17, '1'),
+(64, 3, 17, '1'),
+(65, 8, 17, 'Autres : assurance crédit et crédits'),
+(66, 8, 21, 'Autres : assurance crédit et crédits'),
+(67, 2, 28, '1'),
+(68, 7, 28, '1'),
+(69, 3, 28, '1'),
+(70, 8, 28, 'Autres : assurance crédit et crédits'),
+(71, 2, 29, '1'),
+(72, 7, 29, '1'),
+(73, 3, 29, '1'),
+(74, 8, 29, 'Autres : assurance crédit et crédits'),
+(75, 2, 30, '1'),
+(76, 7, 30, '1'),
+(77, 3, 30, '1'),
+(78, 8, 30, 'Autres : assurance crédit et crédits'),
+(79, 2, 31, '1'),
+(80, 7, 31, '1'),
+(81, 3, 31, '1'),
+(82, 8, 31, 'Autres : assurance crédit et crédits'),
+(83, 1, 32, '1'),
+(84, 3, 32, '1'),
+(85, 6, 32, '1'),
+(86, 5, 32, '1'),
+(87, 8, 32, 'test1'),
+(88, 1, 34, '1'),
+(89, 2, 34, '1'),
+(90, 3, 34, '1'),
+(91, 6, 34, '1'),
+(92, 8, 34, 'Autres : assurance crédit et crédits'),
+(93, 8, 41, 'Autres : assurance crédit et crédits'),
+(94, 1, 42, '1'),
+(95, 5, 42, '1'),
+(96, 8, 42, 'Autres : assurance crédit et crédits'),
+(97, 2, 43, '1'),
+(98, 3, 43, '1'),
+(99, 8, 43, 'Autres : assurance crédit et crédits');
 
 -- --------------------------------------------------------
 
@@ -195,8 +259,10 @@ CREATE TABLE IF NOT EXISTS `fiches` (
   `message` tinytext,
   `pdf` varchar(255) DEFAULT NULL,
   `exp` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_2` (`email`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
 -- Contenu de la table `fiches`
@@ -204,7 +270,23 @@ CREATE TABLE IF NOT EXISTS `fiches` (
 
 INSERT INTO `fiches` (`id`, `statut`, `auteur`, `nom`, `prenom`, `adresse`, `code_postal`, `ville`, `portable`, `fixe`, `email`, `date_naissance`, `message`, `pdf`, `exp`) VALUES
 (1, 'new', 'anonyme', 'Bobby', 'Joe', '44 rue', '44000', 'Nantes', '0616974929', '0616974929', 'bobby@gmail.com', '1991-01-01', 'Salut', '', 0),
-(2, 'new', 'anonyme', 'Bobby', 'Nazbrook', '44 rue', '44000', 'Nantes', '0616974929', '0616974929', 'bobby@gmail.com', '1954-01-01', 'Salut les djeuns', '', 0);
+(3, 'validated', 'anonyme', 'Alain ', 'Bernard', '87 rue des eglises', '13000', 'Marseille', '0210201020', '0265789878', 'tests@gmail.com', '2011-03-02', 'Essai tests', '', 0),
+(8, 'validated', 'anonyme', 'Dalibard', 'Marc', '15 rue du père Noël', '99999', 'Mont Blanc', '0123456789', '0123456789', 'pere.noel@gmail.com', '1910-01-01', 'babedi babeda', '', 1),
+(9, 'validated', 'anonyme', 'Cooper', 'Shedonl', 'route de Pasadena', '00000', 'PASADENA', '0909090909', '0808080808', 'cs@cs.fr', '2012-01-01', 'message de test', '', 1),
+(11, 'validated', 'anonyme', 'Dutest', 'Michel', '5 rue du web', '35000', 'Rennes', '0789568956', '0663549487', 'michou.t@aol.com', '1959-12-31', '', '', 1),
+(12, 'validated', 'anonyme', 'Lanvin', 'William', '2, rue des champs élysées', '75000', 'Paris', '0606000006', '0101000001', 'williamlanvinparis@gmail.com', '1980-06-04', 'Très motivé', '', 1),
+(14, 'validated', 'anonyme', 'Lanvin', 'William', '2, rue des champs élysées', '75000', 'Paris', '0606000006', '0101000001', 'williamlanvinparis75@gmail.com', '1980-06-04', 'Très motivé', '', 1),
+(17, 'validated', 'anonyme', 'ROBERT ', 'Marcel', '8 rue des etoile', '45000', 'Orleans', '12534678', '12345689', 'Valval@gmail.com', '2006-08-16', 'Tests message', '', 0),
+(21, 'validated', 'anonyme', 'Nayme', 'Paul', '7 chemin du net', '49000', 'Angers', '08050407009', '0908070804', 'naymep@free.fr', '1959-12-31', '', '', 0),
+(28, 'validated', 'anonyme', 'GALLOIS ', 'simone', '8 all�e des �toiles', '45000', 'Orleans', '12534678', '12345689', 'Valval1@gmail.com', '2006-08-16', 'Tests message', NULL, 0),
+(29, 'validated', 'anonyme', 'ROBERT ', 'Marcel', '8 rue des etoile', '45000', 'Orleans', '012534678', '012345689', 'Tests1@gmail.com', '2006-08-16', 'Tests message', NULL, 0),
+(30, 'validated', 'anonyme', 'GALLOIS ', 'simone', '8 all�e des �toiles', '45000', 'Orleans', '012534678', '012345689', 'Tests2@gmail.com', '2006-08-16', 'Tests message', NULL, 0),
+(31, 'validated', 'anonyme', 'GALLOIS ', 'simone', '8 all�e des �toiles', '45000', 'Orleans', '012534678', '', 'Test32@gmail.com', '2006-08-16', 'Tests message', NULL, 0),
+(32, 'validated', 'anonyme', 'Laure', 'Blandin', '5, rue des �toiles', '44000', 'Nantes', '600000000', '200000000', 'laure.blandin@gmail.com', '1980-06-04', 'Très motivé', NULL, 1),
+(34, 'validated', 'anonyme', 'Bartowski', 'Chuck', 'rue de burbank', '43224', 'BURBANK', '0404040404', '0303030303', 'cbcb@yahoo.fr', '2012-01-01', 'test de message', '', 0),
+(41, 'validated', 'anonyme', 'Nayme', 'Paul', '7 chemin du net', '49000', 'Angers', '08050407009', '0908070804', 'naymep1@free.fr', '1959-12-31', '', '', 0),
+(42, 'validated', 'anonyme', 'Mal', 'Eleanor', '45 rue du commerce', '85000', 'La Roche sur Yon', '08058407009', '0908070885', 'emal1@wanadoo.fr', '1959-12-31', '', '', 1),
+(43, 'validated', 'anonyme', 'Henry', 'Charles', '12 square des vents', '44000', 'Nantes', '08050407777', '0908070877', 'charlesh1@gmail.com', '1959-12-31', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -255,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
   KEY `posts_ibfk_1` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Contenu de la table `posts`
@@ -269,7 +351,9 @@ INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`) VALUES
 (6, 'Une actus pays de la loire2', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 'une-atus-pays-de-la-loire2', 7),
 (7, 'Une actus pays de la loire3', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 'une-atus-pays-de-la-loire3', 7),
 (8, 'actu en bretagne OMG2', '<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam metus orci, pellentesque vitae semper at, consequat ut urna. </p>', 'actu-en-bretagne-omg2', 6),
-(9, 'Informations de contact', '<p>Emné FAKHRY<br>\r\n4, rue de l’Héronnière<br>\r\n44000 Nantes<br>\r\n<strong>Mail</strong>&nbsp;: rg-paysloire@agea.fr<br>\r\n<strong>Portable</strong>&nbsp;: 06 58 69 00 73<br>\r\n<strong>Fax</strong>&nbsp;: 02 40 69 81 14</p>', 'informations-de-contact', 8);
+(9, 'Informations de contact', '<p>Emné FAKHRY<br>\r\n4, rue de l’Héronnière<br>\r\n44000 Nantes<br>\r\n<strong>Mail</strong>&nbsp;: rg-paysloire@agea.fr<br>\r\n<strong>Portable</strong>&nbsp;: 06 58 69 00 73<br>\r\n<strong>Fax</strong>&nbsp;: 02 40 69 81 14</p>', 'informations-de-contact', 8),
+(18, 'A la une, c''est super', 'Ouais on est là dans le bruissement de chambre t''as uv', 'a-la-une-c-est-super', 31),
+(20, 'Bruissement numéro 1', 'Superbe bruissement', '', 31);
 
 -- --------------------------------------------------------
 
@@ -321,8 +405,8 @@ ALTER TABLE `criteres`
 -- Contraintes pour la table `critere_value`
 --
 ALTER TABLE `critere_value`
-  ADD CONSTRAINT `criteres_ibfk_2` FOREIGN KEY (`critere_id`) REFERENCES `criteres` (`id`),
-  ADD CONSTRAINT `fiches_ibfk_2` FOREIGN KEY (`fiche_id`) REFERENCES `fiches` (`id`);
+  ADD CONSTRAINT `critere_value_ibfk_2` FOREIGN KEY (`critere_id`) REFERENCES `criteres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `critere_value_ibfk_1` FOREIGN KEY (`fiche_id`) REFERENCES `fiches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `posts`
