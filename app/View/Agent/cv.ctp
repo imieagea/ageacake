@@ -2,7 +2,7 @@
 
 <div style="background:grey;">
 	<a style="color:pink;" href="<?php echo $this->base ?>/agent/pdf/<?php echo $fiche['Fiche']['id'] ?>">Télécharger au format PDF</a>
-	<a style="color:pink;" href="<?php echo $fiche['Fiche']['prenom'] ?>">Télécharger le CV du candidat</a>
+	<a style="color:pink;" href="<?php echo $fiche['Fiche']['pdf'] ?>">Télécharger le CV du candidat</a>
 </div>
 <?php
 

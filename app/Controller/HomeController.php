@@ -26,6 +26,11 @@ class HomeController extends AppController {
 		$this->set('texte_recrutement', $texte_recrutement);
 	}
 
+	public function merci()
+	{
+		
+	}
+
 	public function deposer()
 	{
 		$authTypes = array('application/pdf','application/msword');
@@ -42,39 +47,36 @@ class HomeController extends AppController {
 					$path_parts = pathinfo($cv['name']);
 					$ext = $path_parts['extension'];
 					
-					$this->Fiche->set('pdf',$chemin_destination.$name.'.'.$ext);
-					if(move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext))
+					$this->Fiche->set('pdf',$this->base.'/webroot/cv/'.$name.'.'.$ext);
+
+					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+
+					if($this->Fiche->save())
 					{
-						if($this->Fiche->save())
-						{
-							foreach ($this->request->data['criteres']['cb'] as $value)
+						foreach ($this->request->data['criteres']['cb'] as $value)
+					 	{
+					 		$this->CritereValue->create();
+					 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+				 			$this->CritereValue->set('value',1);
+				 			$this->CritereValue->set('critere_id',$value);
+				 			$this->CritereValue->save();
+			 			}
+			 			if(isset($this->request->data['criteres']['text']))
+			 			{
+			 				foreach ($this->request->data['criteres']['text'] as $c => $value)
 						 	{
 						 		$this->CritereValue->create();
 						 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-					 			$this->CritereValue->set('value',1);
-					 			$this->CritereValue->set('critere_id',$value);
+					 			$this->CritereValue->set('value',$value);
+					 			$this->CritereValue->set('critere_id',$c);
 					 			$this->CritereValue->save();
 				 			}
-				 			if(isset($this->request->data['criteres']['text']))
-				 			{
-				 				foreach ($this->request->data['criteres']['text'] as $c => $value)
-							 	{
-							 		$this->CritereValue->create();
-							 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-						 			$this->CritereValue->set('value',$value);
-						 			$this->CritereValue->set('critere_id',$c);
-						 			$this->CritereValue->save();
-					 			}
-				 			}
-				 			
-				 			echo 'ZGEG';
-				 			die();
 			 			}
-					}else
-					{
-						var_dump($this->Fiche->validationErrors);
-						var_dump($this->request->data);
-					}
+
+			 			$this->redirect(array('action'=>'merci'));
+		 			}else{
+		 				$this->Session->setFlash(__('Votre cv n\'a pas pu être envoyé.'));
+		 			}
 				}
 			}
 
