@@ -36,7 +36,7 @@ class HomeController extends AppController {
 		$authTypes = array('application/pdf','application/msword');
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
-			$this->Fiche->set('status','new');
+			$this->Fiche->set('statut','new');
 			$this->Fiche->set($this->request->data);
 			if(isset($this->request->data['Fiche']['cv']))
 			{
@@ -51,34 +51,33 @@ class HomeController extends AppController {
 
 					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
 
-					if($this->Fiche->save())
-					{
-						foreach ($this->request->data['criteres']['cb'] as $value)
+	 			}
+			}
+
+			if($this->Fiche->save())
+				{
+					foreach ($this->request->data['criteres']['cb'] as $value)
+				 	{
+				 		$this->CritereValue->create();
+				 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+			 			$this->CritereValue->set('value',1);
+			 			$this->CritereValue->set('critere_id',$value);
+			 			$this->CritereValue->save();
+		 			}
+		 			if(isset($this->request->data['criteres']['text']))
+		 			{
+		 				foreach ($this->request->data['criteres']['text'] as $c => $value)
 					 	{
 					 		$this->CritereValue->create();
 					 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-				 			$this->CritereValue->set('value',1);
-				 			$this->CritereValue->set('critere_id',$value);
+				 			$this->CritereValue->set('value',$value);
+				 			$this->CritereValue->set('critere_id',$c);
 				 			$this->CritereValue->save();
 			 			}
-			 			if(isset($this->request->data['criteres']['text']))
-			 			{
-			 				foreach ($this->request->data['criteres']['text'] as $c => $value)
-						 	{
-						 		$this->CritereValue->create();
-						 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-					 			$this->CritereValue->set('value',$value);
-					 			$this->CritereValue->set('critere_id',$c);
-					 			$this->CritereValue->save();
-				 			}
-			 			}
-
-			 			$this->redirect(array('action'=>'merci'));
-		 			}else{
-		 				$this->Session->setFlash(__('Votre cv n\'a pas pu être envoyé.'));
 		 			}
+
+		 			$this->redirect(array('action'=>'merci'));
 				}
-			}
 
 		}else
 		{

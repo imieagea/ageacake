@@ -55,6 +55,21 @@ class AdminController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
 			$this->Fiche->set('statut','validated');
+			if(isset($this->request->data['Fiche']['cv']))
+			{
+				$cv = $this->request->data['Fiche']['cv'];
+				if (in_array($cv['type'], $authTypes)) {
+					$chemin_destination = WWW_ROOT.'cv\\';
+					$name = AppController::slugify($cv['name']);
+					$path_parts = pathinfo($cv['name']);
+					$ext = $path_parts['extension'];
+					
+					$this->Fiche->set('pdf',$this->base.'/webroot/cv/'.$name.'.'.$ext);
+
+					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+
+	 			}
+			}
 			 if($this->Fiche->save($this->request->data)) {
 			 	foreach ($this->request->data['criteres']['cb'] as $value)
 			 	{
