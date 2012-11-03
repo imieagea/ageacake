@@ -2,7 +2,7 @@
 <article>		
 			<div class="bandeau recrut"><h1><?php echo $texte_recrutement['Post']['titre']; ?>	</h1></div>
 			<div class="text_recrut"><?php echo $texte_recrutement['Post']['corps']; ?>	</div>
-			<a href="<?php echo $this->base ?>/home/deposer" class="button_cv">Déposez votre CV !</a>	
+			<a href="<?php echo $this->base ?>/deposer" class="button_cv">Déposez votre CV !</a>	
 <div class="clear"></div>		
 			</article>
 <article>			

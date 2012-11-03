@@ -39,6 +39,10 @@ App::import('Lib', 'Routing/Route/CategorySlugRoute');
 */	
 	Router::connect('/admin/:action/*', array('controller' => 'admin'));
 
+
+
+	Router::connect('/deposer', array('controller' => 'home','action'=>'deposer'));
+
 	/*
 	On ajoute le routage pour les pages de contenu
 */

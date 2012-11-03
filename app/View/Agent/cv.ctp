@@ -1,6 +1,9 @@
 <h2><?php echo $fiche['Fiche']['nom'].' '.$fiche['Fiche']['prenom'] ?></h2>
 
-<div style="background:grey;"><a style="color:pink;" href="<?php echo $this->base ?>/agent/pdf/<?php echo $fiche['Fiche']['id'] ?>">Télécharger au format PDF</a></div>
+<div style="background:grey;">
+	<a style="color:pink;" href="<?php echo $this->base ?>/agent/pdf/<?php echo $fiche['Fiche']['id'] ?>">Télécharger au format PDF</a>
+	<a style="color:pink;" href="<?php echo $fiche['Fiche']['prenom'] ?>">Télécharger le CV du candidat</a>
+</div>
 <?php
 
 //On intialise le tableau avec les valeurs des critères
