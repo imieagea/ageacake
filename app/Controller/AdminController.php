@@ -195,6 +195,17 @@ $categories = $this->Category->find('list',$options);
 
 	public function view_action($id = null)
 	{
+		
+		if ($this->request->is('post')) {
+			$this->Post->id = $id;
+			$this->Post->read(null,$id);
+			$this->Post->set('slug',$this->slugify($this->request->data['Post']['titre']));
+			if ($this->Post->save($this->request->data)) {
+				$this->Session->setFlash(__('L\'actualité à bien mise à jour.'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
+			}
+		}
 		$this->set('action', $this->Post->read(null, $id));
 		$options = array(
 		    'joins' => array(

@@ -1,7 +1,7 @@
 <div class="Actualite form">
 
 <?php 
-echo $this->Form->create('Post',array('url'=>'/admin/view_action')); ?>
+echo $this->Form->create('Post',array('url'=>'/admin/view_action/'.$action['Post']['id'])); ?>
 	<fieldset>
 		<legend><?php echo __('Ajouter une actualité'); ?></legend>
 	<?php
