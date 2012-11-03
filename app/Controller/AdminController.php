@@ -110,6 +110,7 @@ class AdminController extends AppController {
 		$this->Fiche->id = $id;
 
 		if ($this->request->is('post')) {
+			$this->Fiche->read(null, $id);
 			$this->Fiche->set('statut','validated');
 			
 			$authTypes = array('application/pdf','application/msword');
@@ -137,6 +138,8 @@ class AdminController extends AppController {
 			}
 			$this->Fiche->set($this->request->data);
 			 if($this->Fiche->save()) {
+			 	$this->CritereValue->deleteAll(array('CritereValue.fiche_id' => $id), false);
+			 	//var_dump($this->request->datac);
 			 	foreach ($this->request->data['criteres']['cb'] as $value)
 			 	{
 			 		$this->CritereValue->create();
@@ -147,14 +150,14 @@ class AdminController extends AppController {
 	 			}
 	 			foreach ($this->request->data['criteres']['text'] as $c => $value)
 			 	{
-			 		$this->CritereValue->create();
-			 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-		 			$this->CritereValue->set('value',$value);
-		 			$this->CritereValue->set('critere_id',$c);
-		 			$this->CritereValue->save();
+				 		$this->CritereValue->create();
+				 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+			 			$this->CritereValue->set('value',$value);
+			 			$this->CritereValue->set('critere_id',$c);
+			 			$this->CritereValue->save();
 	 			}
 				$this->Session->setFlash(__('La fiche a bien été mise à jour.'));
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('La fiche ne peut pas être sauvegardée.'));
 			}

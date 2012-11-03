@@ -1,5 +1,5 @@
 <div class="fiches form">
-<?php echo $this->Form->create('Fiche',array('url'=>'/admin/view_fiche')); ?>
+<?php echo $this->Form->create('Fiche',array('url'=>'/admin/view_fiche/'.$fiche['Fiche']['id'])); ?>
 	<fieldset>
 		<h1><?php echo __('Créer une Fiche candidat'); ?></h1>
 	<?php
@@ -21,19 +21,24 @@
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false,'value'=>substr($fiche['Fiche']['date_naissance'], 0, 4)));
 		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea','value'=>$fiche['Fiche']['message']));
+		echo '<a href="'.$fiche['Fiche']['pdf'].'">Fiche Actuelle</label>';
 		echo $this->Form->input('pdf',array('type'=>'file'));
+
 		
 		if($fiche['Fiche']['exp']==1){
 				echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)','checked' => 'checked'));
 		}else{
 		echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)'));
 		}		
-		
-		
+			
+		$cv = array();
 		foreach ($fiche['CritereValue'] as $value) {
-		if($value['value']!=0){
-		$cv[$value['critere_id']] = $value['value'];
+
+		//var_dump(calculhmac(clent, data));
+		if($value['value']!=NULL){
+			$cv[$value['critere_id']] = $value['value'];
 		}
+
 }
 
 //Antoine Guillien 28/20/2012 13h59 : Commentaire et parenthèse.
@@ -47,9 +52,6 @@ function recursAfficheCats($parents,$cv = null,$rang = 2)
 	foreach ($parents as $parent) {
 		(isset($parent['CritereCategory']))? $titre = $parent['CritereCategory']['nom'] : $titre = $parent['nom'] ;
 		echo "<h".$rang.">".$titre."</h".$rang.">";
-	if($parent['id']==3){
-		var_dump($parent);
-	}
 		if(count($parent['Critere']) > 0)
 		{
 			foreach ($parent['Critere'] as $critere) {
@@ -61,12 +63,12 @@ function recursAfficheCats($parents,$cv = null,$rang = 2)
 					{
 					echo '<div class="input checkbox criteres">';
 					echo "<label>".$critere['nom']."</label>";
-						echo "<input type='checkbox' checked='checked' value = ".$cv[$critere['id']].">";
+						echo "<input type='checkbox' checked='checked' name='data[criteres][cb][]' value = ".$critere['id'].">";
 					}else
 					{
 					echo '<div class="input textarea criteres">';
 					echo "<label>".$critere['nom']."</label>";
-						echo "<textarea>".$cv[$critere['id']]."</textarea>";
+						echo "<textarea name='data[criteres][text][".$critere['id']."]' >".$cv[$critere['id']]."</textarea>";
 					}
 					echo '</div>';
 				}else{
@@ -75,23 +77,21 @@ function recursAfficheCats($parents,$cv = null,$rang = 2)
 					{
 						echo '<div class="input checkbox criteres">';
 					echo "<label>".$critere['nom']."</label>";
-						echo "<input type='checkbox' >";
+						echo "<input type='checkbox' name='data[criteres][cb][]' value = ".$critere['id']." >";
 					}else
 					{
 					echo '<div class="input textarea criteres">';
 					echo "<label>".$critere['nom']."</label>";
-						echo "<textarea></textarea>";
+						echo "<textarea name='data[criteres][text][".$critere['id']."]'></textarea>";
 					}
 				echo '</div>';
 			}
 		}
-		if(isset($parent['ChildCategory']) && count($parent['ChildCategory']) > 0)
-		{
-			recursAfficheCats($parent['ChildCategory'],$cv,$rang++);
-		}
 
-	}else{
-		
+	}
+	if(isset($parent['ChildCategory']) && count($parent['ChildCategory']) > 0)
+	{
+		recursAfficheCats($parent['ChildCategory'],$cv,$rang+1);
 	}
 } 
 }
