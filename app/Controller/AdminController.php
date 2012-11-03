@@ -55,6 +55,9 @@ class AdminController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
 			$this->Fiche->set('statut','validated');
+			
+			$authTypes = array('application/pdf','application/msword');
+
 			if(isset($this->request->data['Fiche']['cv']))
 			{
 				$cv = $this->request->data['Fiche']['cv'];
@@ -63,14 +66,17 @@ class AdminController extends AppController {
 					$name = AppController::slugify($cv['name']);
 					$path_parts = pathinfo($cv['name']);
 					$ext = $path_parts['extension'];
-					
 					$this->Fiche->set('pdf',$this->base.'/webroot/cv/'.$name.'.'.$ext);
 
 					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
 
+	 			}else
+	 			{
+	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
 	 			}
 			}
-			 if($this->Fiche->save($this->request->data)) {
+			$this->Fiche->set($this->request->data);
+			 if($this->Fiche->save()) {
 			 	foreach ($this->request->data['criteres']['cb'] as $value)
 			 	{
 			 		$this->CritereValue->create();

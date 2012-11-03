@@ -1,5 +1,5 @@
 <div class="fiches form">
-<?php echo $this->Form->create('Fiche',array('url'=>'/admin/add_fiche')); ?>
+<?php echo $this->Form->create('Fiche',array('url'=>'/admin/add_fiche','type'=>'file')); ?>
 	<fieldset>
 		<h1><?php echo __('Créer une Fiche candidat'); ?></h1>
 	<?php
@@ -20,7 +20,7 @@
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false));
 		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea'));
-		echo $this->Form->input('pdf',array('type'=>'file'));
+		echo $this->Form->input('cv',array('type'=>'file'));
 		echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)'));
 		foreach($criteres as $c)
 		{
