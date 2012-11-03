@@ -1,47 +1,63 @@
-<h1>Fiche Candidat</h1>
-<p><strong>Nom: </strong><?php echo $fiche['Fiche']['nom']?><br />
-<strong>Prénom: </strong><?php echo $fiche['Fiche']['prenom'] ?>
-</p>
-
-<?php
-//On intialise le tableau avec les valeurs des critères et l'id du critère en index
-foreach ($fiche['CritereValue'] as $value) {
-		$cv[$value['critere_id']] = $value['value'];
-}
-
-//Antoine Guillien 28/20/2012 13h59 : Commentaire et parenthèse.
-//Fonction récursive en beta, il faudrait en faire deux ou trois pour qu'elle s'adapte à tout éventuel autre type de critères.
-//<Parenthèse> :
-//Avec un peu plus de temps de dev on peut arriver à un développement plus optimisé et paufinné
-//Il m'es totalement impossible de prévoir l'optimisation de ce genre de fonctions dès la conception (compte tenu des délais)
-//</Parenthèse>;
-function recursAfficheCats($parents,$cv = null,$rang = 2)
-{
-	foreach ($parents as $parent) {
-		(isset($parent['CritereCategory']))? $titre = $parent['CritereCategory']['nom'] : $titre = $parent['nom'] ;
-		echo "<h".$rang.">".$titre."</h".$rang.">";
-
-		if(count($parent['Critere']) > 0)
+<div class="fiches form">
+<?php echo $this->Form->create('Fiche',array('url'=>'/admin/add_fiche')); ?>
+	<fieldset>
+		<h1><?php echo __('Créer une Fiche candidat'); ?></h1>
+	<?php
+		echo $this->Form->input('nom',array('value'=>$fiche['Fiche']['nom']));
+		echo $this->Form->input('prenom',array('value'=>$fiche['Fiche']['prenom']));
+		echo $this->Form->input('adresse',array('value'=>$fiche['Fiche']['adresse']));
+		echo $this->Form->input('code_postal',array('value'=>$fiche['Fiche']['code_postal']));
+		echo $this->Form->input('ville',array('value'=>$fiche['Fiche']['ville']));
+		echo $this->Form->input('portable',array('value'=>$fiche['Fiche']['portable']));
+		echo $this->Form->input('fixe',array('value'=>$fiche['Fiche']['fixe']));
+		echo $this->Form->input('email',array('value'=>$fiche['Fiche']['email']));
+		?>
+		<div class="select">
+		<label for="date_naissance">Date de naissance</label>
+		<?php
+		echo $this->Form->day('date_naissance',array('empty'=>false));
+		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false));
+		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false));
+		echo '</div>';
+		echo $this->Form->input('message',array('type'=>'textarea'));
+		echo $this->Form->input('pdf',array('type'=>'file'));
+		echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)'));
+		foreach($criteres as $c)
 		{
-			foreach ($parent['Critere'] as $critere) {
-				if(isset($cv[$critere['id']]))
+
+			echo '<h2>'.$c['CritereCategory']['nom'].'</h2>';
+			foreach($c['Critere'] as $sc)
 				{
-					echo "<label>".$critere['nom']."</label>";
-					if($critere['type'] == 'checkbox')
+					if($sc['type'] == 'checkbox')
+						echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'" name="criteres[cb][]" value="'.$sc['id'].'"></div>';
+					elseif($sc['type'] == 'textarea')
+						echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea></div>';
+				}
+			if(count($c['ChildCategory']) > 0)
+			{
+				foreach($c['ChildCategory'] as $child)
+				{
+					echo '<h3>'.$child['nom'].'</h3>';
+					foreach($child['Critere'] as $sc)
 					{
-						echo "<input type='checkbox' checked='checked' value = ".$cv[$critere['id']].">";
-					}else
-					{
-						echo "<textarea>".$cv[$critere['id']]."</textarea>";
+						if($sc['type'] == 'checkbox')
+							echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'"  name="criteres[cb][]" value="'.$sc['id'].'"></div>';
+						elseif($sc['type'] == 'textarea')
+							echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea><div class="clear"></div></div>';
 					}
 				}
 			}
 		}
-		if(isset($parent['ChildCategory']) && count($parent['ChildCategory']) > 0)
-		{
-			recursAfficheCats($parent['ChildCategory'],$cv,$rang++);
-		}
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Enregistrer')); ?>
+</div>
+<!--
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
 
-	}
-} ?>
-<?php recursAfficheCats($criteres,$cv) ?>
+		<li><?php echo $this->Html->link(__('List Fiches'), array('action' => 'index')); ?></li>
+	</ul>
+</div>
+-->
