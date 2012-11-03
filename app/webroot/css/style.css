@@ -777,6 +777,16 @@ padding: 10px;
 width: 630px;
 }
 
+
+#contenu.contenu_agent{
+    width: 590px;
+}
+#contenu.contenu_agent table tr:nth-child(even){
+    background-color: #FFF;
+}
+
+
+
 #admin_menu ul li a {
 text-indent: 25px;
 position: relative;
