@@ -22,10 +22,18 @@
 		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea','value'=>$fiche['Fiche']['message']));
 		echo $this->Form->input('pdf',array('type'=>'file'));
+		
+		if($fiche['Fiche']['exp']==1){
+				echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)','checked' => 'checked'));
+		}else{
 		echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)'));
-				
+		}		
+		
+		
 		foreach ($fiche['CritereValue'] as $value) {
+		if($value['value']!=0){
 		$cv[$value['critere_id']] = $value['value'];
+		}
 }
 
 //Antoine Guillien 28/20/2012 13h59 : Commentaire et parenthèse.
@@ -39,10 +47,13 @@ function recursAfficheCats($parents,$cv = null,$rang = 2)
 	foreach ($parents as $parent) {
 		(isset($parent['CritereCategory']))? $titre = $parent['CritereCategory']['nom'] : $titre = $parent['nom'] ;
 		echo "<h".$rang.">".$titre."</h".$rang.">";
-
+	if($parent['id']==3){
+		var_dump($parent);
+	}
 		if(count($parent['Critere']) > 0)
 		{
 			foreach ($parent['Critere'] as $critere) {
+			
 				if(isset($cv[$critere['id']]))
 				{
 					
