@@ -48,5 +48,7 @@
 		}
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Déposer')); ?>
+<?php 
+echo $this->Form->input('accept',array('type'=>'checkbox','label'=>'J\'accepte que mon cv soit partagé aux  agents adhérents AGEA'));
+echo $this->Form->end(__('Déposer')); ?>
 </div>

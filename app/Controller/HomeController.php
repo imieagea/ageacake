@@ -79,16 +79,19 @@ class HomeController extends AppController {
 	{
 
 		$authTypes = array('application/pdf','application/msword');
+		
 		if ($this->request->is('post')) {
+		var_dump($this->request->data."looooooooo");
 			$this->Fiche->create();
 			$this->Fiche->set('statut','new');
 			$this->Fiche->set($this->request->data);
+			
 			if(!empty($this->request->data['Fiche']['cv']['name']))
 			{
 				$fiche = $this->Fiche->read(null,$id);
 				
 				$cv = $this->request->data['Fiche']['cv'];
-				//var_dump($this->request->data);
+				
 				if (in_array($cv['type'], $authTypes)) {
 					$chemin_destination = ROOT.'\app\webroot\cv\\';
 					$name = AppController::slugify($cv['name'].microtime());
@@ -128,18 +131,21 @@ class HomeController extends AppController {
 			 			$this->CritereValue->save();
 		 			}
 	 			}
-	 			$email = new CakeEmail();
+	 		
+/*			$email = new CakeEmail();
 				$email->from(array('me@example.com' => 'My Site'));
 				$email->to('you@example.com');
 				$email->subject('About');
 				$email->send('My message');
-
+*/
 	 			$this->Session->setFlash(utf8_encode('Votre CV a bien été enregistré'));
 	 			$this->redirect(array('action'=>'merci'));
 			}else
 			{
+		
 				$this->Session->setFlash(utf8_encode('Un candidat avec cet email existe déjà'));
 				$this->redirect(array('action'=>'deposer'));
+			
 			}
 
 		}else

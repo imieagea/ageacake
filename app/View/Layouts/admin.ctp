@@ -58,13 +58,13 @@ CKEDITOR.editorConfig = function(config)
 		<nav id="menu">
 			<?php echo $this->element('menu'); ?>
 		</nav>
-		<div id="add_this">
+		<!--<div id="add_this">
 				<ul>
 					<li><a href="" id="add_t"></a></li>
 					<li><a href="" id="add_g"></a></li>
 					<li><a href="" id="add_f"></a></li>
 				</ul>
-		</div>
+		</div>-->
 	</div>	
 </header>
 <div id="content_wrapper">
