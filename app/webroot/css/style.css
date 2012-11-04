@@ -1053,4 +1053,29 @@ border-radius: 5px;
 color: white;
 background: #EE1A2D;
 }
+
+.consulter {
+line-height: 18px;
+height: 20px;
+width: 82px;
+margin-top: 5px;
+color: white;
+border-radius: 5px;
+background: #B0CFEC;
+padding: 5px;
+display: block;
+}
+
+#toutesactus h1 {
+margin-bottom: 10px;
+text-align: center;
+font-weight: bold;
+font-size: 20px;
+}
+#toutesactus h2 {
+margin-bottom: 10px;
+text-align: left;
+font-weight: bold;
+font-size: 18px;
+}
 /* ---------------  FIN ADMIN  ---------------- */

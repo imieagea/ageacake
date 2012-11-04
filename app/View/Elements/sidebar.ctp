@@ -28,7 +28,7 @@
 			</li>
 			<?php endforeach; ?>	
 		</ul>
-		<a href="" class="all_actus">Voir toutes les actualités</a>
+		<a href="<?php echo $this->base."/actualites/" ?>" class="all_actus">Voir toutes les actualités</a>
 		<div class="clear"></div>
 	</div>
 	<div id="box_contact">

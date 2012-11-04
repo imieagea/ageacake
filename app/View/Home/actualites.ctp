@@ -1,5 +1,5 @@
+<div id="toutesactus">
 <h1>Actualités</h1>
-
 <?php if(isset($actualites[0])):?>	
 	<?php foreach ($actualites as $une){
 			$une['Post']['pslug'] = $une['Category']['slug'];
@@ -10,16 +10,18 @@
 		<h2><?php echo h($titre); ?></h2>
 		<?php
 			foreach ($cat as $post) { ?>
-				<div>
-					<p><?php echo h($post['titre']); ?></p>
-					<p><?php echo h($post['corps']); ?></p>
-					<p><a href="<?php echo $this->base.'/actualites/'.$post['pslug'].'/'.$post['slug']; ?>">Consulter</a></p>
+				<article>
+					<div class="bandeau recrut"><h3><?php echo h($post['titre']); ?></h3></div>
+				<div>	<?php echo 	substr(strip_tags($post['corps']), 0, 150); ?>
 				</div>
+					<p><a href="<?php echo $this->base.'/actualites/'.$post['pslug'].'/'.$post['slug']; ?>" class="consulter" >[+] Consulter</a></p>
+				</article>	
 		 <?php	}
 		 ?>
 
 	<?php endforeach; ?>
 <?php endif; ?>
+<!--
 <p class="paging_counter">
 	<?php
 	echo $this->Paginator->counter(array(
@@ -32,4 +34,4 @@
 		echo $this->Paginator->numbers(array('separator' => '|'));
 		echo $this->Paginator->next(__('Suivant') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
-</div>
+</div>--></div>
