@@ -27,19 +27,27 @@ class AgentController extends AppController {
 
 	public function cvtheque()
 	{
+		$options = array();
 		if ($this->request->is('post')) {
-			$options = array(
-		    'joins' => array(
-		        array(
-		            'alias' => 'ParentCategory',
-		            'table' => 'categories',
-		            'type' => 'INNER',
-		            'conditions' => array('`ParentCategory`.`id` = `Category`.`parent_id`','`ParentCategory`.`slug`'=>'actions')
-		        )
-		    )
-		);
+			if(!empty($this->request->data['critere']))
+			{
+				$options = array(
+				    'joins' => array(
+				        array(
+				            'alias' => 'CritereValue',
+				            'table' => 'critere_value',
+				            'type' => 'INNER',
+				            'conditions' => array('`CritereValue`.`fiche_id` = `Fiche`.`id`','`CritereValue`.`critere_id`'=>$this->request->data['critere'])
+				        )
+				    )
+				);
+			}
 		}
-		$fiches = $this->Fiche->find('all',array('conditions'=>array('Fiche.statut'=>'validated')));
+		$this->CritereCategory->recursive = 2;
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null,'CritereCategory.public'=>1),'order'=>'CritereCategory.position ASC'));
+		$this->set('criteres',$c);
+
+		$fiches = $this->Fiche->find('all',array_merge($options,array('conditions'=>array('Fiche.statut'=>'validated'))));
 		$this->set('fiches',$fiches);
 	}
 

@@ -12,6 +12,37 @@
 <section id="contenu" class="contenu_admin contenu_agent">
 
     <h1>CV-Thèque</h1>
+    <div class='form'>
+        <?php echo $this->Form->create('critere',array('url'=>'/agent/cvtheque')); ?>
+            <fieldset>
+                <legend><?php echo __('Trier les CV'); ?></legend>
+            <?php
+                foreach($criteres as $c)
+                {
+
+                    echo '<h2>'.$c['CritereCategory']['nom'].'</h2>';
+                    foreach($c['Critere'] as $sc)
+                        {
+                            if($sc['type'] == 'checkbox')
+                                echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="radio" id="critere'.$sc['id'].'" name="data[critere]" value="'.$sc['id'].'"></div>';
+                        }
+                    if(count($c['ChildCategory']) > 0)
+                    {
+                        foreach($c['ChildCategory'] as $child)
+                        {
+                            echo '<h3>'.$child['nom'].'</h3>';
+                            foreach($child['Critere'] as $sc)
+                            {
+                                if($sc['type'] == 'checkbox')
+                                    echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="radio" id="critere'.$sc['id'].'"  name="data[critere]" value="'.$sc['id'].'"></div>';
+                            }
+                        }
+                    }
+                }
+            ?>
+            </fieldset>
+        <?php echo $this->Form->end(__('Submit')); ?>
+    </div>
     
     <table>
         <tr>
@@ -32,7 +63,6 @@
         <?php endif; ?>
     </table>
 </section>
-
 <!--
 <p class="paging_counter">
 <?php
