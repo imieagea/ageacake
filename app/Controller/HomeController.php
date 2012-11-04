@@ -9,7 +9,7 @@ class HomeController extends AppController {
 
 	public function beforeFilter()
 	{
-		$this->Auth->allow('index','deposer');
+		$this->Auth->allow('index','deposer','actions','actualites');
 		parent::beforeFilter();
 	}
 
@@ -29,6 +29,50 @@ class HomeController extends AppController {
 	public function merci()
 	{
 		
+	}
+
+	public function actions()
+	{
+		$this->paginate = array(
+		    'joins' => array(
+		    	array(
+		            'alias' => 'cat',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => '`Post`.`category_id` = `cat`.`id`'
+		        ),
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `cat`.`parent_id`','`ParentCategory`.`slug` LIKE'=>'%actions%')
+		        )
+		    )
+		);
+		$this->Post->recursive = 1;
+		$this->set('actions',$this->paginate('Post'));
+	}
+
+	public function actualites()
+	{
+		$this->paginate = array(
+		    'joins' => array(
+		    	array(
+		            'alias' => 'cat',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => '`Post`.`category_id` = `cat`.`id`'
+		        ),
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `cat`.`parent_id`','`ParentCategory`.`slug` LIKE'=>'%actualites%')
+		        )
+		    )
+		);
+		$this->Post->recursive = 1;
+		$this->set('actions',$this->paginate('Post'));
 	}
 
 	public function deposer()
@@ -89,7 +133,7 @@ class HomeController extends AppController {
 				$email->to('you@example.com');
 				$email->subject('About');
 				$email->send('My message');
-				
+
 	 			$this->Session->setFlash(utf8_encode('Votre CV a bien été enregistré'));
 	 			$this->redirect(array('action'=>'merci'));
 			}else

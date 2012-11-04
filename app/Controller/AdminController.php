@@ -465,6 +465,7 @@ $categories = $this->Category->find('list',$options);
 
 	public function view_partenaire($id = null)
 	{
+		$authTypes = array('application/pdf');
 		if ($this->request->is('post')) {
 			if(!empty($id))
 			{
