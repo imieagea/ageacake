@@ -14,6 +14,12 @@ class HomeController extends AppController {
 	}
 
 
+	public function partenaires()
+	{
+		$parts = $this->Partenaires->find('all');
+		$this->set('partenaires',$parts);
+	}
+
 	public function index()
 	{
 		$this->set('title_for_layout', 'AGEA - Accueil');

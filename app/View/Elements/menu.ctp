@@ -11,4 +11,5 @@
 		<?php } ?>
 		<?php $i++; ?>
 	<?php endforeach; ?>
+	<li><?php echo $this->Html->link(__('Partenaires'), array('controller' => 'home', 'action' => 'partenaires')); ?></li>
 	</ul>
