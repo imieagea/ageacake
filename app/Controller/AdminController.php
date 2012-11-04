@@ -144,7 +144,7 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 			
 			$authTypes = array('application/pdf','application/msword');
 
-			if(isset($this->request->data['Fiche']['cv']))
+			if(!empty($this->request->data['Fiche']['cv']['name']))
 			{
 				$fiche = $this->Fiche->read(null,$id);
 				//var_dump($this->request->data);
@@ -367,10 +367,9 @@ $categories = $this->Category->find('list',$options);
 				break;
 
 			case 'Critere':
-					$c = $this->Critere->find('all',array('Critere.id'=>$id));
-					foreach ($c as $cri) {
-						$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$cri['Critere']['id']),false);
-					}
+					$this->Criterei->id = $id;
+					$this->Critere->read(null,$id);
+					$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$id),false);
 					$this->Critere->delete($id);
 				break;
 

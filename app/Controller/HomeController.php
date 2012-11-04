@@ -39,9 +39,9 @@ class HomeController extends AppController {
 			$this->Fiche->create();
 			$this->Fiche->set('statut','new');
 			$this->Fiche->set($this->request->data);
-			if(isset($this->request->data['Fiche']['cv']))
+			if(!empty($this->request->data['Fiche']['cv']['name']))
 			{
-					$fiche = $this->Fiche->read(null,$id);
+				$fiche = $this->Fiche->read(null,$id);
 				
 				$cv = $this->request->data['Fiche']['cv'];
 				//var_dump($this->request->data);
@@ -59,34 +59,38 @@ class HomeController extends AppController {
 
 	 			}else
 	 			{
-	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
+	 				$this->Session->setFlash(utf8_encode('La pièce jointe n\'a pas été prise en compte'));
 	 			}
 			}
 
 			if($this->Fiche->save())
-				{
-					foreach ($this->request->data['criteres']['cb'] as $value)
+			{
+				foreach ($this->request->data['criteres']['cb'] as $value)
+			 	{
+			 		$this->CritereValue->create();
+			 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+		 			$this->CritereValue->set('value',1);
+		 			$this->CritereValue->set('critere_id',$value);
+		 			$this->CritereValue->save();
+	 			}
+	 			if(isset($this->request->data['criteres']['text']))
+	 			{
+	 				foreach ($this->request->data['criteres']['text'] as $c => $value)
 				 	{
 				 		$this->CritereValue->create();
 				 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-			 			$this->CritereValue->set('value',1);
-			 			$this->CritereValue->set('critere_id',$value);
+			 			$this->CritereValue->set('value',$value);
+			 			$this->CritereValue->set('critere_id',$c);
 			 			$this->CritereValue->save();
 		 			}
-		 			if(isset($this->request->data['criteres']['text']))
-		 			{
-		 				foreach ($this->request->data['criteres']['text'] as $c => $value)
-					 	{
-					 		$this->CritereValue->create();
-					 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-				 			$this->CritereValue->set('value',$value);
-				 			$this->CritereValue->set('critere_id',$c);
-				 			$this->CritereValue->save();
-			 			}
-		 			}
-
-		 			$this->redirect(array('action'=>'merci'));
-				}
+	 			}
+	 			$this->Session->setFlash(utf8_encode('Votre CV a bien été enregistré'));
+	 			$this->redirect(array('action'=>'merci'));
+			}else
+			{
+				$this->Session->setFlash(utf8_encode('Un candidat avec cet email existe déjà'));
+				$this->redirect(array('action'=>'deposer'));
+			}
 
 		}else
 		{
