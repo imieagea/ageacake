@@ -31,7 +31,7 @@
 		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false,'value'=>substr($fiche['Fiche']['date_naissance'], 5, 2)));
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false,'value'=>substr($fiche['Fiche']['date_naissance'], 0, 4)));
 		echo '</div>';
-		echo $this->Form->input('message',array('type'=>'textarea','value'=>$fiche['Fiche']['message']));
+		echo $this->Form->input('message',array('type'=>'textarea','value'=>$fiche['Fiche']['message'], 'class' => 'tinymce'));
 		if(!empty($fiche['Fiche']['pdf']))
 			echo '<a href="'.$this->Html->url('/webroot/cv/').$fiche['Fiche']['pdf'].'" target="_blank">Fiche Actuelle</a>';
 
