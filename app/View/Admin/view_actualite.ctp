@@ -3,7 +3,7 @@
 <?php 
 echo $this->Form->create('Post',array('url'=>'/admin/view_actualite')); ?>
 	<fieldset>
-		<legend><?php echo __('Ajouter une actualité'); ?></legend>
+		<legend><?php echo __('Modifier une actualité'); ?></legend>
 	<?php
 		echo $this->Form->input('titre',array('value'=>$actu['Post']['titre']));
 		echo $this->Form->input('corps',array('type'=>'textarea','value'=>$actu['Post']['corps']));

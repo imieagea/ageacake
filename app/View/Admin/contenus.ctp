@@ -1,24 +1,18 @@
-<?php foreach ($pages as $page) {
-	var_dump($page);
-	//echo $this->base/admin/edit_page/$actu['Contenu']['id'];
-} ?>
-<h1>Page</h1>
+<h1>Pages de contenu</h1>
 <table>
 	<tr>
 	<th><?php echo $this->Paginator->sort('id'); ?>&nbsp;</th>
 		<th><?php echo $this->Paginator->sort('titre'); ?></th>
-		<th><?php echo $this->Paginator->sort('corps'); ?></th>
-		<th><?php echo $this->Paginator->sort('nom'); ?></th>
+		<th><?php echo $this->Paginator->sort('contenu'); ?></th>
 		<th>Actions</th>
 	</tr>
-<?php if(isset($actus[0])):?>	
-	<?php foreach ($actus as $actu): ?>
+<?php if(isset($pages[0])):?>	
+	<?php foreach ($pages as $page): ?>
 		<tr>
-		<td><?php echo h($actu['Post']['id']); ?>&nbsp;</td>
-			<td><?php echo h($actu['Post']['titre']); ?>&nbsp;</td>
-			<td><?php echo $rest = substr(h($actu['Post']['corps']), 0, 20).'[...]'; ?>&nbsp;</td>
-			<td><?php echo h($actu['Category']['nom']); ?>&nbsp;</td>
-			<td><a href="<?php echo $this->base ?>/admin/view_actualite/<?php echo $actu['Post']['id'] ?>">Voir</a></td>
+		<td><?php echo h($page['Contenus']['id']); ?>&nbsp;</td>
+			<td><?php echo h($page['Contenus']['titre']); ?>&nbsp;</td>
+			<td><?php echo $rest = substr($page['Contenus']['contenu'], 0, 30).'[...]'; ?>&nbsp;</td>			
+			<td><a href="<?php echo $this->base ?>/admin/view_contenu/<?php echo $page['Contenus']['id'] ?>">Voir</a></td>
 		</tr>
 	<?php endforeach; ?>
 <?php endif; ?>

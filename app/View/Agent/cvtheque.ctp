@@ -18,7 +18,6 @@
             <th><?php //echo $this->Paginator->sort('nom');   ?> Nom</th>
             <th><?php //echo $this->Paginator->sort('prenom', 'Prénom');   ?> Prénom</th>
             <th><?php //echo $this->Paginator->sort('email');   ?> Email</th>
-            <th><?php //echo $this->Paginator->sort('status', 'Statut');   ?> Statut</th>
             <th>Actions</th>
         </tr>
         <?php if (isset($fiches[0])): ?>	
@@ -26,8 +25,7 @@
                 <tr>
                     <td><?php echo h($fiche['Fiche']['nom']); ?>&nbsp;</td>
                     <td><?php echo h($fiche['Fiche']['prenom']); ?>&nbsp;</td>
-                    <td><?php echo h($fiche['Fiche']['email']); ?>&nbsp;</td>
-                    <td><?php echo h($fiche['Fiche']['statut']); ?>&nbsp;</td>
+                    <td><?php echo h($fiche['Fiche']['email']); ?>&nbsp;</td>                 
                     <td><a href="<?php echo $this->base ?>/agent/cv/<?php echo $fiche['Fiche']['id']; ?>">Consulter</a></td>
                 </tr>
             <?php endforeach; ?>

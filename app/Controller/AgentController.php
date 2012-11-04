@@ -27,7 +27,7 @@ class AgentController extends AppController {
 
 	public function cvtheque()
 	{
-		$fiches = $this->Fiche->find('all');
+		$fiches = $this->Fiche->find('all',array('conditions'=>array('Fiche.statut'=>'validated')));
 		$this->set('fiches',$fiches);
 	}
 

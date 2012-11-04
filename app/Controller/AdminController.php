@@ -28,7 +28,7 @@ class AdminController extends AppController {
 
 	public function index()
 	{
-
+$this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   ));
 	}
 
 	public function fiches()
@@ -227,7 +227,10 @@ class AdminController extends AppController {
 $categories = $this->Category->find('list',$options);
 		$this->set(compact('categories'));
 	}
-
+public function view_contenu($id = null)
+	{
+		$this->set('contenu', $this->Contenus->read(null, $id));
+	}
 	public function view_action($id = null)
 	{
 		

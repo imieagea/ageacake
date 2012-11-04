@@ -22,7 +22,13 @@ if($avalider>0){ ?>
 			<td><?php echo h($fiche['Fiche']['nom']); ?>&nbsp;</td>
 			<td><?php echo h($fiche['Fiche']['prenom']); ?>&nbsp;</td>
 			<td><?php echo h($fiche['Fiche']['email']); ?>&nbsp;</td>
-			<td><?php echo h($fiche['Fiche']['statut']); ?>&nbsp;</td>
+			<td><?php if(h($fiche['Fiche']['statut'])=="validated"){
+			echo "Validé";
+			}
+			if(h($fiche['Fiche']['statut'])=="new"){
+			echo "A validé";
+			}
+			 ?>&nbsp;</td>
 			<td><a href="<?php echo $this->base ?>/admin/view_fiche/<?php echo $fiche['Fiche']['id'] ?>">Voir la fiche</a></td>
 		</tr>
 	<?php endforeach; ?>
