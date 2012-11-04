@@ -317,7 +317,7 @@ if ($this->request->is('post')) {
 	
 public function view_bruissement($id = null)
 	{
-if ($this->request->is('post')) {
+		if ($this->request->is('post')) {
 			$this->Post->id = $id;
 			$this->Post->read(null,$id);			
 			if ($this->Post->save($this->request->data)) {
@@ -492,7 +492,7 @@ $categories = $this->Category->find('list',$options);
 					$path_parts = pathinfo($cv['name']);
 					//var_dump($cv['tmp_name']);
 					$ext = $path_parts['extension'];
-					$this->Fiche->set('pdf',$name.'.'.$ext);
+					$this->Partenaire->set('pdf',$name.'.'.$ext);
 
 					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
 					
@@ -730,13 +730,36 @@ public function alaune()
 
 	public function add_bruissement()
 	{
+		$authTypes = array('application/pdf');
 		if ($this->request->is('post')) {
 			$c = $this->Category->find('first', array(
 		        'conditions' => array('Category.slug' => 'bruissements')
 		    ));
 			$this->Post->create();
+			$this->Post->set($this->request->data);
+			$this->Post->set('slug',AppController::slugify($this->request->data['Post']['titre']));
+			if(!empty($this->request->data['Post']['pdf']['name']))
+			{
+				$cv = $this->request->data['Post']['pdf'];
+				//var_dump($this->request->data);
+				if (in_array($cv['type'], $authTypes)) {
+					$chemin_destination = ROOT.'\app\webroot\bruissements\\';
+					$name = AppController::slugify($cv['name'].microtime());
+					
+					$path_parts = pathinfo($cv['name']);
+					//var_dump($cv['tmp_name']);
+					$ext = $path_parts['extension'];
+					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+					$lien = "<a href='".$this->base."/app/webroot/bruissements/".$name.'.'.$ext."'>Télécharger le bruissement</a>";
+					$this->Post->set('corps',$lien);
+
+	 			}else
+	 			{
+	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
+	 			}
+			}
 			$this->Post->set('category_id',$c['Category']['id']);
-			if ($this->Post->save($this->request->data)) { 
+			if ($this->Post->save()) { 
 				$this->Session->setFlash(__('Le bruissement a été créé.'));
 				$this->redirect(array('action' => 'index'));
 			} else {

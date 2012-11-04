@@ -91,6 +91,20 @@ class AgentController extends AppController {
 	    $html2pdf->Output($nom.'.pdf','D');
 	}
 
+	public function bruissements()
+	{
+		$this->Post->recursive = 1;
+		$this->set('bruissements',$this->paginate('Post',array('Category.slug LIKE'=>'%bruissements%')));
+	}
+
+	public function bruissement($id=null)
+	{
+		if(!empty($id))
+		{
+			$this->set('bruissement', $this->Post->read(null, $id));
+		}
+	}
+
 }
 
 ?>
