@@ -260,6 +260,33 @@ public function view_contenu($id = null)
 		}
 		$this->set('contenu', $this->Contenus->read(null, $id));
 	}
+
+public function view_action_category($id = null)
+	{
+if ($this->request->is('post')) {
+			$this->Category->id = $id;
+			$this->Category->read(null,$id);		
+			if ($this->Category->save($this->request->data)) {
+				$this->Session->setFlash(__('La catégorie'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la catégorie'));
+			}
+		}
+		$this->set('cat', $this->Category->read(null, $id));
+	}
+public function view_actualite_category($id = null)
+	{
+if ($this->request->is('post')) {
+			$this->Category->id = $id;
+			$this->Category->read(null,$id);		
+			if ($this->Category->save($this->request->data)) {
+				$this->Session->setFlash(__('La catégorie'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la catégorie'));
+			}
+		}
+		$this->set('cat', $this->Category->read(null, $id));
+	}
 	
 public function view_recrutement($id = null)
 	{
