@@ -1,4 +1,4 @@
-<h1>A la une</h1>
+<h1>Texte recrutement</h1>
 <table>
 	<tr>
 	<th><?php echo $this->Paginator->sort('id'); ?>&nbsp;</th>
@@ -14,7 +14,7 @@
 			<td><?php echo h($une['Post']['titre']); ?>&nbsp;</td>
 			<td><?php echo $rest = substr(h($une['Post']['corps']), 0, 20).'[...]'; ?>&nbsp;</td>
 			<td><?php echo h($une['Category']['nom']); ?>&nbsp;</td>
-			<td><a href="<?php echo $this->base ?>/admin/view_alaune/<?php echo $une['Post']['id'] ?>">Voir</a></td>
+			<td><a href="<?php echo $this->base ?>/admin/view_recrutement/<?php echo $une['Post']['id'] ?>">Voir</a></td>
 		</tr>
 	<?php endforeach; ?>
 <?php endif; ?>

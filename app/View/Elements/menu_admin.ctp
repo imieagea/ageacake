@@ -42,6 +42,7 @@
 				</ul>
 			</li>
 			<li><a href="<?php echo $this->base ?>/admin/alaune" class="gerer_une">Gérer la Une</a></li>
+			<li><a href="<?php echo $this->base ?>/admin/recrutement" class="gerer_pages">Gérer le texte de recrutement</a></li>
 		</ul>
 	</nav>
 </aside>
