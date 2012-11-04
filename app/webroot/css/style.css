@@ -1040,4 +1040,11 @@ margin-left: 20px;
 .contenu_admin .criteres {
 margin-left: 10px;
 }
+#fichesavalider a {
+padding-right: 5px;
+padding-left: 5px;
+border-radius: 5px;
+color: white;
+background: #EE1A2D;
+}
 /* ---------------  FIN ADMIN  ---------------- */

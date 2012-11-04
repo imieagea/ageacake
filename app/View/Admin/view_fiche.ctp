@@ -21,7 +21,7 @@
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false,'value'=>substr($fiche['Fiche']['date_naissance'], 0, 4)));
 		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea','value'=>$fiche['Fiche']['message']));
-		echo '<a href="/ageacake/app/webroot/cv/'.$fiche['Fiche']['pdf'].'" target="_blank">Fiche Actuelle</a>';
+		echo '<a href="'.$this->Html->url('/app/webroot/cv/'.$fiche['Fiche']['pdf']).'" target="_blank">Fiche Actuelle</a>';
 		echo $this->Form->input('cv',array('type'=>'file'));
 
 		

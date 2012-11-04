@@ -33,15 +33,38 @@ class AdminController extends AppController {
 
 	public function fiches()
 	{
-		if($this->request->is('post'))
+
+	if(isset($this->params['url']['avalider'])){
+	
+	if($this->request->is('post'))
 		{
 			$this->paginate = array(
-	        'condition' => array('Fiche.status ' => $this->data['status'])
+	        'condition' => array('Fiche.statut' => 'new')
 	        );
 		}
+		//var_dump($this->paginate);
+	$this->Fiche->recursive = 0;
+		$this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   ));
+		}else{
+			if($this->request->is('post'))
+		{
+			$this->paginate = array(
+	        'condition' => array('Fiche.statut ' => $this->data['status'])
+	        );
+		}
+		$avalider=0;
+		$f =$this->Fiche->find('all');
+		foreach($f as $fiche){
+			if($fiche['Fiche']['statut']=='new'){
+			$avalider++;
+			}
+		}
+		$this->set('avalider',$avalider);
+		//var_dump($avalider);
 		$this->Fiche->recursive = 0;
 		$this->set('fiches',$this->paginate('Fiche'));
-
+		}
+		
 	}
 
 	public function criteres()

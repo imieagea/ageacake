@@ -1,5 +1,13 @@
 <h1>Fiches candidats</h1> 
-<div id="fichesavalider"><a href="/admin/fiches?avalider=1">Vous avez des fiches à valider</a></div>
+
+<?php
+if(isset($avalider)){ 
+if($avalider>0){ ?>
+<div id="fichesavalider"><a href="<?php echo $this->Html->url('/admin/fiches?avalider=1');?>">Vous avez des fiches à valider</a></div>
+<?php }
+}else{?>
+<div id="retourfiches"><a href="<?php echo $this->Html->url('/admin/fiches');?>">Retour aux fiches candidats</a></div>
+<?php } ?>
 <table>
 	<tr>
 		<th><?php echo $this->Paginator->sort('nom'); ?></th>
