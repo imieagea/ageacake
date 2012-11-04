@@ -241,7 +241,6 @@ $categories = $this->Category->find('list',$options);
 public function view_contenu($id = null)
 	{
 if ($this->request->is('post')) {
-
 			$this->Contenus->id = $id;
 			$this->Contenus->read(null,$id);
 			$this->Contenus->set('slug',$this->slugify($this->request->data['Contenu']['titre']));

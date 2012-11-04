@@ -1,7 +1,7 @@
 <div class="Actualite form">
 
 <?php
-echo $this->Form->create('Contenu',array('url'=>'/admin/view_contenu')); ?>
+echo $this->Form->create('Contenu',array('url'=>'/admin/view_contenu/'.$contenu['Contenus']['id'])); ?>
 	<fieldset>
 		<legend><?php echo __('Modifier une page'); ?></legend>
 	<?php
