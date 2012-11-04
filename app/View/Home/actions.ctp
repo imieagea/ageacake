@@ -2,6 +2,7 @@
 
 <?php if(isset($actions[0])):?>	
 	<?php foreach ($actions as $une){
+			$une['Post']['pslug'] = $une['Category']['slug'];
 			$cats[$une['Category']['nom']][] = $une['Post'] ;
 		}
 		?>
@@ -12,6 +13,7 @@
 				<div>
 					<p><?php echo h($post['titre']); ?></p>
 					<p><?php echo h($post['corps']); ?></p>
+					<p><a href="<?php echo $this->base.'/actions/'.$post['pslug'].'/'.$post['slug']; ?>">Consulter</a></p>
 				</div>
 		 <?php	}
 		 ?>
