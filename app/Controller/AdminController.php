@@ -265,8 +265,7 @@ public function view_recrutement($id = null)
 	{
 if ($this->request->is('post')) {
 			$this->Post->id = $id;
-			$this->Post->read(null,$id);
-			$this->Post->set('slug',$this->slugify($this->request->data['Post']['titre']));
+			$this->Post->read(null,$id);		
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash(__('Le texte a bien mise à jour.'));
 			} else {
@@ -279,8 +278,7 @@ public function view_alaune($id = null)
 	{
 if ($this->request->is('post')) {
 			$this->Post->id = $id;
-			$this->Post->read(null,$id);
-			$this->Post->set('slug',$this->slugify($this->request->data['Post']['titre']));
+			$this->Post->read(null,$id);			
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash(__('La une a bien mise à jour.'));
 			} else {
@@ -289,6 +287,22 @@ if ($this->request->is('post')) {
 		}
 		$this->set('recrut', $this->Post->read(null, $id));
 	}
+	
+public function view_bruissement($id = null)
+	{
+if ($this->request->is('post')) {
+			$this->Post->id = $id;
+			$this->Post->read(null,$id);			
+			if ($this->Post->save($this->request->data)) {
+				$this->Session->setFlash(__('Le bruissement a bien mise à jour.'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer le bruissement'));
+			}
+		}
+		$this->set('recrut', $this->Post->read(null, $id));
+	}	
+	
+	
 	public function view_action($id = null)
 	{
 		
