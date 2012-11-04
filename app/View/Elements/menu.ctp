@@ -2,8 +2,7 @@
 	<li><?php echo $this->Html->link(__('Accueil'), array('controller' => 'home', 'action' => 'index')); ?></li>
 	<?php $i = 0; ?>
 	<?php foreach($tabs as $t): ?>
-		<?php if($i == 1): ?>
-			<li><?php echo $this->Html->link(__('Actualités'), array('controller' => 'home', 'action' => 'actualites')); ?></li>
+		<?php if($i == 1): ?>			
 			<li><?php echo $this->Html->link(__('Actions'), array('controller' => 'home', 'action' => 'actions')); ?></li>
 		<?php endif;?>
 		<?php if($t['Contenus']['ordre']>=0){?>
