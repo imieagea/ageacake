@@ -421,7 +421,18 @@ $categories = $this->Category->find('list',$options);
 	{
 		switch ($type) {
 			case 'Fiche':
-				# code...
+					if(!empty($id))
+					{
+						$this->Fiche->delete($id);
+					}
+					else
+					{
+
+
+						foreach ($this->request->data['ids'] as $id) {
+							$this->Fiche->delete($id);
+						}
+					}
 				break;
 
 			case 'Critere':
@@ -440,6 +451,38 @@ $categories = $this->Category->find('list',$options);
 					$this->CritereCategory->delete($id);
 
 				break;
+
+			case 'Contenus':
+				if(!empty($id))
+				{
+					$this->Contenus->delete($id);
+				}
+				else
+				{
+
+
+					foreach ($this->request->data['ids'] as $id) {
+						$this->Contenus->delete($id);
+					}
+				}
+
+			break;
+
+			case 'Post':
+				if(!empty($id))
+				{
+					$this->Post->delete($id);
+				}
+				else
+				{
+
+
+					foreach ($this->request->data['ids'] as $id) {
+						$this->Post->delete($id);
+					}
+				}
+
+			break;
 			
 			default:
 				# code...

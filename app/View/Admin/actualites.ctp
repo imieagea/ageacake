@@ -11,18 +11,24 @@
 		<th><?php echo $this->Paginator->sort('Category.nom','Nom de la catégorie'); ?></th>
 		<th>Actions</th>
 	</tr>
-<?php if(isset($actus[0])):?>	
+<?php if(isset($actus[0])):?>
+	<form action="<?php echo $this->base ?>/admin/delete/Post" method="POST">	
 	<?php foreach ($actus as $actu): ?>
 		<tr>
-		<td><?php echo h($actu['Post']['id']); ?>&nbsp;</td>
+			<td><input type = "checkbox" name="data[ids][]" value = "<?php echo h($actu['Post']['id']); ?>"></td>
 			<td><?php echo h($actu['Post']['titre']); ?>&nbsp;</td>
 			<td><?php echo $rest = substr(strip_tags($actu['Post']['corps']), 0, 20).'[...]'; ?>&nbsp;</td>
 			<td><?php echo h($actu['Category']['nom']); ?>&nbsp;</td>
 			<td><a href="<?php echo $this->base ?>/admin/view_actualite/<?php echo $actu['Post']['id'] ?>">Voir</a></td>
 		</tr>
 	<?php endforeach; ?>
-<?php endif; ?>
-</table>
+
+
+	<?php endif; ?>
+	</table>
+	<h2> Supprimer<input type="submit" value = "Ok"></h2>
+	</form>
+
 <p class="paging_counter">
 	<?php
 	echo $this->Paginator->counter(array(

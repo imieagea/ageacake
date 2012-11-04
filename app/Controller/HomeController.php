@@ -1,5 +1,5 @@
 <?php
-App::uses('AppController', 'Controller');
+App::uses('AppController', 'Controller','CakeEmail', 'Network/Email');
 
 class HomeController extends AppController {
 	
@@ -84,6 +84,12 @@ class HomeController extends AppController {
 			 			$this->CritereValue->save();
 		 			}
 	 			}
+	 			$email = new CakeEmail();
+				$email->from(array('me@example.com' => 'My Site'));
+				$email->to('you@example.com');
+				$email->subject('About');
+				$email->send('My message');
+				
 	 			$this->Session->setFlash(utf8_encode('Votre CV a bien été enregistré'));
 	 			$this->redirect(array('action'=>'merci'));
 			}else
