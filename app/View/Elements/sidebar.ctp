@@ -24,7 +24,9 @@
 				<a href="<?php echo $this->base."/actualites/".$s['Category']['slug']."/".$s['Post']['slug'] ?>"><?php echo $s['Post']['titre'] ?></a>
 				<p><em><?php echo $s['Category']['nom'] ?> 
 				</em></p>
-			<?php echo $s['Post']['corps'] ?>
+			<?php 
+			 echo 	substr(strip_tags($s['Post']['corps'] ), 0, 150).'[...]';
+			?>
 			</li>
 			<?php endforeach; ?>	
 		</ul>
@@ -34,6 +36,6 @@
 	<div id="box_contact">
 		<div class="bandeau contact">Contact</div>
 		<?php echo $infos_contact['Post']['corps'] ?>
-			<a href="" class="right_button contact_link">Contactez-nous</a><div class="clear"></div>
+		<!--	<a href="" class="right_button contact_link">Contactez-nous</a><div class="clear"></div>-->
 	</div>
 </aside>

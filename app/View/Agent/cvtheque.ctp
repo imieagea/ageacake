@@ -10,8 +10,9 @@
 
 
 <section id="contenu" class="contenu_admin contenu_agent">
-
+<h2><a href="<?php echo $this->base; ?>/agent/"><- Retour au menu adhérent</a></h2>
     <h1>CV-Thèque</h1>
+	
     <div class='form'>
         <?php echo $this->Form->create('critere',array('url'=>'/agent/cvtheque')); ?>
             <fieldset>
@@ -41,7 +42,7 @@
                 }
             ?>
             </fieldset>
-        <?php echo $this->Form->end(__('Submit')); ?>
+        <?php echo $this->Form->end(__('Filtrer')); ?>
     </div>
     
     <table>

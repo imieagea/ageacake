@@ -1066,16 +1066,63 @@ padding: 5px;
 display: block;
 }
 
-#toutesactus h1 {
+#toutesactus h1 ,#espaceagent h1{
 margin-bottom: 10px;
 text-align: center;
 font-weight: bold;
 font-size: 20px;
 }
-#toutesactus h2 {
+#toutesactus h2,#espaceagent h2 {
 margin-bottom: 10px;
 text-align: left;
 font-weight: bold;
 font-size: 18px;
+}
+
+.boutonagent {
+line-height: 50px;
+text-align: center;
+text-shadow: 0px 1px 0px black;
+font-size: 22px;
+color: white;
+font-family: equal_sans_demoregular;
+-webkit-box-shadow: 0px 4px 0px 0px #636363;
+box-shadow: 0px 4px 0px 0px #636363;
+display: block;
+height: 50px;
+background: #888;
+width: 350px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+margin-bottom: 40px;
+-webkit-transition: all linear 200ms;
+-moz-transition: all linear 200ms;
+-o-transition: all linear 200ms;
+-ms-transition: all linear 200ms;
+margin-left: auto;
+margin-right: auto;
+transition: all linear 200ms;
+}
+
+
+.boutonagent:hover {
+	background: #747474;
+	margin-top: 3px;
+
+	-webkit-box-shadow: 0px 1px 0px 0px #636363;
+	box-shadow: 0px 1px 0px 0px #636363;
+	margin-bottom: 35px;
+}
+
+.boutonagent:active {
+	background: #6B6B6B;
+}
+
+.consulter.bruit {
+width: 170px;
+}
+.consulter.bruit a{
+color:white;
 }
 /* ---------------  FIN ADMIN  ---------------- */

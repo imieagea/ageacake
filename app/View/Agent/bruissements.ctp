@@ -1,19 +1,26 @@
+<div id="toutesactus">
 <h1>Bruissements de chambre</h1>
-<table>
-	<tr>
-		<th><?php echo $this->Paginator->sort('titre'); ?></th>
-		<th><?php echo $this->Paginator->sort('corps'); ?></th>
-	</tr>
 <?php if(isset($bruissements[0])):?>	
-	<?php foreach ($bruissements as $une): ?>
-		<tr>
-			<td><?php echo h($une['Post']['titre']); ?>&nbsp;</td>
-			<td><?php echo $rest = substr(h($une['Post']['corps']), 0, 20).'[...]'; ?>&nbsp;</td>		
-			<td><a href="<?php echo $this->base ?>/agent/bruissement/<?php echo $une['Post']['id'] ?>">Voir</a></td>
-		</tr>
+	<?php foreach ($bruissements as $une){
+			$une['Post']['pslug'] = $une['Category']['slug'];
+			$cats[$une['Category']['nom']][] = $une['Post'] ;
+		}
+		?>
+	<?php foreach ($cats as $titre=>$cat): ?>
+		<h2><?php echo h($titre); ?></h2>
+		<?php
+			foreach ($cat as $post) { ?>
+				<article>
+					<div class="bandeau recrut"><h3><?php echo h($post['titre']); ?></h3></div>
+				<div class="consulter bruit">	<?php echo 	$post['corps']; ?>
+				</div>					
+				</article>	
+		 <?php	}
+		 ?>
+
 	<?php endforeach; ?>
 <?php endif; ?>
-</table>
+<!--
 <p class="paging_counter">
 	<?php
 	echo $this->Paginator->counter(array(
@@ -26,4 +33,4 @@
 		echo $this->Paginator->numbers(array('separator' => '|'));
 		echo $this->Paginator->next(__('Suivant') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
-</div>
+</div>--></div>

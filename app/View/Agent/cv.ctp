@@ -1,9 +1,17 @@
-<h2><?php echo $fiche['Fiche']['nom'].' '.$fiche['Fiche']['prenom'] ?></h2>
+<div class="fiches form">
+<h2><a href="<?php echo $this->base; ?>/agent/cvtheque"><- Retour à la base de CV</a></h2>
 
-<div style="background:grey;">
-	<a style="color:pink;" href="<?php echo $this->base ?>/agent/pdf/<?php echo $fiche['Fiche']['id'] ?>">Télécharger au format PDF</a>
-	<?php if(!empty($fiche['Fiche']['pdf'])): ?><a target="_blank" style="color:pink;" href="<?php echo $this->Html->url('/app/webroot/cv/'.$fiche['Fiche']['pdf']) ?>">Télécharger le CV du candidat</a> <?php endif; ?>
+	<a style="text-decoration:underline;" href="<?php echo $this->base ?>/agent/pdf/<?php echo $fiche['Fiche']['id'] ?>">Télécharger cette fiche au format PDF</a>
+	<div>
+	<?php if(!empty($fiche['Fiche']['pdf'])): ?><a target="_blank" style="text-decoration:underline;;" href="<?php echo $this->Html->url('/app/webroot/cv/'.$fiche['Fiche']['pdf']) ?>">Télécharger le CV du candidat</a> <?php endif; ?>
 </div>
+<h2>Nom:</h2> <?php echo $fiche['Fiche']['nom']; ?><br/>
+<?php echo '<h2>Prénom:</h2>'.$fiche['Fiche']['prenom']; ?>
+<?php echo '<h2>Email:</h2>'.$fiche['Fiche']['email']; ?>
+<?php echo '<h2>Portable:</h2>'.$fiche['Fiche']['portable']; ?>
+<?php echo '<h2>Ville:</h2>'.$fiche['Fiche']['ville']; ?>
+
+<?php echo '<h2>Avis RH:</h2><div>'.$fiche['Fiche']['message'].'</div>'; ?>
 <?php
 $cv = array();
 //On intialise le tableau avec les valeurs des critères
@@ -17,7 +25,7 @@ foreach ($fiche['CritereValue'] as $value) {
 //Avec un peu plus de temps de dev on peut arriver à un développement plus optimisé et paufinné
 //Il m'es totalement impossible de prévoir l'optimisation de ce genre de fonctions dès la conception (compte tenu des délais)
 //</Parenthèse>;
-function recursAfficheCats($parents,$cv = null,$rang = 1)
+function recursAfficheCats($parents,$cv = null,$rang = 2)
 {
 	foreach ($parents as $parent) {
 		(isset($parent['CritereCategory']))? $titre = $parent['CritereCategory']['nom'] : $titre = $parent['nom'] ;
@@ -31,7 +39,7 @@ function recursAfficheCats($parents,$cv = null,$rang = 1)
 					echo "<label>".$critere['nom']."</label>";
 					if($critere['type'] == 'checkbox')
 					{
-						echo "<input type='checkbox' value = ".$cv[$critere['id']].">";
+						echo "<input type='checkbox' checked='checked' value = ".$cv[$critere['id']].">";
 					}else
 					{
 						echo "<textarea>".$cv[$critere['id']]."</textarea>";
@@ -47,3 +55,5 @@ function recursAfficheCats($parents,$cv = null,$rang = 1)
 	}
 } ?>
 <?php recursAfficheCats($criteres,$cv) ?>
+
+</div>
