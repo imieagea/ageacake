@@ -463,6 +463,53 @@ $categories = $this->Category->find('list',$options);
 		$this->set('partenaires',$this->paginate('Partenaire'));
 	}
 
+	public function view_partenaire($id = null)
+	{
+		if ($this->request->is('post')) {
+			if(!empty($id))
+			{
+				$this->Partenaire->id = $id;
+				$this->Partenaire->read(null,$id);
+			}else
+			{
+				$this->Partenaire->create();
+			}
+			if(!empty($this->request->data['Partenaire']['pdf']['name']))
+			{
+				$p = $this->Partenaire->read(null,$id);
+				//var_dump($this->request->data);
+				if ($p['Partenaire']['pdf']!='') {
+				//var_dump($fiche['Fiche']['pdf']);
+					unlink(ROOT.'\app\webroot\partenaires\\'.$p['Partenaire']['pdf']);
+				}
+				$cv = $this->request->data['Partenaire']['pdf'];
+				//var_dump($this->request->data);
+				if (in_array($cv['type'], $authTypes)) {
+					$chemin_destination = ROOT.'\app\webroot\partenaires\\';
+					$name = AppController::slugify($cv['name'].microtime());
+					
+					$path_parts = pathinfo($cv['name']);
+					//var_dump($cv['tmp_name']);
+					$ext = $path_parts['extension'];
+					$this->Fiche->set('pdf',$name.'.'.$ext);
+
+					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+					
+
+	 			}else
+	 			{
+	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
+	 			}
+			}
+			if ($this->Partenaire->save($this->request->data)) {
+				$this->Session->setFlash(__('L\'action à bien mise à jour.'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer l\'action'));
+			}
+		}
+		$this->set('partenaire', $this->Partenaire->read(null, $id));
+	}
+
 	public function delete($type=null,$id=null)
 	{
 		switch ($type) {
