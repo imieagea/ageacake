@@ -19,7 +19,11 @@ class HomeController extends AppController {
 		$parts = $this->Partenaires->find('all');
 		$this->set('partenaires',$parts);
 	}
-
+	public function cul()
+	{
+		echo 'cul';
+		die();
+	}
 	public function index()
 	{
 		$this->set('title_for_layout', 'AGEA - Accueil');

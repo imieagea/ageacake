@@ -1,1 +1,1 @@
-<h1>MERCI</h1>
+<h1>Merci d'avoir déposé votre CV</h1>

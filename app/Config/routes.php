@@ -29,6 +29,7 @@ App::import('Lib', 'Routing/Route/CategorySlugRoute');
  */
 	Router::connect('/', array('controller' => 'home', 'action' => 'index'));
 
+
 /*
 	On ajoute le routage pour les pages de contenu
 */
@@ -47,7 +48,7 @@ App::import('Lib', 'Routing/Route/CategorySlugRoute');
 
 	Router::connect('/actualites', array('controller' => 'home','action'=>'actualites'));
 
-	Router::connect('/partenaires', array('controller' => 'home','action'=>'partenaires'));
+	//Router::connect('/partenaires', array('controller' => 'home','action'=>'partenaires'));
 
 	/*
 	On ajoute le routage pour les pages de contenu
