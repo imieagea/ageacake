@@ -11,6 +11,7 @@
 		<td><?php echo h($action['Category']['id']); ?>&nbsp;</td>
 			<td><?php echo h($action['Category']['nom']); ?>&nbsp;</td>		
 			<td><a href="<?php echo $this->base ?>/admin/view_actualite_category/<?php echo $action['Category']['id'] ?>">Voir</a></td>
+			<td><?php echo $this->Form->postLink(__('Supprimer'), array('action' => 'delete/Category/'.$action['Category']['id']), null, __('Êtes-vous sûr de vouloir supprimer cette catégorie ?')); ?></td>
 		</tr>
 	<?php endforeach; ?>
 <?php endif; ?>

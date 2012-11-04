@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
 	
-	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue','Post','Category');
+	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue','Post','Category','Partenaire');
 
 	public function beforeFilter()
 	{
@@ -458,6 +458,11 @@ $categories = $this->Category->find('list',$options);
 		
 	}
 
+	public function partenaires()
+	{
+		$this->set('partenaires',$this->paginate('Partenaire'));
+	}
+
 	public function delete($type=null,$id=null)
 	{
 		switch ($type) {
@@ -477,7 +482,7 @@ $categories = $this->Category->find('list',$options);
 				break;
 
 			case 'Critere':
-					$this->Criterei->id = $id;
+					$this->Critere->id = $id;
 					$this->Critere->read(null,$id);
 					$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$id),false);
 					$this->Critere->delete($id);
@@ -490,6 +495,14 @@ $categories = $this->Category->find('list',$options);
 					}
 					$this->Critere->deleteAll(array('Critere.critere_category_id'=>$id),false);
 					$this->CritereCategory->delete($id);
+
+				break;
+
+			case 'Category':
+				if(!empty($id))
+				{
+					$this->Category->delete($id);
+				}
 
 				break;
 
