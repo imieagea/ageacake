@@ -6,7 +6,7 @@ echo $this->Form->create('Post',array('url'=>'/admin/view_recrutement/'.$recrut[
 		<legend><?php echo __('Modifier le texte de recrutement'); ?></legend>
 	<?php
 		echo $this->Form->input('titre',array('value'=>$recrut['Post']['titre']));
-		echo $this->Form->input('corps',array('type'=>'textarea','value'=>$recrut['Post']['corps']));	
+		echo $this->Form->input('corps',array('type'=>'textarea','value'=>$recrut['Post']['corps'], 'class' => 'tinymce'));	
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Enregistrer')); ?>
