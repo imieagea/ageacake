@@ -250,8 +250,8 @@ public function view_contenu($id = null)
 if ($this->request->is('post')) {
 			$this->Contenus->id = $id;
 			$this->Contenus->read(null,$id);
-			$this->Contenus->set('slug',$this->slugify($this->request->data['Contenu']['titre']));
-			var_dump($this->request->data);
+			$this->Contenus->set('slug',$this->slugify($this->request->data['Contenus']['titre']));
+	
 			if ($this->Contenus->save($this->request->data)) {
 				$this->Session->setFlash(__('La page à bien mise à jour.'));
 			} else {
