@@ -475,6 +475,7 @@ $categories = $this->Category->find('list',$options);
 			{
 				$this->Partenaire->create();
 			}
+			$this->Partenaire->set($this->request->data);
 			if(!empty($this->request->data['Partenaire']['pdf']['name']))
 			{
 				$p = $this->Partenaire->read(null,$id);
@@ -492,7 +493,7 @@ $categories = $this->Category->find('list',$options);
 					$path_parts = pathinfo($cv['name']);
 					//var_dump($cv['tmp_name']);
 					$ext = $path_parts['extension'];
-					$this->Partenaire->set('pdf',$name.'.'.$ext);
+					$this->Partenaire->set('pdf',(AppController::slugify($name).'.'.$ext));
 
 					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
 					
@@ -502,9 +503,11 @@ $categories = $this->Category->find('list',$options);
 	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
 	 			}
 			}
-			if ($this->Partenaire->save($this->request->data)) {
-				$this->Session->setFlash(__('L\'action à bien mise à jour.'));
+			
+			if ($this->Partenaire->save()) {
+				$this->Session->setFlash(__('Le partenaire à bien mise à jour.'));
 			} else {
+				var_dump($this->Partenaire->validationErrors);
 				$this->Session->setFlash(__('Impossible d\'enregistrer l\'action'));
 			}
 		}
@@ -565,6 +568,22 @@ $categories = $this->Category->find('list',$options);
 
 					foreach ($this->request->data['ids'] as $id) {
 						$this->Contenus->delete($id);
+					}
+				}
+
+			break;
+
+			case 'Partenaire':
+				if(!empty($id))
+				{
+					$this->Partenaire->delete($id);
+				}
+				else
+				{
+
+
+					foreach ($this->request->data['ids'] as $id) {
+						$this->Partenaire->delete($id);
 					}
 				}
 

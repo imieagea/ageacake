@@ -43,6 +43,13 @@
 			</li>
 			<li><a href="<?php echo $this->base ?>/admin/alaune" class="gerer_une">Gérer la Une</a></li>
 			<li><a href="<?php echo $this->base ?>/admin/recrutement" class="gerer_pages">Gérer le texte de recrutement</a></li>
+			<li>
+				<a href="javascript:void(0);" id="toggle_part">Partenaires</a>
+				<ul style="display:none">
+					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/partenaires">Gérer les Partenaires</a></li>
+					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/view_partenaire">Ajouter un Partenaire</a></li>
+				</ul>
+			</li>
 		</ul>
 	</nav>
 </aside>

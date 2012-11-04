@@ -47,6 +47,8 @@ App::import('Lib', 'Routing/Route/CategorySlugRoute');
 
 	Router::connect('/actualites', array('controller' => 'home','action'=>'actualites'));
 
+	Router::connect('/actualites', array('controller' => 'home','action'=>'partenaires'));
+
 	/*
 	On ajoute le routage pour les pages de contenu
 */
