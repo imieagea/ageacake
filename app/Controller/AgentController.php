@@ -27,6 +27,18 @@ class AgentController extends AppController {
 
 	public function cvtheque()
 	{
+		if ($this->request->is('post')) {
+			$options = array(
+		    'joins' => array(
+		        array(
+		            'alias' => 'ParentCategory',
+		            'table' => 'categories',
+		            'type' => 'INNER',
+		            'conditions' => array('`ParentCategory`.`id` = `Category`.`parent_id`','`ParentCategory`.`slug`'=>'actions')
+		        )
+		    )
+		);
+		}
 		$fiches = $this->Fiche->find('all',array('conditions'=>array('Fiche.statut'=>'validated')));
 		$this->set('fiches',$fiches);
 	}
