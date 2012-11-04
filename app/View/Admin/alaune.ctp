@@ -1,6 +1,5 @@
 <h1>A la une</h1>
 
-<form style="width:100%" action="<?php echo $this->base ?>/admin/delete/Post" method="POST">	
 <table>
 	<tr>
 	<th><?php echo $this->Paginator->sort('id'); ?>&nbsp;</th>
@@ -21,9 +20,7 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
-
-<h2> Supprimer <input type="submit" value="Ok" onclick="if (confirm('Êtes-vous sûr de vouloir le supprimer cette Une ?')) { return true; } event.returnValue = false; return false;"></h2>
-</form>
+<p><strong>éditez et laissez le titre vide pour supprimer</strong></p>
 <p class="paging_counter">
 	<?php
 	echo $this->Paginator->counter(array(

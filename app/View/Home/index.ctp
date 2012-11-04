@@ -5,7 +5,7 @@
 			<a href="<?php echo $this->base ?>/deposer" class="button_cv">Déposez votre CV !</a>	
 <div class="clear"></div>		
 			</article>
-<?php if(isset($alaune['Post']['titre'])): ?>			
+<?php if(!empty($alaune['Post']['titre'])): ?>			
 <article>			
 			<div class="bandeau une">A la une: <?php echo $alaune['Post']['titre']; ?></div>
 			<div class="text_une">
