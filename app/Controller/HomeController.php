@@ -72,7 +72,7 @@ class HomeController extends AppController {
 		    )
 		);
 		$this->Post->recursive = 1;
-		$this->set('actions',$this->paginate('Post'));
+		$this->set('actualites',$this->paginate('Post'));
 	}
 
 	public function deposer()
