@@ -8,6 +8,7 @@ if($avalider>0){ ?>
 }else{?>
 <div id="retourfiches"><a href="<?php echo $this->Html->url('/admin/fiches');?>">Retour aux fiches candidats</a></div>
 <?php } ?>
+<form style="width:100%" action="<?php echo $this->base ?>/admin/delete/Fiche" method="POST">	
 <table>
 	<tr>
 		<th><?php echo $this->Paginator->sort('nom'); ?></th>
@@ -19,6 +20,7 @@ if($avalider>0){ ?>
 <?php if(isset($fiches[0])):?>	
 	<?php foreach ($fiches as $fiche): ?>
 		<tr>
+			<td><input type = "checkbox" name="data[ids][]" value = "<?php echo h($fiche['Fiche']['id']); ?>"></td>
 			<td><?php echo h($fiche['Fiche']['nom']); ?>&nbsp;</td>
 			<td><?php echo h($fiche['Fiche']['prenom']); ?>&nbsp;</td>
 			<td><?php echo h($fiche['Fiche']['email']); ?>&nbsp;</td>
@@ -34,6 +36,10 @@ if($avalider>0){ ?>
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
+
+
+<h2> Supprimer <input type="submit" value="Ok" onclick="if (confirm('Êtes-vous sûr de vouloir le supprimer ces fiches ?')) { return true; } event.returnValue = false; return false;"></h2>
+</form>
 <p class="paging_counter">
 	<?php
 	echo $this->Paginator->counter(array(

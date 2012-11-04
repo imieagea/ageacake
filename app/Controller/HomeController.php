@@ -3,13 +3,13 @@ App::uses('AppController', 'Controller','CakeEmail', 'Network/Email');
 
 class HomeController extends AppController {
 	
-	var $uses = array('Post','Category','CritereCategory','Fiche','CritereValue');
+	var $uses = array('Post','Category','CritereCategory','Fiche','CritereValue','Partenaires');
 
 	var $docTypes = array('application/pdf','application/msword');
 
 	public function beforeFilter()
 	{
-		$this->Auth->allow('index','deposer','actions','actualites');
+		$this->Auth->allow('index','deposer','actions','actualites','partenaires');
 		parent::beforeFilter();
 	}
 
