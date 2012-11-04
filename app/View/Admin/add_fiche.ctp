@@ -19,7 +19,9 @@
 		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false));
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false));
 		echo '</div>';
-		echo $this->Form->input('message',array('type'=>'textarea', 'class' => 'tinymce'));
+	
+		echo $this->Form->textarea('message');  
+		echo $this->Ck->replace('FicheMessage');
 		echo $this->Form->input('cv',array('type'=>'file'));
 		echo $this->Form->input('exp',array('type'=>'checkbox','label'=>'Expérience dans le(s) domaine(s) recherché(s)'));
 		foreach($criteres as $c)

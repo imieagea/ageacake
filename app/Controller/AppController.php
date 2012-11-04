@@ -35,7 +35,7 @@ class AppController extends Controller {
 
 
     var $uses = array('Contenus','Post');
-    
+   // var $helpers = array();
     static public function slugify($text)
     {
         // replace non letter or digits by -
@@ -72,7 +72,7 @@ class AppController extends Controller {
         ),
         'Session'
     );
-    public $helpers = array('Html', 'Form', 'Session');
+    public $helpers = array('Html', 'Form', 'Session','Ck');
 
     public function beforeFilter() {
         //Configure AuthComponent

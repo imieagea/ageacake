@@ -4,7 +4,8 @@
 		<legend><?php echo __('Ajouter une action'); ?></legend>
 	<?php
 		echo $this->Form->input('titre');
-		echo $this->Form->input('corps',array('type'=>'textarea', 'class' => 'tinymce'));
+		echo $this->Form->textarea('corps');  
+		echo $this->Ck->replace('PostCorps');
 		echo $this->Form->input('category_id',array('label'=>'Catégorie de l\'article ','empty'=>true,'name'=>'data[Post][category_id]'));
 	?>
 	</fieldset>

@@ -10,7 +10,7 @@ App::uses('AppController', 'Controller');
 class AdminController extends AppController {
 	
 	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue','Post','Category','Partenaire');
-
+	//var $helpers = array('Ck');
 	public function beforeFilter()
 	{
         $this->layout = 'admin';
