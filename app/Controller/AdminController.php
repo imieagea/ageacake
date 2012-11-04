@@ -172,6 +172,13 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 	 			}
 			}
 			$this->Fiche->set($this->request->data);
+			 if(!empty($this->request->data['rejected']))
+			 {
+			 	$this->Fiche->set('statut','rejected');
+			 }else
+			 {
+			 	$this->Fiche->set('statut','validated');
+			 }
 			 if($this->Fiche->save()) {
 			 	$this->CritereValue->deleteAll(array('CritereValue.fiche_id' => $id), false);
 			 	//var_dump($this->request->datac);

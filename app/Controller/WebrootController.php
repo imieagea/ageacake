@@ -19,18 +19,24 @@ class WebrootController extends AppController {
 
 	public function cv($name)
 	{
-		$this->autoRender = false;
-		$path_parts = pathinfo($name);
-		$ext = $path_parts['extension'];
+		if($name)
+		{
+			$this->autoRender = false;
+			$path_parts = pathinfo($name);
+			$ext = $path_parts['extension'];
 
-		$types = array('pdf'=>'application/pdf','doc'=>'application/msword');
+			$types = array('pdf'=>'application/pdf','doc'=>'application/msword');
 
-		
-		$this->response->type($types[$ext]);
+			
+			$this->response->type($types[$ext]);
 
-		$this->response->download($name);
-		$file = file_get_contents(WWW_ROOT.'cv\\'.$name);
-		$this->response->body($file);
+			$this->response->download($name);
+			$file = file_get_contents(WWW_ROOT.'cv\\'.$name);
+			$this->response->body($file);
+		}else
+		{
+			$this->redirect(array('controller'=>'home','action'=>'index'));
+		}
 	}
 }
 

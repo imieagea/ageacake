@@ -2,6 +2,17 @@
 <?php echo $this->Form->create('Fiche',array('url'=>'/admin/view_fiche/'.$fiche['Fiche']['id'],'type'=>'file')); ?>
 	<fieldset>
 		<h1><?php echo __('Créer une Fiche candidat'); ?></h1>
+		<h2>
+			<div class="input checkbox criteres">
+				<label>Rejeté</label>
+				<input type="checkbox" name="rejected" value="1" <?php if($fiche['Fiche']['statut'] == 'rejected') echo 'checked'; ?>>
+			</div>
+			<div class="input checkbox criteres">
+				<label>Validé</label>
+				<input type="checkbox" value="1" <?php if($fiche['Fiche']['statut'] == 'validated') echo 'checked'; ?>>
+			</div>
+			<input type="submit" value="Mise à jour">
+		</h2>
 	<?php
 		echo $this->Form->input('nom',array('value'=>$fiche['Fiche']['nom']));
 		echo $this->Form->input('prenom',array('value'=>$fiche['Fiche']['prenom']));
@@ -21,7 +32,9 @@
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false,'value'=>substr($fiche['Fiche']['date_naissance'], 0, 4)));
 		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea','value'=>$fiche['Fiche']['message']));
-		echo '<a href="'.$this->Html->url('/app/webroot/cv/'.$fiche['Fiche']['pdf']).'" target="_blank">Fiche Actuelle</a>';
+		if(!empty($fiche['Fiche']['pdf']))
+			echo '<a href="'.$this->Html->url('/webroot/cv/').$fiche['Fiche']['pdf'].'" target="_blank">Fiche Actuelle</a>';
+
 		echo $this->Form->input('cv',array('type'=>'file'));
 
 		
@@ -98,14 +111,6 @@ function recursAfficheCats($parents,$cv = null,$rang = 2)
 recursAfficheCats($criteres,$cv);
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Enregistrer')); ?>
-</div>
-<!--
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Html->link(__('List Fiches'), array('action' => 'index')); ?></li>
-	</ul>
+<?php echo $this->Form->end(__('Enregistrer/Valider')); ?>
 </div>
--->
