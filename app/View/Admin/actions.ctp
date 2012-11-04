@@ -1,4 +1,5 @@
 <h1>Actions</h1>
+<form style="width:100%" action="<?php echo $this->base ?>/admin/delete/Post" method="POST">	
 <table>
 	<tr>
 	<th><?php echo $this->Paginator->sort('id'); ?>&nbsp;</th>
@@ -8,7 +9,6 @@
 		<th>Actions</th>
 	</tr>
 <?php if(isset($actions[0])):?>
-<form action="<?php echo $this->base ?>/admin/delete/Post" method="POST">	
 	<?php foreach ($actions as $action): ?>
 		<tr>
 			<td><input type = "checkbox" name="data[ids][]" value = "<?php echo h($action['Post']['id']); ?>"></td>
@@ -20,7 +20,7 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 </table>
-<h2> Supprimer<input type="submit" value = "Ok"></h2>
+<h2> Supprimer <input type="submit" value="Ok" onclick="if (confirm('Êtes-vous sûr de vouloir le supprimer ces actions ?')) { return true; } event.returnValue = false; return false;"></h2>	
 </form>
 <p class="paging_counter">
 	<?php

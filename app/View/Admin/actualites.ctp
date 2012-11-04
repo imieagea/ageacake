@@ -3,6 +3,7 @@
 	//echo $this->base/admin/edit_actu/$actu['Post']['id'];
 } ?>
 <h1>Actualités</h1>
+<form style="width:100%" action="<?php echo $this->base ?>/admin/delete/Post" method="POST">	
 <table>
 	<tr>
 	<th><?php echo $this->Paginator->sort('id'); ?>&nbsp;</th>
@@ -12,7 +13,7 @@
 		<th>Actions</th>
 	</tr>
 <?php if(isset($actus[0])):?>
-	<form action="<?php echo $this->base ?>/admin/delete/Post" method="POST">	
+	
 	<?php foreach ($actus as $actu): ?>
 		<tr>
 			<td><input type = "checkbox" name="data[ids][]" value = "<?php echo h($actu['Post']['id']); ?>"></td>
@@ -25,9 +26,11 @@
 
 
 	<?php endif; ?>
+
 	</table>
-	<h2> Supprimer<input type="submit" value = "Ok"></h2>
+	<h2> Supprimer <input type="submit" value="Ok" onclick="if (confirm('Êtes-vous sûr de vouloir le supprimer ces actualités ?')) { return true; } event.returnValue = false; return false;"></h2>
 	</form>
+	
 
 <p class="paging_counter">
 	<?php
