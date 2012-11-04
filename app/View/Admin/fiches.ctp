@@ -1,4 +1,5 @@
-<h1>Fiches candidats</h1>
+<h1>Fiches candidats</h1> 
+<div id="fichesavalider"><a href="/admin/fiches?avalider=1">Vous avez des fiches à valider</a></div>
 <table>
 	<tr>
 		<th><?php echo $this->Paginator->sort('nom'); ?></th>

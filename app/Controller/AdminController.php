@@ -60,15 +60,21 @@ class AdminController extends AppController {
 
 			if(isset($this->request->data['Fiche']['cv']))
 			{
+				$fiche = $this->Fiche->read(null,$id);
+				
 				$cv = $this->request->data['Fiche']['cv'];
+				//var_dump($this->request->data);
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = WWW_ROOT.'cv\\';
-					$name = AppController::slugify($cv['name']);
+					$chemin_destination = ROOT.'\app\webroot\cv\\';
+					$name = AppController::slugify($cv['name'].microtime());
+					
 					$path_parts = pathinfo($cv['name']);
+					//var_dump($cv['tmp_name']);
 					$ext = $path_parts['extension'];
-					$this->Fiche->set('pdf',$this->base.'/webroot/cv/'.$name.'.'.$ext);
+					$this->Fiche->set('pdf',$name.'.'.$ext);
 
 					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+					
 
 	 			}else
 	 			{
@@ -118,18 +124,24 @@ class AdminController extends AppController {
 			if(isset($this->request->data['Fiche']['cv']))
 			{
 				$fiche = $this->Fiche->read(null,$id);
-				if ($fiche['Fiche']['pdf']) {
-					unlink(filename);
+				//var_dump($this->request->data);
+				if ($fiche['Fiche']['pdf']!='') {
+				//var_dump($fiche['Fiche']['pdf']);
+					unlink(ROOT.'\app\webroot\cv\\'.$fiche['Fiche']['pdf']);
 				}
 				$cv = $this->request->data['Fiche']['cv'];
+				//var_dump($this->request->data);
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = ROOT.'\webroot\cv\\';
-					$name = AppController::slugify($cv['name']);
+					$chemin_destination = ROOT.'\app\webroot\cv\\';
+					$name = AppController::slugify($cv['name'].microtime());
+					
 					$path_parts = pathinfo($cv['name']);
+					//var_dump($cv['tmp_name']);
 					$ext = $path_parts['extension'];
-					$this->Fiche->set('pdf',$this->base.'/webroot/cv/'.$name.'.'.$ext);
+					$this->Fiche->set('pdf',$name.'.'.$ext);
 
 					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+					
 
 	 			}else
 	 			{

@@ -1,5 +1,5 @@
 <div class="fiches form">
-<?php echo $this->Form->create('Fiche',array('url'=>'/admin/view_fiche/'.$fiche['Fiche']['id'])); ?>
+<?php echo $this->Form->create('Fiche',array('url'=>'/admin/view_fiche/'.$fiche['Fiche']['id'],'type'=>'file')); ?>
 	<fieldset>
 		<h1><?php echo __('Créer une Fiche candidat'); ?></h1>
 	<?php
@@ -21,8 +21,8 @@
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false,'value'=>substr($fiche['Fiche']['date_naissance'], 0, 4)));
 		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea','value'=>$fiche['Fiche']['message']));
-		echo '<a href="'.$fiche['Fiche']['pdf'].'">Fiche Actuelle</label>';
-		echo $this->Form->input('pdf',array('type'=>'file'));
+		echo '<a href="/ageacake/app/webroot/cv/'.$fiche['Fiche']['pdf'].'" target="_blank">Fiche Actuelle</a>';
+		echo $this->Form->input('cv',array('type'=>'file'));
 
 		
 		if($fiche['Fiche']['exp']==1){

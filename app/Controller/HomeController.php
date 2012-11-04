@@ -41,17 +41,25 @@ class HomeController extends AppController {
 			$this->Fiche->set($this->request->data);
 			if(isset($this->request->data['Fiche']['cv']))
 			{
+					$fiche = $this->Fiche->read(null,$id);
+				
 				$cv = $this->request->data['Fiche']['cv'];
+				//var_dump($this->request->data);
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = ROOT.'\webroot\cv\\';
-					$name = AppController::slugify($cv['name']);
-					$path_parts = pathinfo($cv['name']);
-					$ext = $path_parts['extension'];
+					$chemin_destination = ROOT.'\app\webroot\cv\\';
+					$name = AppController::slugify($cv['name'].microtime());
 					
-					$this->Fiche->set('pdf',$this->base.'/webroot/cv/'.$name.'.'.$ext);
+					$path_parts = pathinfo($cv['name']);
+					//var_dump($cv['tmp_name']);
+					$ext = $path_parts['extension'];
+					$this->Fiche->set('pdf',$name.'.'.$ext);
 
 					move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+					
 
+	 			}else
+	 			{
+	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
 	 			}
 			}
 
