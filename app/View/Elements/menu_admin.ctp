@@ -69,5 +69,8 @@
     $('#toggle_bruis').click(function(){
 	$('#toggle_bruis + ul').toggle('slow');
  });
+  $('#toggle_part').click(function(){
+	$('#toggle_part + ul').toggle('slow');
+ });
 });
 </script>
