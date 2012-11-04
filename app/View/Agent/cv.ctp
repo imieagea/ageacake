@@ -5,7 +5,7 @@
 	<?php if(!empty($fiche['Fiche']['pdf'])): ?><a target="_blank" style="color:pink;" href="<?php echo $this->Html->url('/app/webroot/cv/'.$fiche['Fiche']['pdf']) ?>">Télécharger le CV du candidat</a> <?php endif; ?>
 </div>
 <?php
-
+$cv = array();
 //On intialise le tableau avec les valeurs des critères
 foreach ($fiche['CritereValue'] as $value) {
 		$cv[$value['critere_id']] = $value['value'];
