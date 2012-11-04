@@ -213,6 +213,16 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 	
 	public function view_actualite($id = null)
 	{
+if ($this->request->is('post')) {
+			$this->Post->id = $id;
+			$this->Post->read(null,$id);
+			$this->Post->set('slug',$this->slugify($this->request->data['Post']['titre']));
+			if ($this->Post->save($this->request->data)) {
+				$this->Session->setFlash(__('L\'actualité à bien mise à jour.'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
+			}
+		}
 		$this->set('actu', $this->Post->read(null, $id));
 		$options = array(
 		    'joins' => array(
@@ -223,12 +233,25 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 		            'conditions' => array('`ParentCategory`.`id` = `Category`.`parent_id`','`ParentCategory`.`slug`'=>'actualites')
 		        )
 		    )
+	
 		);
 $categories = $this->Category->find('list',$options);
 		$this->set(compact('categories'));
 	}
 public function view_contenu($id = null)
 	{
+if ($this->request->is('post')) {
+
+			$this->Contenus->id = $id;
+			$this->Contenus->read(null,$id);
+			$this->Contenus->set('slug',$this->slugify($this->request->data['Contenu']['titre']));
+			var_dump($this->request->data);
+			if ($this->Contenus->save($this->request->data)) {
+				$this->Session->setFlash(__('La page à bien mise à jour.'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la page'));
+			}
+		}
 		$this->set('contenu', $this->Contenus->read(null, $id));
 	}
 	public function view_action($id = null)
@@ -239,9 +262,9 @@ public function view_contenu($id = null)
 			$this->Post->read(null,$id);
 			$this->Post->set('slug',$this->slugify($this->request->data['Post']['titre']));
 			if ($this->Post->save($this->request->data)) {
-				$this->Session->setFlash(__('L\'actualité à bien mise à jour.'));
+				$this->Session->setFlash(__('L\'action à bien mise à jour.'));
 			} else {
-				$this->Session->setFlash(__('Impossible d\'enregistrer l\'actualité'));
+				$this->Session->setFlash(__('Impossible d\'enregistrer l\'action'));
 			}
 		}
 		$this->set('action', $this->Post->read(null, $id));
