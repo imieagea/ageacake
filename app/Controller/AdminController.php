@@ -88,7 +88,7 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 				$cv = $this->request->data['Fiche']['cv'];
 				//var_dump($this->request->data);
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = ROOT.'\app\webroot\cv\\';
+					$chemin_destination = '../webroot/cv/';
 					$name = AppController::slugify($cv['name'].microtime());
 					
 					$path_parts = pathinfo($cv['name']);
@@ -150,12 +150,13 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 				//var_dump($this->request->data);
 				if ($fiche['Fiche']['pdf']!='') {
 				//var_dump($fiche['Fiche']['pdf']);
-					unlink(ROOT.'\app\webroot\cv\\'.$fiche['Fiche']['pdf']);
+					unlink('../webroot/cv/'.$fiche['Fiche']['pdf']);
 				}
 				$cv = $this->request->data['Fiche']['cv'];
 				//var_dump($this->request->data);
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = ROOT.'\app\webroot\cv\\';
+					//$chemin_destination = '../webroot/cv/';
+					$chemin_destination = '../webroot/cv/';
 					$name = AppController::slugify($cv['name'].microtime());
 					
 					$path_parts = pathinfo($cv['name']);
@@ -182,22 +183,28 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 			 if($this->Fiche->save()) {
 			 	$this->CritereValue->deleteAll(array('CritereValue.fiche_id' => $id), false);
 			 	//var_dump($this->request->datac);
-			 	foreach ($this->request->data['criteres']['cb'] as $value)
+			 	if(isset($this->request->data['criteres']['cb']))
 			 	{
-			 		$this->CritereValue->create();
-			 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-		 			$this->CritereValue->set('value',1);
-		 			$this->CritereValue->set('critere_id',$value);
-		 			$this->CritereValue->save();
-	 			}
-	 			foreach ($this->request->data['criteres']['text'] as $c => $value)
-			 	{
+				 	foreach ($this->request->data['criteres']['cb'] as $value)
+				 	{
 				 		$this->CritereValue->create();
 				 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
-			 			$this->CritereValue->set('value',$value);
-			 			$this->CritereValue->set('critere_id',$c);
+			 			$this->CritereValue->set('value',1);
+			 			$this->CritereValue->set('critere_id',$value);
 			 			$this->CritereValue->save();
-	 			}
+		 			}
+		 		}
+		 		if(isset($this->request->data['criteres']['cb']))
+			 	{
+		 			foreach ($this->request->data['criteres']['text'] as $c => $value)
+				 	{
+					 		$this->CritereValue->create();
+					 		$this->CritereValue->set('fiche_id',$this->Fiche->id);
+				 			$this->CritereValue->set('value',$value);
+				 			$this->CritereValue->set('critere_id',$c);
+				 			$this->CritereValue->save();
+		 			}
+		 		}
 				$this->Session->setFlash(__('La fiche a bien été mise à jour.'));
 				//$this->redirect(array('action' => 'index'));
 			} else {
@@ -518,12 +525,12 @@ $categories = $this->Category->find('list',$options);
 				//var_dump($this->request->data);
 				if ($p['Partenaire']['pdf']!='') {
 				//var_dump($fiche['Fiche']['pdf']);
-					unlink(ROOT.'\app\webroot\partenaires\\'.$p['Partenaire']['pdf']);
+					unlink('../webroot/partenaires/'.$p['Partenaire']['pdf']);
 				}
 				$cv = $this->request->data['Partenaire']['pdf'];
 				//var_dump($this->request->data);
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = ROOT.'\app\webroot\partenaires\\';
+					$chemin_destination = '../webroot/partenaires/';
 					$name = AppController::slugify($cv['name'].microtime());
 					
 					$path_parts = pathinfo($cv['name']);
@@ -811,7 +818,7 @@ public function alaune()
 				$cv = $this->request->data['Post']['pdf'];
 				//var_dump($this->request->data);
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = ROOT.'\app\webroot\bruissements\\';
+					$chemin_destination = '../webroot/bruissements/';
 					$name = AppController::slugify($cv['name'].microtime());
 					
 					$path_parts = pathinfo($cv['name']);

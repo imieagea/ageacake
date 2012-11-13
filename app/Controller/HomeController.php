@@ -102,7 +102,7 @@ class HomeController extends AppController {
 				$cv = $this->request->data['Fiche']['cv'];
 				
 				if (in_array($cv['type'], $authTypes)) {
-					$chemin_destination = ROOT.'\app\webroot\cv\\';
+					$chemin_destination = '../webroot/cv/';
 					$name = AppController::slugify($cv['name'].microtime());
 					
 					$path_parts = pathinfo($cv['name']);
