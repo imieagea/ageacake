@@ -21,6 +21,7 @@ class CategorySlugRoute extends CakeRoute {
 
         $slugsSC = Cache::read('categories_slugs');
         if (empty($slugsSC)) {
+            App::import('Model', 'Category');
             $Category = new Category();
             $categories = $Category->find('all', array(
                 'fields' => array('Category.slug'),

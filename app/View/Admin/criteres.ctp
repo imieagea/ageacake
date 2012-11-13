@@ -24,11 +24,10 @@
 		<td><?php echo h($critere['Critere']['type']); ?>&nbsp;</td>
 		<td><?php echo h($critere['Critere']['nom']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($critere['CritereCategory']['nom'], array('controller' => 'critere_categories', 'action' => 'view', $critere['CritereCategory']['id'])); ?>
+			<?php echo $this->Html->link($critere['CritereCategory']['nom'], array('controller' => 'admin', 'action' => 'view_critere_category', $critere['CritereCategory']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('Voir'), array('action' => 'view', $critere['Critere']['id'])); ?>
-			<?php echo $this->Html->link(__('Editer'), array('action' => 'edit', $critere['Critere']['id'])); ?>
+			<?php echo $this->Html->link(__('Voir'), array('action' => 'view_critere/', $critere['Critere']['id'])); ?>			
 			<?php echo $this->Form->postLink(__('Supprimer'), array('action' => 'delete/Critere/'.$critere['Critere']['id']), null, __('Êtes-vous sûr de vouloir le supprimer # %s?', $critere['Critere']['id'])); ?>
 		</td>
 	</tr>

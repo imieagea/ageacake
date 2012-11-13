@@ -64,6 +64,8 @@ class Cache {
  */
 	protected static $_engines = array();
 
+
+
 /**
  * Set the cache configuration to use.  config() can
  * both create new configurations, return the settings for already configured
@@ -71,7 +73,7 @@ class Cache {
  *
  * To create a new configuration, or to modify an existing configuration permanently:
  *
- * `Cache::config('my_config', array('engine' => 'File', 'path' => TMP));`
+ * Cache::config('my_config', array('engine' => 'File', 'path' => '/tmp'));
  *
  * If you need to modify a configuration temporarily, use Cache::set().
  * To get the settings for a configuration:

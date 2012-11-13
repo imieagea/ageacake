@@ -11,6 +11,7 @@ if($avalider>0){ ?>
 <form style="width:100%" action="<?php echo $this->base ?>/admin/delete/Fiche" method="POST">	
 <table>
 	<tr>
+	<th></th>
 		<th><?php echo $this->Paginator->sort('nom'); ?></th>
 		<th><?php echo $this->Paginator->sort('prenom','Prénom'); ?></th>
 		<th><?php echo $this->Paginator->sort('email'); ?></th>

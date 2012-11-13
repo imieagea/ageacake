@@ -1,3 +1,6 @@
+SetEnv SG_DEFAULT_PHP_VERSION 5
+SetEnv SG_PHP5_SUBVERSION 3
+
 <IfModule mod_rewrite.c>
    RewriteEngine on
    RewriteRule    ^$ app/webroot/    [L]

@@ -62,10 +62,13 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
+		//'host' => 'sql.appelspro.com',
 		'host' => 'localhost',
 		'login' => 'root',
+		//'login' => 'legrand4',
 		'password' => '',
-		'database' => 'ageacake',
+		//'password' => 'G+45dpXD',
+		'database' => 'legrand4',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);

@@ -280,12 +280,48 @@ if ($this->request->is('post')) {
 			$this->Category->id = $id;
 			$this->Category->read(null,$id);		
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash(__('La catégorie'));
+				$this->Session->setFlash(__('La catégorie a bien été enregistré'));
 			} else {
 				$this->Session->setFlash(__('Impossible d\'enregistrer la catégorie'));
 			}
 		}
 		$this->set('cat', $this->Category->read(null, $id));
+	}
+	
+	
+public function view_critere_category($id = null)
+	{
+if ($this->request->is('post')) {
+			$this->CritereCategory->id = $id;
+			$this->CritereCategory->read(null,$id);		
+			if ($this->CritereCategory->save($this->request->data)) {
+				$this->Session->setFlash(__('La catégorie a bien été enregistré'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la catégorie'));
+			}
+		}
+		$this->set('cat', $this->CritereCategory->read(null, $id));
+		$parentCategories = $this->CritereCategory->find('list');
+		$this->set(compact('parentCategories'));
+		
+
+	}
+
+public function view_critere($id = null)
+	{
+if ($this->request->is('post')) {
+			$this->Critere->id = $id;
+			$this->Critere->read(null,$id);		
+			if ($this->Critere->save($this->request->data)) {
+				$this->Session->setFlash(__('Le critère a bien été enregistré'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer le critère'));
+			}
+		}
+		$this->set('cat', $this->Critere->read(null, $id));
+		$critereCategories = $this->CritereCategory->find('list');
+		$this->set(compact('critereCategories'));
+
 	}
 	
 public function view_recrutement($id = null)
@@ -540,12 +576,25 @@ $categories = $this->Category->find('list',$options);
 				break;
 
 			case 'CritereCategory':
-					$c = $this->Critere->find('all',array('Critere.parent_category_id'=>$id));
-					foreach ($c as $cri) {
-						$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$cri['Critere']['id']),false);
+			
+			if(!empty($id))
+					{
+						$this->Fiche->delete($id);
 					}
-					$this->Critere->deleteAll(array('Critere.critere_category_id'=>$id),false);
-					$this->CritereCategory->delete($id);
+					else
+					{
+
+
+						foreach ($this->request->data['ids'] as $id) {
+							$c = $this->Critere->find('all',array('Critere.parent_category_id'=>$id));
+							foreach ($c as $cri) {
+								$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$cri['Critere']['id']),false);
+							}
+							$this->Critere->deleteAll(array('Critere.critere_category_id'=>$id),false);
+							$this->CritereCategory->delete($id);
+						}
+					}
+					
 
 				break;
 

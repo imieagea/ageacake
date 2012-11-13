@@ -91,7 +91,6 @@ class HomeController extends AppController {
 		$authTypes = array('application/pdf','application/msword');
 		
 		if ($this->request->is('post')) {
-		var_dump($this->request->data."looooooooo");
 			$this->Fiche->create();
 			$this->Fiche->set('statut','new');
 			$this->Fiche->set($this->request->data);
