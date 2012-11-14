@@ -10,7 +10,17 @@ CREATE DATABASE legrand4   DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_gener
 
 USE legrand4;
 
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
+-- http://www.phpmyadmin.net
+--
+-- Client: localhost
+-- Généré le: Mer 14 Novembre 2012 à 19:56
+-- Version du serveur: 5.5.24-log
+-- Version de PHP: 5.4.3
+
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -29,19 +39,14 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `avis_fiches` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `texte` text NOT NULL,
   `fiche_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `edited_at` datetime NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `fiches_ibfk_1` (`fiche_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `avis_fiches`
---
-
 
 -- --------------------------------------------------------
 
@@ -50,11 +55,11 @@ CREATE TABLE IF NOT EXISTS `avis_fiches` (
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL auto_increment,
-  `parent_id` int(11) default NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `nom` (`nom`),
   KEY `parent_id` (`parent_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
@@ -83,12 +88,12 @@ INSERT INTO `categories` (`id`, `parent_id`, `slug`, `nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `contenus` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `contenu` text NOT NULL,
-  `ordre` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `ordre` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
@@ -109,12 +114,12 @@ INSERT INTO `contenus` (`id`, `titre`, `slug`, `contenu`, `ordre`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `criteres` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(20) NOT NULL,
-  `position` int(5) default NULL,
+  `position` int(5) DEFAULT NULL,
   `nom` varchar(255) NOT NULL,
   `critere_category_id` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `criteres_ibfk_1` (`critere_category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
@@ -200,12 +205,12 @@ INSERT INTO `criteres` (`id`, `type`, `position`, `nom`, `critere_category_id`) 
 --
 
 CREATE TABLE IF NOT EXISTS `critere_categories` (
-  `id` int(11) NOT NULL auto_increment,
-  `parent_id` int(11) default NULL,
-  `position` int(5) default NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
+  `position` int(5) DEFAULT NULL,
   `nom` varchar(255) NOT NULL,
-  `public` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`id`)
+  `public` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
@@ -233,14 +238,14 @@ INSERT INTO `critere_categories` (`id`, `parent_id`, `position`, `nom`, `public`
 --
 
 CREATE TABLE IF NOT EXISTS `critere_value` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `critere_id` int(11) NOT NULL,
   `fiche_id` int(11) NOT NULL,
   `value` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `fiches_ibfk_2` (`fiche_id`),
   KEY `criteres_ibfk_2` (`critere_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=377 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=381 ;
 
 --
 -- Contenu de la table `critere_value`
@@ -276,10 +281,6 @@ INSERT INTO `critere_value` (`id`, `critere_id`, `fiche_id`, `value`) VALUES
 (100, 70, 60, 'jamais'),
 (101, 71, 60, 'souvent'),
 (102, 72, 60, 'parfois'),
-(106, 21, 62, '1'),
-(107, 13, 62, '1'),
-(108, 6, 62, '1'),
-(109, 3, 62, '1'),
 (110, 15, 61, '1'),
 (111, 2, 61, '1'),
 (112, 3, 61, '1'),
@@ -315,7 +316,11 @@ INSERT INTO `critere_value` (`id`, `critere_id`, `fiche_id`, `value`) VALUES
 (373, 69, 63, 'Encadrement et animation du personnel'),
 (374, 70, 63, 'Représentation de l''agence'),
 (375, 71, 63, 'Développement commercial'),
-(376, 72, 63, 'Expertise technique');
+(376, 72, 63, 'Expertise technique'),
+(377, 21, 62, '1'),
+(378, 13, 62, '1'),
+(379, 6, 62, '1'),
+(380, 3, 62, '1');
 
 -- --------------------------------------------------------
 
@@ -324,22 +329,22 @@ INSERT INTO `critere_value` (`id`, `critere_id`, `fiche_id`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `fiches` (
-  `id` int(11) NOT NULL auto_increment,
-  `statut` varchar(10) NOT NULL default 'new',
-  `auteur` varchar(20) NOT NULL default 'anonyme',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `statut` varchar(10) NOT NULL DEFAULT 'new',
+  `auteur` varchar(20) NOT NULL DEFAULT 'anonyme',
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `adresse` varchar(255) NOT NULL,
   `code_postal` varchar(255) NOT NULL,
   `ville` varchar(255) NOT NULL,
   `portable` varchar(20) NOT NULL,
-  `fixe` varchar(20) default NULL,
+  `fixe` varchar(20) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `date_naissance` date default NULL,
+  `date_naissance` date DEFAULT NULL,
   `message` tinytext,
-  `pdf` varchar(255) default NULL,
-  `exp` int(1) default NULL,
-  PRIMARY KEY  (`id`),
+  `pdf` varchar(255) DEFAULT NULL,
+  `exp` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `email_2` (`email`),
   KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
@@ -349,12 +354,12 @@ CREATE TABLE IF NOT EXISTS `fiches` (
 --
 
 INSERT INTO `fiches` (`id`, `statut`, `auteur`, `nom`, `prenom`, `adresse`, `code_postal`, `ville`, `portable`, `fixe`, `email`, `date_naissance`, `message`, `pdf`, `exp`) VALUES
-(57, 'validated', 'anonyme', 'William', 'Janeau', '4 rue de l''héronnière', '44000', 'Nantes', '0600000000', '0240695110', 'williamjaneau@gmail.com', '1989-02-24', '<p>\r\n  Très motivé</p>\r\n', 'test-de-logique-pdf0-58167100-1352370364.pdf', 1),
+(57, 'validated', 'anonyme', 'William', 'Janeau', '4 rue de l''héronnière', '44000', 'Nantes', '0600000000', '0240695110', 'williamjaneau@gmail.com', '1989-02-24', '<p>\r\n  Très motivé</p>\r\n', 'bobby-joe-pdf0-39935600-1352843974.pdf', 1),
 (58, 'rejected', 'anonyme', 'test', 'test', 'test', '40000', 'test', '0659800000', '', 'test@test.com', '2012-01-01', 'test', NULL, 0),
 (59, 'rejected', 'anonyme', 'test', 'test', 'test', '40000', 'test', '0659800000', '', 'test@test2.com', '2012-01-01', '<p>\r\n test</p>\r\n', NULL, 0),
 (60, 'validated', 'anonyme', 'Paris', 'Lanvin', '75 rue des champs', '75000', 'Paris', '0606000006', '0101000001', 'lanvinlanvinparisparis@lanvinparis.fr', '1976-01-01', '<p>\r\n  candidat</p>\r\n', '4im2-carte-tudiant-wj-pdf0-38677600-1352455957.pdf', 1),
 (61, 'rejected', 'anonyme', 'Lanvin', 'William', '2, rue des champs élysées', '75000', 'Paris', '0606000006', '0101000001', 'williamlanvinparis75@gmail.com', '1980-01-01', '', NULL, 1),
-(62, 'new', 'anonyme', 'Lanvin', 'Janeau', '2, rue des champs élysées', '44000', 'Nantes', '0606000006', '0101000001', 'williamjaneauazerty@gmail.com', '2012-01-01', '', '4im2-carte-tudiant-wj-pdf0-00041900-1352460839.pdf', 1),
+(62, 'validated', 'anonyme', 'Lanvin', 'Janeau', '2, rue des champs élysées', '44000', 'Nantes', '0606000006', '0101000001', 'williamjaneauazerty@gmail.com', '2012-01-01', '<p>\r\n  Oh god why</p>\r\n', '4im2-carte-tudiant-wj-pdf0-00041900-1352460839.pdf', 1),
 (63, 'validated', 'anonyme', 'BEILVERT', 'Rachel', '55, avenue Léon Gambetta', '49300', 'Chollet', '0674638975', '', 'rachel.belvert@orange.fr', '2012-01-01', '<p>\r\n <strong><u>Zone de travail souhaité:</u></strong> Nantes et alentours, Chollet et alentoures, et tout le 49.</p>\r\n', '44-49-beilvert-rachel-pdf0-76756400-1352481520.pdf', 1);
 
 -- --------------------------------------------------------
@@ -364,9 +369,9 @@ INSERT INTO `fiches` (`id`, `statut`, `auteur`, `nom`, `prenom`, `adresse`, `cod
 --
 
 CREATE TABLE IF NOT EXISTS `groups` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
@@ -384,19 +389,20 @@ INSERT INTO `groups` (`id`, `nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `partenaires` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
-  `link` varchar(255) default NULL,
-  `pdf` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `link` varchar(255) DEFAULT NULL,
+  `pdf` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `partenaires`
 --
 
 INSERT INTO `partenaires` (`id`, `nom`, `link`, `pdf`) VALUES
-(1, 'assurances', 'www.google.fr', '4im2-carte-tudiant-wj-pdf0-78518900-1352452876.pdf');
+(1, 'assurances', 'www.google.fr', '4im2-carte-tudiant-wj-pdf0-78518900-1352452876.pdf'),
+(2, 'Jacky', 'www.jacky.be', NULL);
 
 -- --------------------------------------------------------
 
@@ -405,33 +411,37 @@ INSERT INTO `partenaires` (`id`, `nom`, `link`, `pdf`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `posts` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `corps` text NOT NULL,
   `slug` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
-  PRIMARY KEY  (`id`),
+  `video` varchar(255) DEFAULT NULL,
+  `type_video` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`),
   KEY `posts_ibfk_1` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `posts`
 --
 
-INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`) VALUES
-(1, 'Lancement du site inter-régional', '<p style="text-align: justify;">\r\n AGEA Pays de la Loire et AGEA Bretagne se sont unis pour faire de ce site un véritable outil de travail.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n<p style="text-align: justify;">\r\n  AGEA Côtes Ouest regroupe plus de 1300 agents généraux d&#39;assurance qui emploient plus de 3500 collaborateurs. Face aux difficultés du marché de l&#39;empoi, face à la mobilité géographique en augmentation, nous avons souhaité faire de ce site, inter-régional, le point de rencontre entre les employeurs et leurs futurs collaborateurs.</p>\r\n<p style="text-align: justify;">\r\n  A travers ce site vous retrouverez aussi toute l&#39;actulaité de la profession, les actions menées par les agents généraux et trés prochainement l&#39;agent le plus proche chez vous.</p>\r\n<p style="text-align: justify;">\r\n &nbsp;</p>\r\n<p style="text-align: justify;">\r\n  &nbsp;</p>\r\n', 'c-super', 4),
-(3, 'Les agents généraux recrutent', '<p style="text-align: justify;">\r\n  <strong>3500</strong> collaborateurs d&#39;agence répartis sur les Pays de la Loire et la Bretagne travaillent chez des agents généraux d&#39;assurance dans les domaines de la <strong>gestion</strong>, le <strong>commercial, </strong>l&#39;<strong>administration</strong> et le <strong>management</strong>.</p>\r\n<p style="text-align: justify;">\r\n  Ce sont autant d&#39;opportunités d&#39;emploi que vous nous offrons!</p>\r\n', 'les-agents-generaux-recrutent2', 5),
-(9, 'Informations de contact', '<p>Emné FAKHRY<br>\r\n4, rue de l’Héronnière<br>\r\n44000 Nantes<br>\r\n<strong>Mail</strong>&nbsp;: rg-paysloire@agea.fr<br>\r\n<strong>Portable</strong>&nbsp;: 06 58 69 00 73<br>\r\n<strong>Fax</strong>&nbsp;: 02 40 69 81 14</p>', 'informations-de-contact', 8),
-(11, 'Actualite 1', '<p>\r\n  test</p>\r\n', 'actualite-1', 6),
-(12, 'Actualite 2', '<p>\r\n  test 2</p>\r\n', 'actualite-2', 7),
-(13, 'Les objets volés', '<p>\r\n <strong>CAMPAGNE LANCÉE EN DÉCEMBRE 2011</strong></p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Sensible au bien être de ses concitoyens, AGEA Pays de la Loire s&rsquo;est associé à la gendarmerie départementale en Loire Atlantique en créant un site internet ayant pour but d&rsquo;attirer l&rsquo;attention sur le fait qu&rsquo;il est important de conserver des traces de nos objets personnels.</p>\r\n<p>\r\n  En effet, en cas de vol, des objets clairement identifiés sont plus faciles à retrouver. De même, une meilleure alimentation du fichier &quot;FOVES&quot; permettrait d&rsquo;identifier davantage d&rsquo;auteurs de vol et de receleurs d&rsquo;objets volés.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Un site web a été créé dans le cadre de cette action, pour le visiter :</p>\r\n<p>\r\n  <a href="http://www.objets-voles.fr"><strong>http://www.objets-voles.fr</strong></a></p>\r\n', 'les-objets-vols', 34),
-(15, 'Comme un poisson dans l''eau', '<p>\r\n <strong>LES AGENTS GÉNÉRAUX D&rsquo;ASSURANCE DES PAYS DE LA LOIRE RELÈVENT LE CHALLENGE AVEC OLIVIA.</strong></p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n À l&rsquo;initiative de la Chambre de la Sarthe, nous avons conclu un partenariat avec Olivia LA HONDE qui s&rsquo;est lancée dans une belle aventure : la traversée de l&rsquo;Atlantique à l&rsquo;aviron en solitaire, sans assistance et sans escale, dans le cadre de la course Bouvet Guyane 2012.</p>\r\n<p>\r\n Il s&rsquo;agit de la troisième édition de cette course qui relie Dakar à Cayenne (Guyane), elle a rassemblé pour cette édition 23 rameurs à bord de canots strictement identiques et conçus pour cette traversée de 4700 km. Le départ a été donné dimanche 29 janvier 2012 à 10 heures.</p>\r\n<p>\r\n  Olivia LA HONDE, &laquo; notre rameuse &raquo; s&rsquo;est lancée pour 40 à 60 jours de navigation sur son canot de 8 m de long sur 1,60 m de large.</p>\r\n<p>\r\n Olivia est la seule femme de la course, parrainée par Gérard D&rsquo;ABOVILLE et Alain SOUCHON, elle est porteuse de toutes les valeurs de solidarité, de courage, de dépassement de soi, d&rsquo;émotion et d&rsquo;écologie.</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Ces valeurs que partagent les Agents Généraux d&rsquo;Assurance des Pays de la Loire, nous ont conduit à être aux côtés d&rsquo;Olivia et c&rsquo;est pourquoi nous l&rsquo;avons supportée tout au long de cette aventure.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Pour plus d&rsquo;informations :</p>\r\n<p>\r\n site web de la course : <a href="http://www.ramesguyane.com">http://www.ramesguyane.com</a></p>\r\n<p>\r\n  site web de l&rsquo;association d&rsquo;Olivia : <a href="http://www.commeunpoisson-asso.fr">http://www.commeunpoisson-asso.fr</a></p>\r\n', 'comme-un-poisson-dans-l-eau', 34),
-(16, 'La voiture tonneau SASER/AGEA', '<p>\r\n  <strong>LA RÉGION PAYS DE LA LOIRE A DÉVELOPPÉ UN PARTENARIAT AVEC L&rsquo;ASSOCIATION SASER POUR LA PRÉVENTION ROUTIÈRE.</strong></p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Dans ce cadre, la région a financé l&#39;acquisition d&#39;une voiture tonneau qui est utilisée dans de nombreux salons et manifestations.</p>\r\n<p>\r\n Dans le cadre du TOUR OPTIC 2000, la voiture tonneau SASSER/AGEA a par exemple été présente sur un stand informant des dangers de l&rsquo;alcool au volant dans les lieux suivants :</p>\r\n<p>\r\n -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parc d&rsquo;expositions de Beaune</p>\r\n<p>\r\n -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Petit port d&rsquo;Aix les Bains</p>\r\n<p>\r\n -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stade Marcel Michelin de Clermont-Ferrand</p>\r\n<p>\r\n  -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Esplanade des arènes de Nîmes</p>\r\n<p>\r\n  -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Place Masséna à Nice</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Lien video de la voiture&nbsp;: <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=Qyd4ltt358Y">http://www.youtube.com/watch?feature=player_embedded&amp;v=Qyd4ltt358Y</a></p>\r\n<p>\r\n  &nbsp;</p>\r\n', 'la-voiture-tonneau-saser-agea', 34),
-(17, 'Les tonnerres de Brest 2012', '<p>\r\n  Quatre ans après avoir largué les amarres, petits et grands voiliers sont de retour dans la cité du Ponant pour célébrer comme il se doit les 20 ans des fêtes maritimes.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n AGEA Bretagne a donné à cette occasion aux agents généraux et leurs conjoints la possibilité exceptionnelle de participer, le lundi 16 juillet 2012, à une journée inoubliable sur un magnifique voilier, le Joanna Saturna, aux couleurs d&rsquo;AGEA Bretagne.</p>\r\n', 'les-tonnerres-de-brest-2012', 33),
-(18, 'Arbre de Noël', '<p>\r\n  C&rsquo;est parce que les fêtes de fin d&rsquo;année sont des moments&nbsp; où l&rsquo;on aime se retrouver qu&rsquo;AGEA Bretagne organise chaque année pour les enfants des agents généraux d&rsquo;assurance de la région et leurs collaborateurs un arbre de Noël dans différentes villes.</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Au programme :</p>\r\n<p>\r\n - 1 spectacle</p>\r\n<p>\r\n  - 2 animations</p>\r\n<p>\r\n - Un cadeau pour les enfants</p>\r\n<p>\r\n - Goûter pour tous</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n En 2011, cet évènement aura réuni pas moins de 346 participants dont 200 enfants.</p>\r\n', 'arbre-de-nol', 33),
-(19, 'Les agents généraux s''affichent, septembre 2011', '<p>\r\n Dans le but d&rsquo;être reconnaissables mais également de communiquer leur professionnalisme, leur implication dans le métier, et également leur fierté de l&rsquo;exercer dans le respect de ses exigences les agents généraux d&rsquo;assurances se sont vu remettre par la AGEA Bretagne une plaque &laquo; Agent général d&rsquo;assurance AGEA &raquo; à fixer sur la devanture de leur agence.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Pour accompagner cette action, un concours photo a été mis en place avec pour participants les agents. Ces derniers devaient faire parvenir à la région une photo de la plaque une fois fixée sur les murs de leur agence. Les photos des plaques posées au sol et/ou non accrochées étaient exclues du tirage.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n 3 agents ont alors été tirés au sort, le premier s&rsquo;est vu offrir un IPad, quant aux 2nd et 3ème, ils ont chacun reçu un IPod.</p>\r\n', 'les-agents-gnraux-s-affichent-septembre-2011', 33),
-(20, 'bruissement 1', '<a href=''/app/webroot/bruissements/4im2-carte-tudiant-wj-pdf0-34030000-1352461209.pdf''>Télécharger le bruissement</a>', 'bruissement-1', 31);
+INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`, `video`, `type_video`) VALUES
+(1, 'Lancement du site inter-régional', '<p style="text-align: justify;">\r\n AGEA Pays de la Loire et AGEA Bretagne se sont unis pour faire de ce site un véritable outil de travail.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n<p style="text-align: justify;">\r\n  AGEA Côtes Ouest regroupe plus de 1300 agents généraux d&#39;assurance qui emploient plus de 3500 collaborateurs. Face aux difficultés du marché de l&#39;empoi, face à la mobilité géographique en augmentation, nous avons souhaité faire de ce site, inter-régional, le point de rencontre entre les employeurs et leurs futurs collaborateurs.</p>\r\n<p style="text-align: justify;">\r\n  A travers ce site vous retrouverez aussi toute l&#39;actulaité de la profession, les actions menées par les agents généraux et trés prochainement l&#39;agent le plus proche chez vous.</p>\r\n<p style="text-align: justify;">\r\n &nbsp;</p>\r\n<p style="text-align: justify;">\r\n  &nbsp;</p>\r\n', 'c-super', 4, NULL, NULL),
+(3, 'Les agents généraux recrutent', '<p style="text-align: justify;">\r\n  <strong>3500</strong> collaborateurs d&#39;agence répartis sur les Pays de la Loire et la Bretagne travaillent chez des agents généraux d&#39;assurance dans les domaines de la <strong>gestion</strong>, le <strong>commercial, </strong>l&#39;<strong>administration</strong> et le <strong>management</strong>.</p>\r\n<p style="text-align: justify;">\r\n  Ce sont autant d&#39;opportunités d&#39;emploi que vous nous offrons!</p>\r\n', 'les-agents-generaux-recrutent2', 5, NULL, NULL),
+(9, 'Informations de contact', '<p>Emné FAKHRY<br>\r\n4, rue de l’Héronnière<br>\r\n44000 Nantes<br>\r\n<strong>Mail</strong>&nbsp;: rg-paysloire@agea.fr<br>\r\n<strong>Portable</strong>&nbsp;: 06 58 69 00 73<br>\r\n<strong>Fax</strong>&nbsp;: 02 40 69 81 14</p>', 'informations-de-contact', 8, NULL, NULL),
+(11, 'Actualite 1', '<p>\r\n  test</p>\r\n', 'actualite-1', 6, NULL, NULL),
+(12, 'Actualite 2', '<p>\r\n  test 2</p>\r\n', 'actualite-2', 7, NULL, NULL),
+(13, 'Les objets volés', '<p>\r\n <strong>CAMPAGNE LANCÉE EN DÉCEMBRE 2011</strong></p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Sensible au bien être de ses concitoyens, AGEA Pays de la Loire s&rsquo;est associé à la gendarmerie départementale en Loire Atlantique en créant un site internet ayant pour but d&rsquo;attirer l&rsquo;attention sur le fait qu&rsquo;il est important de conserver des traces de nos objets personnels.</p>\r\n<p>\r\n  En effet, en cas de vol, des objets clairement identifiés sont plus faciles à retrouver. De même, une meilleure alimentation du fichier &quot;FOVES&quot; permettrait d&rsquo;identifier davantage d&rsquo;auteurs de vol et de receleurs d&rsquo;objets volés.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Un site web a été créé dans le cadre de cette action, pour le visiter :</p>\r\n<p>\r\n  <a href="http://www.objets-voles.fr"><strong>http://www.objets-voles.fr</strong></a></p>\r\n', 'les-objets-vols', 34, NULL, NULL),
+(15, 'Comme un poisson dans l''eau', '<p>\r\n <strong>LES AGENTS GÉNÉRAUX D&rsquo;ASSURANCE DES PAYS DE LA LOIRE RELÈVENT LE CHALLENGE AVEC OLIVIA.</strong></p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n À l&rsquo;initiative de la Chambre de la Sarthe, nous avons conclu un partenariat avec Olivia LA HONDE qui s&rsquo;est lancée dans une belle aventure : la traversée de l&rsquo;Atlantique à l&rsquo;aviron en solitaire, sans assistance et sans escale, dans le cadre de la course Bouvet Guyane 2012.</p>\r\n<p>\r\n Il s&rsquo;agit de la troisième édition de cette course qui relie Dakar à Cayenne (Guyane), elle a rassemblé pour cette édition 23 rameurs à bord de canots strictement identiques et conçus pour cette traversée de 4700 km. Le départ a été donné dimanche 29 janvier 2012 à 10 heures.</p>\r\n<p>\r\n  Olivia LA HONDE, &laquo; notre rameuse &raquo; s&rsquo;est lancée pour 40 à 60 jours de navigation sur son canot de 8 m de long sur 1,60 m de large.</p>\r\n<p>\r\n Olivia est la seule femme de la course, parrainée par Gérard D&rsquo;ABOVILLE et Alain SOUCHON, elle est porteuse de toutes les valeurs de solidarité, de courage, de dépassement de soi, d&rsquo;émotion et d&rsquo;écologie.</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Ces valeurs que partagent les Agents Généraux d&rsquo;Assurance des Pays de la Loire, nous ont conduit à être aux côtés d&rsquo;Olivia et c&rsquo;est pourquoi nous l&rsquo;avons supportée tout au long de cette aventure.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Pour plus d&rsquo;informations :</p>\r\n<p>\r\n site web de la course : <a href="http://www.ramesguyane.com">http://www.ramesguyane.com</a></p>\r\n<p>\r\n  site web de l&rsquo;association d&rsquo;Olivia : <a href="http://www.commeunpoisson-asso.fr">http://www.commeunpoisson-asso.fr</a></p>\r\n', 'comme-un-poisson-dans-l-eau', 34, NULL, NULL),
+(16, 'La voiture tonneau SASER/AGEA', '<p>\r\n  <strong>LA RÉGION PAYS DE LA LOIRE A DÉVELOPPÉ UN PARTENARIAT AVEC L&rsquo;ASSOCIATION SASER POUR LA PRÉVENTION ROUTIÈRE.</strong></p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Dans ce cadre, la région a financé l&#39;acquisition d&#39;une voiture tonneau qui est utilisée dans de nombreux salons et manifestations.</p>\r\n<p>\r\n Dans le cadre du TOUR OPTIC 2000, la voiture tonneau SASSER/AGEA a par exemple été présente sur un stand informant des dangers de l&rsquo;alcool au volant dans les lieux suivants :</p>\r\n<p>\r\n -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parc d&rsquo;expositions de Beaune</p>\r\n<p>\r\n -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Petit port d&rsquo;Aix les Bains</p>\r\n<p>\r\n -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stade Marcel Michelin de Clermont-Ferrand</p>\r\n<p>\r\n  -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Esplanade des arènes de Nîmes</p>\r\n<p>\r\n  -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Place Masséna à Nice</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Lien video de la voiture&nbsp;: <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=Qyd4ltt358Y">http://www.youtube.com/watch?feature=player_embedded&amp;v=Qyd4ltt358Y</a></p>\r\n<p>\r\n  &nbsp;</p>\r\n', 'la-voiture-tonneau-saser-agea', 34, NULL, NULL),
+(17, 'Les tonnerres de Brest 2012', '<p>\r\n  Quatre ans après avoir largué les amarres, petits et grands voiliers sont de retour dans la cité du Ponant pour célébrer comme il se doit les 20 ans des fêtes maritimes.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n AGEA Bretagne a donné à cette occasion aux agents généraux et leurs conjoints la possibilité exceptionnelle de participer, le lundi 16 juillet 2012, à une journée inoubliable sur un magnifique voilier, le Joanna Saturna, aux couleurs d&rsquo;AGEA Bretagne.</p>\r\n', 'les-tonnerres-de-brest-2012', 33, NULL, NULL),
+(18, 'Arbre de Noël', '<p>\r\n  C&rsquo;est parce que les fêtes de fin d&rsquo;année sont des moments&nbsp; où l&rsquo;on aime se retrouver qu&rsquo;AGEA Bretagne organise chaque année pour les enfants des agents généraux d&rsquo;assurance de la région et leurs collaborateurs un arbre de Noël dans différentes villes.</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n Au programme :</p>\r\n<p>\r\n - 1 spectacle</p>\r\n<p>\r\n  - 2 animations</p>\r\n<p>\r\n - Un cadeau pour les enfants</p>\r\n<p>\r\n - Goûter pour tous</p>\r\n<p>\r\n &nbsp;</p>\r\n<p>\r\n En 2011, cet évènement aura réuni pas moins de 346 participants dont 200 enfants.</p>\r\n', 'arbre-de-nol', 33, NULL, NULL),
+(19, 'Les agents généraux s''affichent, septembre 2011', '<p>\r\n Dans le but d&rsquo;être reconnaissables mais également de communiquer leur professionnalisme, leur implication dans le métier, et également leur fierté de l&rsquo;exercer dans le respect de ses exigences les agents généraux d&rsquo;assurances se sont vu remettre par la AGEA Bretagne une plaque &laquo; Agent général d&rsquo;assurance AGEA &raquo; à fixer sur la devanture de leur agence.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n Pour accompagner cette action, un concours photo a été mis en place avec pour participants les agents. Ces derniers devaient faire parvenir à la région une photo de la plaque une fois fixée sur les murs de leur agence. Les photos des plaques posées au sol et/ou non accrochées étaient exclues du tirage.</p>\r\n<p>\r\n  &nbsp;</p>\r\n<p>\r\n 3 agents ont alors été tirés au sort, le premier s&rsquo;est vu offrir un IPad, quant aux 2nd et 3ème, ils ont chacun reçu un IPod.</p>\r\n', 'les-agents-gnraux-s-affichent-septembre-2011', 33, NULL, NULL),
+(20, 'bruissement 1', '<a href=''/app/webroot/bruissements/4im2-carte-tudiant-wj-pdf0-34030000-1352461209.pdf''>Télécharger le bruissement</a>', 'bruissement-1', 31, NULL, NULL),
+(21, 'Action Youtube', '<p>\r\n Une action en nvidéo</p>\r\n', 'action-youtube', 34, 'dS9SIL4pTWU', 'youtube'),
+(22, 'Actu Dailymoption', '<p>\r\n  Actu en vidéo</p>\r\n', 'actu-dailymoption', 7, 'xv34j6', 'dailymotion');
 
 -- --------------------------------------------------------
 
@@ -440,11 +450,11 @@ INSERT INTO `posts` (`id`, `titre`, `corps`, `slug`, `category_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role` varchar(20) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
@@ -490,3 +500,7 @@ ALTER TABLE `critere_value`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

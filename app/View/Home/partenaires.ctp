@@ -3,9 +3,12 @@
 		<div class="bandeau">
 				<?php echo $partenaire['Partenaires']['nom'] ?>
 		</div>
+		<?php if (isset($partenaire['Partenaires']['pdf'])): ?>
 		<div class="consulter bruit">
 			<a target="_blank" href="<?php echo $this->base ?>/app/webroot/partenaires/<?php echo $partenaire['Partenaires']['pdf'] ?>">Consulter la plaquette</a>
-		</div>
+		</div>	
+		<?php endif ?>
+		
 		<h2>Lien du partenaire : </h2>
 		<p>
 			<!-- On rajoute le http si il n'y est pas -->

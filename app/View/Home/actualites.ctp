@@ -15,6 +15,17 @@
 				<div>	<?php echo 	substr(strip_tags($post['corps']), 0, 150); ?>
 				</div>
 					<p><a href="<?php echo $this->base.'/actualites/'.$post['pslug'].'/'.$post['slug']; ?>" class="consulter" >[+] Consulter</a></p>
+					<br>
+					<?php if (isset($post['video']) && $post['type_video'] == 'youtube'): ?>
+						<iframe width="400" height="300" src="http://www.youtube.com/embed/<?php echo $post['video'] ?>?fs=1&amp;feature=oembed" frameborder="0" allowfullscreen=""></iframe>
+					<?php elseif(isset($post['video']) && $post['type_video'] == 'dailymotion'): ?>
+						<object width="560" height="315">
+						    <param name="movie" value="http://www.dailymotion.com/swf/video/<?php echo $post['video'] ?>?background=493D27&foreground=E8D9AC&highlight=FFFFF0"></param>
+						    <param name="allowFullScreen" value="true"></param>
+						    <param name="allowScriptAccess" value="always"></param>
+						    <embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/<?php echo $post['video'] ?>?background=493D27&foreground=E8D9AC&highlight=FFFFF0" width="560" height="315" allowfullscreen="true" allowscriptaccess="always"></embed>
+						</object>
+					<?php endif ?>
 				</article>	
 		 <?php	}
 		 ?>
