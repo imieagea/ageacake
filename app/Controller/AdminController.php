@@ -551,7 +551,7 @@ $categories = $this->Category->find('list',$options);
 				$this->Session->setFlash(__('Le partenaire à bien mise à jour.'));
 			} else {
 				var_dump($this->Partenaire->validationErrors);
-				$this->Session->setFlash(__('Impossible d\'enregistrer l\'action'));
+				$this->Session->setFlash(__('Impossible d\'enregistrer le partenaire'));
 			}
 		}
 		$this->set('partenaire', $this->Partenaire->read(null, $id));

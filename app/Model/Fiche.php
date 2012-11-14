@@ -30,6 +30,16 @@ class Fiche extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'pdf' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Le pdf est obligatoire.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'nom' => array(
 			'notempty' => array(
 				'rule' => array('between', 1, 50),
