@@ -1125,4 +1125,23 @@ width: 170px;
 .consulter.bruit a{
 color:white;
 }
+
+h2
+{
+margin-bottom: 10px;
+text-align: center;
+font-weight: bold;
+font-size: 20px;
+}
+
+article.partenaire
+{
+    width: 200px;
+    float: left;
+    margin-right: 20px;
+}
+article.partenaire p
+{
+    text-align: center;
+}
 /* ---------------  FIN ADMIN  ---------------- */

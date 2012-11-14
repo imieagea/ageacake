@@ -9,11 +9,24 @@
 			<input type="submit" value="Connexion" class="right_button"/><div class="clear"></div>
 			</form>
 		<?php else: ?>
-			<form action="<?php echo $this->base.'/users/logout' ?>" method="get">
-			<?php $user = $session->read('Auth.User') ?>
-			<p>Vous êtes connecté(e) en temps qu'<?php echo $user['username'] ?></p>
-			<input type="submit" value="Déconnexion" class="right_button"/><div class="clear"></div>
+			<?php if ($session->read('Auth.User.role') == 'admin'): ?>
+
+			<form action="<?php echo $this->base.'/admin/' ?>" method="get">
+				<input type="submit" value="Administration" class="right_button"/><div class="clear"></div>
 			</form>
+
+			<?php else: ?>	
+			
+				<form action="<?php echo $this->base.'/agent' ?>" method="get">
+				<input type="submit" value="Espace Agent" class="right_button"/><div class="clear"></div>
+				</form>
+
+			<?php endif ?>
+			<form action="<?php echo $this->base.'/users/logout' ?>" method="get">
+				<?php $user = $session->read('Auth.User') ?>
+				<p>Vous êtes connecté(e) en temps qu'<?php echo $user['username'] ?></p>
+				<input type="submit" value="Déconnexion" class="right_button"/><div class="clear"></div>
+				</form>
 		<?php endif; ?>
 	</div>
 	<div id="box_actus">
