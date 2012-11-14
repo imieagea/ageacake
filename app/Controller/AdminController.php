@@ -545,6 +545,9 @@ $categories = $this->Category->find('list',$options);
 	 			{
 	 				$this->Session->setFlash(__('La pièce jointe n\'a pas été prise en compte'));
 	 			}
+			}else
+			{
+				$this->Partenaire->set('pdf',null);
 			}
 			
 			if ($this->Partenaire->save()) {
