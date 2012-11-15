@@ -68,14 +68,14 @@
   .anythingSlider({ 
    toggleControls : true, 
    theme          : 'min',  
-    buildArrows         : false,      // If true, builds the forwards and backwards buttons 
+    buildArrows         : true,      // If true, builds the forwards and backwards buttons 
 	buildNavigation     : true,      // If true, builds a list of anchor links to link to each panel 
 	buildStartStop      : false,  
 toggleControls      : false,
- autoPlay            : false,    
+ autoPlay            : true,    
   pauseOnHover        : true,
   hashTags            : false,
-    delay               : 5000
+    delay               : 3000
   }) 
  
 });
