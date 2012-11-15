@@ -14,9 +14,10 @@
 		<div class="select">
 		<label for="date_naissance">Date de naissance</label>
 		<?php
-		echo $this->Form->day('date_naissance',array('empty'=>false));
-		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false));
 		echo $this->Form->year('date_naissance',1910,date('Y'),array('empty'=>false));
+		echo $this->Form->month('date_naissance',array('empty'=>false,'monthNames'=>false));
+		echo $this->Form->day('date_naissance',array('empty'=>false));
+		
 		echo '</div>';
 		echo $this->Form->input('message',array('type'=>'textarea'));
 		echo $this->Form->input('cv',array('type'=>'file'));

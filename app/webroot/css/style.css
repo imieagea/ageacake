@@ -1144,4 +1144,35 @@ article.partenaire p
 {
     text-align: center;
 }
+
+.critere-container
+{
+	position: relative;
+}
+
+.critere-container > div
+{
+	width: 100%;
+	height: 40px;
+}
+
+.critere-container h2,.critere-container h3
+{
+	float: left;
+}
+.critere p
+{
+	float: left;
+}
+
+.critere
+{
+	margin-left: 20px;
+}
+
+.critere-container form
+{
+	float: left;
+	width: 30px;
+}
 /* ---------------  FIN ADMIN  ---------------- */

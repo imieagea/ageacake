@@ -21,7 +21,7 @@ class HomeController extends AppController {
 	}
 	public function cul()
 	{
-		echo 'cul';
+		echo 'Cul na mie code.';
 		die();
 	}
 	public function index()
@@ -89,7 +89,7 @@ class HomeController extends AppController {
 	{
 
 		$authTypes = array('application/pdf','application/msword');
-		
+		$erreurs = '';	
 		if ($this->request->is('post')) {
 			$this->Fiche->create();
 			$this->Fiche->set('statut','new');
@@ -97,8 +97,6 @@ class HomeController extends AppController {
 			
 			if(!empty($this->request->data['Fiche']['cv']['name']))
 			{
-				$fiche = $this->Fiche->read(null,$id);
-				
 				$cv = $this->request->data['Fiche']['cv'];
 				
 				if (in_array($cv['type'], $authTypes)) {
@@ -117,6 +115,10 @@ class HomeController extends AppController {
 	 			{
 	 				$this->Session->setFlash(utf8_encode('La pièce jointe n\'a pas été prise en compte'));
 	 			}
+			}else
+			{
+				$this->Session->setFlash(utf8_encode('Le cv est obligatoire'));
+				$this->redirect(array('action'=>'deposer'));
 			}
 
 			if($this->Fiche->save())
@@ -151,8 +153,28 @@ class HomeController extends AppController {
 	 			$this->redirect(array('action'=>'merci'));
 			}else
 			{
-		
-				$this->Session->setFlash(utf8_encode('Un candidat avec cet email existe déjà'));
+				
+				//var_dump(expression)
+				foreach ($this->Fiche->validationErrors as $erreur => $cause) {
+					# code...
+					$erreurs .= 'Le champ '.$erreur.' ';
+					$cause = $cause[0];
+					
+					switch ($cause) {
+						case 'notempty':
+								$erreurs.= 'est obligatoire.<br/>';
+							break;
+
+						case 'email':
+								$erreurs.= 'n\'est pas au format adresse@exemple.fr<br/>';
+							break;
+						
+						default:
+							$erreurs.= 'n\'est pas valide<br/>';
+							break;
+					}
+				}
+				$this->Session->setFlash(utf8_encode($erreurs));
 				$this->redirect(array('action'=>'deposer'));
 			
 			}

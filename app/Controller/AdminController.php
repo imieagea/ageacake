@@ -67,10 +67,77 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 		
 	}
 
+	public function criterePosInit()
+	{
+		$this->CritereCategory->recursive = 3;
+		$criteres = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
+
+		$zi = 0;
+		foreach($criteres as $c)
+		{
+			$ii = 0;
+
+			foreach($c['Critere'] as $sc)
+			{
+				$this->Critere->query("UPDATE criteres SET position = ".$ii." WHERE id = ".$sc['id']);
+				$ii++;
+			}
+			if(count($c['ChildCategory']) > 0)
+			{
+				$bi = 0;
+				foreach($c['ChildCategory'] as $child)
+				{
+					$this->CritereCategory->query("UPDATE critere_categories SET position = ".$bi." WHERE id = ".$child['id']);
+					$bi++;
+					$di = 0;
+					foreach($child['Critere'] as $sc)
+					{
+						$this->Critere->query("UPDATE criteres SET position = ".$di." WHERE id = ".$sc['id']);
+						$di++;
+					}
+				}
+			}else
+			{
+				$this->CritereCategory->query("UPDATE critere_categories SET position = ".$zi." WHERE id = ".$c['CritereCategory']['id']);
+				$zi++;
+			}
+		}
+
+		echo 'ok';
+		die();
+		
+	}
+
 	public function criteres()
 	{
-		$this->Critere->recursive = 0;
-		$this->set('criteres',$this->paginate('Critere'));
+		if ($this->request->is('post')) {
+			if(isset($this->request->data['id']))
+			{
+				if(isset($this->request->data['up']))
+				{
+					$add = -1;
+					$text = '+1';
+					$reversetext = '-1';
+				}else
+				{
+					$add = 1;
+					$text = '-1';
+					$reversetext = '+1';
+				}
+				if(isset($this->request->data['category']))
+				{
+					$this->Critere->query("UPDATE critere_categories SET position = position".$text." WHERE position = ".($this->request->data['position']+$add));	
+					$this->Critere->query("UPDATE critere_categories SET position = position".$reversetext." WHERE id = ".$this->request->data['id']);	
+				}else{
+					$this->Critere->query("UPDATE criteres SET position = position".$text." WHERE position = ".($this->request->data['position']+$add));	
+					$this->Critere->query("UPDATE criteres SET position = position".$reversetext." WHERE id = ".$this->request->data['id']);	
+				}
+			}
+		}
+
+		$this->CritereCategory->recursive = 3;
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null),'order'=>'CritereCategory.position ASC'));
+		$this->set('criteres',$c);
 	}
 
 	public function add_fiche()

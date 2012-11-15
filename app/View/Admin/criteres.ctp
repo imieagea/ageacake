@@ -1,51 +1,145 @@
 <div class="criteres index">
 	<h1><?php echo __('Criteres'); ?></h1>
-	<!--<div class="actions">
-	<ul>
-		<li><?php echo $this->Html->link(__('Ajouter un critère'), array('action' => 'add')); ?></li>
-	<li><?php echo $this->Html->link(__('Gérer les Catégories de critère'), array('controller' => 'critere_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('Ajouter une Catégorie de critère'), array('controller' => 'critere_categories', 'action' => 'add')); ?> </li>
-		<!-- <li><?php echo $this->Html->link(__('List Critere Values'), array('controller' => 'critere_values', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Critere Value'), array('controller' => 'critere_values', 'action' => 'add')); ?> </li> -->
-	<!--</ul>
-</div>-->
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			
-			<th><?php echo $this->Paginator->sort('type'); ?></th>
-			<th><?php echo $this->Paginator->sort('nom'); ?></th>
-			<th><?php echo $this->Paginator->sort('critere_category_id'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php
-	foreach ($criteres as $critere): ?>
-	<tr>
-	
-		<td><?php echo h($critere['Critere']['type']); ?>&nbsp;</td>
-		<td><?php echo h($critere['Critere']['nom']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($critere['CritereCategory']['nom'], array('controller' => 'admin', 'action' => 'view_critere_category', $critere['CritereCategory']['id'])); ?>
-		</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('Voir'), array('action' => 'view_critere/', $critere['Critere']['id'])); ?>			
-			<?php echo $this->Form->postLink(__('Supprimer'), array('action' => 'delete/Critere/'.$critere['Critere']['id']), null, __('Êtes-vous sûr de vouloir le supprimer # %s?', $critere['Critere']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p class="paging_counter">
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} sur {:pages}')
-	));
-	?>	</p>
+	<?php $ii = 0; ?>
+	<?php $ix = count($criteres); ?>
+	<?php foreach($criteres as $c)
+		{
+			echo '<div class="critere-container">';
+			echo '<div>';
+			echo '<h2>'.$c['CritereCategory']['nom'];
+			echo '( ';
+				echo ($c['CritereCategory']['public'] == 1)? 'Public': 'Privé';
+			echo ' )</h2>';
+			if ($ii > 0) {
+	# code...
 
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('Précédent'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ' '));
-		echo $this->Paginator->next(__('Suivant') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+				echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+					echo '<input type="submit" value="+">';
+					echo '<input type="hidden" name = "up" value="up">';
+					echo '<input type="hidden" name="id" value="'.$c['CritereCategory']['id'].'">';
+					echo '<input type="hidden" name="position" value="'.$c['CritereCategory']['position'].'">';
+					echo '<input type="hidden" name="category" value="category">';
+				echo '</form>';
+			}
+			if ($ii<$ix-1) {
+				# code...
+			
+			echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+				echo '<input type="hidden" name="down"value="down">';
+				echo '<input type="hidden" name="id" value="'.$c['CritereCategory']['id'].'">';
+				echo '<input type="hidden" name="category" value="category">';
+				echo '<input type="hidden" name="position" value="'.$c['CritereCategory']['position'].'">';
+				echo '<input type="submit" value="-">';
+			echo '</form>';
+			}
+			echo '</div>';
+			$di = 0;
+			$dx = count($c['Critere']);
+			foreach($c['Critere'] as $sc)
+				{
+					echo '<div class = "critere">';
+						echo '<p>';
+							echo $sc['nom'];
+							echo '( '.$sc['type'].' )';
+							if ($di > 0) {
+								# code...
+							
+							echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+								echo '<input type="submit" value="+">';
+								echo '<input type="hidden" name = "up" value="up">';
+								echo '<input type="hidden" name="id" value="'.$sc['id'].'">';
+								echo '<input type="hidden" name="position" value="'.$sc['position'].'">';
+								echo '<input type="hidden" name="critere" value="critere">';
+							echo '</form>';
+						}
+						if($di < $dx-1)
+						{
+							echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+								echo '<input type="hidden" name="down" value="down">';
+								echo '<input type="hidden" name="id" value="'.$sc['id'].'">';
+								echo '<input type="hidden" name="position" value="'.$sc['position'].'">';
+								echo '<input type="hidden" name="critere" value="critere">';
+								echo '<input type="submit" value="-">';
+							echo '</form>';
+							echo '';
+						echo '</p>';
+						}
+					echo '</div>';
+					$di++;
+				}
+			if(count($c['ChildCategory']) > 0)
+			{
+				$vi = 0;
+				$vx = count($c['ChildCategory']);
+				foreach($c['ChildCategory'] as $child)
+				{
+					echo '<div>';
+					echo '<h3>'.$c['CritereCategory']['nom'];
+					echo '( ';
+						echo ($c['CritereCategory']['public'] == 1)? 'Public': 'Privé';
+					echo ' )</h3>';
+					if ($vi > 0) {
+			# code...
+
+						echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+							echo '<input type="submit" value="+">';
+							echo '<input type="hidden" name = "up" value="up">';
+							echo '<input type="hidden" name="id" value="'.$sc['id'].'">';
+							echo '<input type="hidden" name="position" value="'.$sc['position'].'">';
+							echo '<input type="hidden" name="category" value="category">';
+						echo '</form>';
+					}
+					if ($vi<$vx-1) {
+						# code...
+					
+					echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+						echo '<input type="hidden" name="down"value="down">';
+						echo '<input type="hidden" name="id" value="'.$sc['id'].'">';
+						echo '<input type="hidden" name="category" value="category">';
+						echo '<input type="hidden" name="position" value="'.$sc['position'].'">';
+						echo '<input type="submit" value="-">';
+					echo '</form>';
+				}
+				echo '</div>';
+					$di = 0;
+			$dx = count($child['Critere']);
+				foreach($child['Critere'] as $sc)
+				{
+					echo '<div class = "critere">';
+						echo '<p>';
+							echo $sc['nom'];
+							echo '( '.$sc['type'].' )';
+							if ($di > 0) {
+								# code...
+							
+							echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+								echo '<input type="submit" value="+">';
+								echo '<input type="hidden" name = "up" value="up">';
+								echo '<input type="hidden" name="id" value="'.$sc['id'].'">';
+								echo '<input type="hidden" name="position" value="'.$sc['position'].'">';
+								echo '<input type="hidden" name="critere" value="critere">';
+							echo '</form>';
+						}
+						if($di < $dx-1)
+						{
+							echo '<form method="post" action="'.$this->base.'/admin/criteres">';
+								echo '<input type="hidden" name="down" value="down">';
+								echo '<input type="hidden" name="id" value="'.$sc['id'].'">';
+								echo '<input type="hidden" name="position" value="'.$sc['position'].'">';
+								echo '<input type="hidden" name="critere" value="critere">';
+								echo '<input type="submit" value="-">';
+							echo '</form>';
+							echo '';
+						echo '</p>';
+						}
+					echo '</div>';
+					$di++;
+				}
+					$vi++;
+				}
+			}
+			echo '</div>';
+			$ii++;
+		} ?>
 </div>
 

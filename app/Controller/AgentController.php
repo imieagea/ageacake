@@ -69,7 +69,7 @@ class AgentController extends AppController {
 	public function pdf($id=null)
 	{
 		$this->layout = null;
-		require_once(ROOT.'\\'.APP_DIR.'\\Lib\Html2Pdf\html2pdf.class.php');
+		require_once('../Lib/Html2Pdf/html2pdf.class.php');
 		$this->Fiche->recursive = 2;
 		$this->Fiche->id = $id;
 		if (!$this->Fiche->exists()) {
@@ -82,9 +82,11 @@ class AgentController extends AppController {
 		$this->set('criteres',$c);
 		$response = $this->render('pdf');
 		$content = $response->body();
-		//var_dump($content);
 		$html2pdf = new HTML2PDF('P','A4','fr');
-	    $html2pdf->WriteHTML($html2pdf->getHtmlFromPage($content));
+		ob_start();
+		$html2pdf->getHtmlFromPage($content);
+		$data = ob_get_clean(); 
+	    $html2pdf->WriteHTML($data);
 	    $fiche = $this->Fiche->read(null, $id);
 	    $nom = $fiche['Fiche']['nom'].'-'.$fiche['Fiche']['prenom'];
 	    $this->response->type('application/pdf');
