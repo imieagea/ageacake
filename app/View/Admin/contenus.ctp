@@ -3,16 +3,14 @@
 	<tr>
 	<th><?php echo $this->Paginator->sort('id'); ?>&nbsp;</th>
 		<th><?php echo $this->Paginator->sort('titre'); ?></th>
-		<th><?php echo $this->Paginator->sort('contenu'); ?></th>
 		<th>Actions</th>
 	</tr>
 <?php if(isset($pages[0])):?>	
 	<?php foreach ($pages as $page): ?>
 		<tr>
 		<td><?php echo h($page['Contenus']['id']); ?>&nbsp;</td>
-			<td><?php echo h($page['Contenus']['titre']); ?>&nbsp;</td>
-			<td><?php echo $rest = substr($page['Contenus']['contenu'], 0, 30).'[...]'; ?>&nbsp;</td>			
-			<td><a href="<?php echo $this->base ?>/admin/view_contenu/<?php echo $page['Contenus']['id'] ?>">Voir</a></td>
+		<td><?php echo h($page['Contenus']['titre']); ?>&nbsp;</td>		
+		<td><a href="<?php echo $this->base ?>/admin/view_contenu/<?php echo $page['Contenus']['id'] ?>">Voir</a></td>
 		</tr>
 	<?php endforeach; ?>
 <?php endif; ?>
