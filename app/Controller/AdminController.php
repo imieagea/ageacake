@@ -96,11 +96,10 @@ $this->set('fiches',$this->paginate('Fiche',  array('Fiche.statut' => 'new')   )
 						$di++;
 					}
 				}
-			}else
-			{
-				$this->CritereCategory->query("UPDATE critere_categories SET position = ".$zi." WHERE id = ".$c['CritereCategory']['id']);
-				$zi++;
 			}
+			echo "UPDATE critere_categories SET position = ".$zi." WHERE id = ".$c['CritereCategory']['id'].'<br/>';
+			$this->CritereCategory->query("UPDATE critere_categories SET position = ".$zi." WHERE id = ".$c['CritereCategory']['id']);
+			$zi++;
 		}
 
 		echo 'ok';

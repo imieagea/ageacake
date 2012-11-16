@@ -8,7 +8,6 @@
 -->
 
 
-
 <section id="contenu" class="contenu_admin contenu_agent">
 <h2><a href="<?php echo $this->base; ?>/agent/"><- Retour au menu adhérent</a></h2>
     <h1>CV-Thèque</h1>
@@ -22,21 +21,29 @@
                 {
 
                     echo '<h2>'.$c['CritereCategory']['nom'].'</h2>';
+                    echo '<select style="float:none;" name="data[critere][]">';
+                    echo "<option value='null'></option>";
                     foreach($c['Critere'] as $sc)
                         {
+                            $ck = (isset($cks[$sc['id']]))?"selected = 'selected'":'';
                             if($sc['type'] == 'checkbox')
-                                echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="radio" id="critere'.$sc['id'].'" name="data[critere]" value="'.$sc['id'].'"></div>';
+                                echo '<option '.$ck.' value ="'.$sc['id'].'">'.$sc['nom'].'</option>';
                         }
+                    echo '</select>';
                     if(count($c['ChildCategory']) > 0)
                     {
                         foreach($c['ChildCategory'] as $child)
                         {
                             echo '<h3>'.$child['nom'].'</h3>';
+                            echo '<select style="float:none;" name="data[critere][]">';
+                            echo "<option value='null'></option>";
                             foreach($child['Critere'] as $sc)
-                            {
-                                if($sc['type'] == 'checkbox')
-                                    echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="radio" id="critere'.$sc['id'].'"  name="data[critere]" value="'.$sc['id'].'"></div>';
-                            }
+                                {
+                                    $ck = (isset($cks[$sc['id']]))?"selected = 'selected'":'';
+                                    if($sc['type'] == 'checkbox')
+                                        echo '<option '.$ck.' value ="'.$sc['id'].'">'.$sc['nom'].'</option>';
+                                        }
+                            echo '</select>';
                         }
                     }
                 }
@@ -58,7 +65,7 @@
                     <td><?php echo h($fiche['Fiche']['nom']); ?>&nbsp;</td>
                     <td><?php echo h($fiche['Fiche']['prenom']); ?>&nbsp;</td>
                     <td><?php echo h($fiche['Fiche']['email']); ?>&nbsp;</td>                 
-                    <td><a href="<?php echo $this->base ?>/agent/cv/<?php echo $fiche['Fiche']['id']; ?>">Consulter</a></td>
+                    <td><a target="_blank" href="<?php echo $this->base ?>/agent/cv/<?php echo $fiche['Fiche']['id']; ?>">Consulter</a></td>
                 </tr>
             <?php endforeach; ?>
         <?php endif; ?>

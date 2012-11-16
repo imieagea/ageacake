@@ -1,4 +1,4 @@
-<div class="fiches form">
+<div class="consultation-cv fiches form">
 <h2><a href="<?php echo $this->base; ?>/agent/cvtheque"><- Retour à la base de CV</a></h2>
 
 	<a style="text-decoration:underline;" href="<?php echo $this->base ?>/agent/pdf/<?php echo $fiche['Fiche']['id'] ?>">Télécharger cette fiche au format PDF</a>
@@ -30,30 +30,49 @@ function recursAfficheCats($parents,$cv = null,$rang = 2)
 	foreach ($parents as $parent) {
 		(isset($parent['CritereCategory']))? $titre = $parent['CritereCategory']['nom'] : $titre = $parent['nom'] ;
 		echo "<h".$rang.">".$titre."</h".$rang.">";
-
 		if(count($parent['Critere']) > 0)
 		{
 			foreach ($parent['Critere'] as $critere) {
+			
 				if(isset($cv[$critere['id']]))
 				{
-					echo "<label>".$critere['nom']."</label>";
+					
 					if($critere['type'] == 'checkbox')
 					{
-						echo "<input type='checkbox' checked='checked' value = ".$cv[$critere['id']].">";
+						echo '<div class="input">';
+						echo "<input disabled = 'disabled' type='checkbox' checked='checked' name='data[criteres][cb][]' value = ".$critere['id'].">";
+						echo "<label>".$critere['nom']."</label>";
+						echo '</div>';
 					}else
 					{
-						echo "<textarea>".$cv[$critere['id']]."</textarea>";
+					echo "<h3>".$critere['nom']."</h3>";
+						echo "<p>".$cv[$critere['id']]."</p>";
+
 					}
-				}
+				}else{
+				
+				if($critere['type'] == 'checkbox')
+					{
+						echo '<div class="input">';
+						echo "<input disabled = 'disabled' type='checkbox' name='data[criteres][cb][]' value = ".$critere['id']." >";
+						echo "<label>".$critere['nom']."</label>";
+						echo '</div>';
+					}else
+					{
+						// '<br/>';
+					}
+				
 			}
-		}
-		if(isset($parent['ChildCategory']) && count($parent['ChildCategory']) > 0)
-		{
-			recursAfficheCats($parent['ChildCategory'],$cv,$rang++);
 		}
 
 	}
-} ?>
-<?php recursAfficheCats($criteres,$cv) ?>
+	if(isset($parent['ChildCategory']) && count($parent['ChildCategory']) > 0)
+	{
+		recursAfficheCats($parent['ChildCategory'],$cv,$rang+1);
+	}
+} 
+}
+recursAfficheCats($criteres,$cv); ?>
+
 
 </div>

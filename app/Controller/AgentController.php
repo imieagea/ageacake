@@ -28,26 +28,44 @@ class AgentController extends AppController {
 	public function cvtheque()
 	{
 		$options = array();
+		$sql = "SELECT `Fiche`.`nom`,`Fiche`.`prenom`,`Fiche`.`email`,`Fiche`.`id` FROM `legrand4`.`fiches` AS `Fiche` WHERE `Fiche`.`statut` = 'validated'";
 		if ($this->request->is('post')) {
 			if(!empty($this->request->data['critere']))
 			{
-				$options = array(
-				    'joins' => array(
-				        array(
-				            'alias' => 'CritereValue',
-				            'table' => 'critere_value',
-				            'type' => 'INNER',
-				            'conditions' => array('`CritereValue`.`fiche_id` = `Fiche`.`id`','`CritereValue`.`critere_id`'=>$this->request->data['critere'])
-				        )
-				    )
-				);
+				$criteres = ' ( ';
+					$ii = 0;
+				foreach ($this->request->data['critere'] as $value) {
+					if($value != 'null')
+					{
+						if($ii == 0)
+							$criteres.= $value;
+						else
+						$criteres .= ','.$value;
+
+						$cks[$value] = true ;
+						$ii++;
+					}
+				}
+
+				
+			}
+			if(isset($cks))
+			{
+				$criteres.= ' ) ';
+				$sql = "SELECT `CritereValue`.`fiche_id`,`Critere`.`id`,`Fiche`.`nom`,`Fiche`.`prenom`,`Fiche`.`email`,`Fiche`.`id`
+				FROM `critere_value` AS `CritereValue`
+				INNER JOIN `criteres` AS `Critere` ON (`CritereValue`.`critere_id` = `Critere`.`id`)
+				INNER JOIN `legrand4`.`fiches` AS `Fiche` ON (`Fiche`.`id` = `CritereValue`.`fiche_id`)
+				WHERE `Fiche`.`statut` = 'validated' AND `CritereValue`.`critere_id` IN ".$criteres."
+				GROUP BY `Fiche`.`id`";
+				$this->set('cks',$cks);
 			}
 		}
 		$this->CritereCategory->recursive = 2;
 		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null,'CritereCategory.public'=>1),'order'=>'CritereCategory.position ASC'));
 		$this->set('criteres',$c);
 
-		$fiches = $this->Fiche->find('all',array_merge($options,array('conditions'=>array('Fiche.statut'=>'validated'))));
+		$fiches = $this->Fiche->query($sql);
 		$this->set('fiches',$fiches);
 	}
 
@@ -84,8 +102,8 @@ class AgentController extends AppController {
 		$content = $response->body();
 		$html2pdf = new HTML2PDF('P','A4','fr');
 		ob_start();
-		$html2pdf->getHtmlFromPage($content);
-		$data = ob_get_clean(); 
+		echo $html2pdf->getHtmlFromPage($content);
+		$data = ob_get_clean();
 	    $html2pdf->WriteHTML($data);
 	    $fiche = $this->Fiche->read(null, $id);
 	    $nom = $fiche['Fiche']['nom'].'-'.$fiche['Fiche']['prenom'];

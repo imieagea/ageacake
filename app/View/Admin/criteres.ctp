@@ -32,6 +32,7 @@
 				echo '<input type="submit" value="-">';
 			echo '</form>';
 			}
+			echo '<a href="'.$this->base.'/admin/view_critere_category/'.$c['CritereCategory']['id'].'">Editer</a>';
 			echo '</div>';
 			$di = 0;
 			$dx = count($c['Critere']);
@@ -61,9 +62,9 @@
 								echo '<input type="hidden" name="critere" value="critere">';
 								echo '<input type="submit" value="-">';
 							echo '</form>';
-							echo '';
-						echo '</p>';
 						}
+						echo '<a href="'.$this->base.'/admin/view_critere/'.$sc['id'].'">Editer</a>';
+						echo '</p>';
 					echo '</div>';
 					$di++;
 				}
@@ -100,6 +101,7 @@
 						echo '<input type="submit" value="-">';
 					echo '</form>';
 				}
+				echo '<a href="'.$this->base.'/admin/view_critere_category/'.$c['CritereCategory']['id'].'">Editer</a>';
 				echo '</div>';
 					$di = 0;
 			$dx = count($child['Critere']);
@@ -129,9 +131,10 @@
 								echo '<input type="hidden" name="critere" value="critere">';
 								echo '<input type="submit" value="-">';
 							echo '</form>';
-							echo '';
-						echo '</p>';
+							
 						}
+						echo '<a href="'.$this->base.'/admin/view_critere/'.$sc['id'].'">Editer</a>';
+						echo '</p>';
 					echo '</div>';
 					$di++;
 				}

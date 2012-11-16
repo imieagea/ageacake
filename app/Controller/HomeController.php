@@ -118,7 +118,6 @@ class HomeController extends AppController {
 			}else
 			{
 				$this->Session->setFlash(utf8_encode('Le cv est obligatoire'));
-				$this->redirect(array('action'=>'deposer'));
 			}
 
 			if($this->Fiche->save())
@@ -174,17 +173,14 @@ class HomeController extends AppController {
 							break;
 					}
 				}
-				$this->Session->setFlash(utf8_encode($erreurs));
-				$this->redirect(array('action'=>'deposer'));
-			
+				
 			}
-
-		}else
-		{
-			$this->CritereCategory->recursive = 3;
-			$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null,'CritereCategory.public'=>1),'order'=>'CritereCategory.position ASC'));
-			$this->set('criteres',$c);
+			$this->set('criteresV',$this->request->data['criteres']);
 		}
+		$this->CritereCategory->recursive = 3;
+		$c = $this->CritereCategory->find('all',array('conditions'=>array('CritereCategory.parent_id'=>null,'CritereCategory.public'=>1),'order'=>'CritereCategory.position ASC'));
+		$this->set('criteres',$c);
+		
 
 		
 	}

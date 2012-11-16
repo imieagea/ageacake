@@ -68,7 +68,7 @@
   .anythingSlider({ 
    toggleControls : true, 
    theme          : 'min',  
-    buildArrows         : true,      // If true, builds the forwards and backwards buttons 
+    buildArrows         : false,      // If true, builds the forwards and backwards buttons 
 	buildNavigation     : true,      // If true, builds a list of anchor links to link to each panel 
 	buildStartStop      : false,  
 toggleControls      : false,

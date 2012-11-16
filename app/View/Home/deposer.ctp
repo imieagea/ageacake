@@ -1,15 +1,24 @@
+<style type="text/css">
+	.error-message
+	{
+		display:none;
+	}
+</style>
 <div class="fiches form">
+	<?php if (!empty($erreurs)): ?>
+		<p><?php echo $erreurs ?></p>
+	<?php endif ?>
 <?php echo $this->Form->create('Fiche',array('url'=>'/home/deposer','type'=>'file')); ?>
 	<fieldset>
 		<div class="bandeau deposercv"><h1><?php echo __('Déposez votre CV'); ?></h1></div><?php 
-		echo $this->Form->input('nom');
-		echo $this->Form->input('prenom');
-		echo $this->Form->input('adresse');
-		echo $this->Form->input('code_postal');
-		echo $this->Form->input('ville');
-		echo $this->Form->input('portable');
+		echo $this->Form->input('nom',array('label'=>"Nom*"));
+		echo $this->Form->input('prenom',array('label'=>"Prénom*"));
+		echo $this->Form->input('adresse',array('label'=>"Adresse*"));
+		echo $this->Form->input('code_postal',array('label'=>"Code Postal*"));
+		echo $this->Form->input('ville',array('label'=>"Ville*"));
+		echo $this->Form->input('portable',array('label'=>"Portable*"));
 		echo $this->Form->input('fixe');
-		echo $this->Form->input('email');
+		echo $this->Form->input('email',array('label'=>"E-mail*"));
 		?>
 		<div class="select">
 		<label for="date_naissance">Date de naissance</label>
@@ -28,9 +37,15 @@
 			foreach($c['Critere'] as $sc)
 				{
 					if($sc['type'] == 'checkbox')
-						echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'" name="criteres[cb][]" value="'.$sc['id'].'"></div>';
+					{
+						(isset($criteresV['cb']) &&in_array($sc['id'],$criteresV['cb']))?$ck = 'checked = "checked"':$ck='';
+						echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'" name="criteres[cb][]" value="'.$sc['id'].'" '.$ck.'></div>';
+					}
 					elseif($sc['type'] == 'textarea')
-						echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea></div>';
+					{
+						$value = (isset($criteresV['text'][$sc['id']]))?$criteresV['text'][$sc['id']]:$sc['nom'];
+						echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$value.'</textarea></div>';
+					}
 				}
 			if(count($c['ChildCategory']) > 0)
 			{
@@ -40,9 +55,15 @@
 					foreach($child['Critere'] as $sc)
 					{
 						if($sc['type'] == 'checkbox')
-							echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'"  name="criteres[cb][]" value="'.$sc['id'].'"></div>';
+						{
+							(isset($criteresV['cb']) &&in_array($sc['id'],$criteresV['cb']))?$ck = 'checked = "checked"':$ck='';
+							echo '<div class="input checkbox criteres"><label for="critere'.$sc['id'].'">'.$sc['nom'].'</label><input type="checkbox" id="critere'.$sc['id'].'" name="criteres[cb][]" value="'.$sc['id'].'" '.$ck.'></div>';
+						}
 						elseif($sc['type'] == 'textarea')
-							echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$sc['nom'].'</textarea><div class="clear"></div></div>';
+						{
+							$value = (isset($criteresV['text'][$sc['id']]))?$criteresV['text'][$sc['id']]:$sc['nom'];
+							echo '<div class="input textarea criteres"><textarea name="criteres[text]['.$sc['id'].']">'.$value.'</textarea></div>';
+						}
 					}
 				}
 			}
