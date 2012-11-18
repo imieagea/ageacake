@@ -17,6 +17,15 @@
 				<a href="<?php echo $this->base ?>/admin/contenus" class="gerer_pages" >Gérer les Pages</a>
 			</li>
 			<li>
+				<a href="<?php echo $this->base ?>/admin/agenda" class="gerer_pages" >Agenda</a>
+			</li>
+			<li>
+				<a href="<?php echo $this->base ?>/admin/menu" class="gerer_pages" >Gérer le Menu</a>
+			</li>
+			<li>
+				<a href="<?php echo $this->base ?>/admin/images" class="gerer_pages" >Gérer les images du bandeau</a>
+			</li>
+			<li>
 				<a href="javascript:void(0);" id="toggle_actus">Actualités</a>
 				<ul style="display:none">
 					<li class="menu-child"><a href="<?php echo $this->base ?>/admin/actualites">Gérer les Actualités</a></li>
@@ -43,6 +52,8 @@
 			</li>
 			<li><a href="<?php echo $this->base ?>/admin/alaune" class="gerer_une">Gérer la Une</a></li>
 			<li><a href="<?php echo $this->base ?>/admin/recrutement" class="gerer_pages">Gérer le texte de recrutement</a></li>
+			<li><a href="<?php echo $this->base ?>/admin/contact" class="gerer_pages">Gérer l'encart Contact</a></li>
+			<li><a href="<?php echo $this->base ?>/admin/textes" class="gerer_pages">Gérer le texte des pages spécifiques</a></li>
 			<li>
 				<a href="javascript:void(0);" id="toggle_part">Partenaires</a>
 				<ul style="display:none">

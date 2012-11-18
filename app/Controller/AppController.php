@@ -34,7 +34,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 
-    var $uses = array('Contenus','Post');
+    var $uses = array('Contenus','Post','Lien','Image');
    // var $helpers = array();
     static public function slugify($text)
     {
@@ -83,9 +83,11 @@ class AppController extends Controller {
         $this->Auth->allow('display');
 
         //Menu initialisation
-		$options['order'] = 'Contenus.ordre ASC';
-        $tabs = $this->Contenus->find('all',$options);
-        $this->set('tabs',$tabs);		
+		$options['order'] = 'Lien.position ASC';
+        $tabs = $this->Lien->find('all',$options);
+        $this->set('tabs',$tabs);
+        $tabs = $this->Image->find('all');
+        $this->set('images',$tabs);       		
         $this->set('session',$this->Session);
 		
 		$options['joins'] = array(    

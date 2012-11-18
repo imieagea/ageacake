@@ -91,8 +91,46 @@ strong {
 
 #header {
 	background: transparent url(../img/doted.png) repeat-x;
-	background-position: 0px 147px;
+	background-position: 0px 205px;
+	position: relative;
+	height: 210px;
 }
+
+#header #monSlider
+{
+	position: absolute;
+	height: 140px;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+}
+
+#header #monSlider ul
+{
+	position: relative;
+	height: 140px;
+}
+
+
+#header #monSlider ul li
+{
+	position: absolute;
+	margin-right: 10px;
+}
+
+#contenu.contenu_admin img
+{
+	height: 140px;
+	width: 280px;
+}
+
+#header #monSlider ul li img,#header #monSlider li div
+{
+	height: 140px;
+	width: 280px;
+	background: white;
+}
+
 
 #header_content,#content,#footer_content {
 	width: 960px;
@@ -132,6 +170,7 @@ strong {
 
 #logo {
 	margin-left: -6px;
+	margin-top: -15px;
 	width: 203px;
 	height: 155px;
 	position: relative;
@@ -168,7 +207,7 @@ strong {
 }
 
 #menu {
-	margin-top: 60px;
+	margin-top: 160px;
 	float: right;
 }
 
@@ -1174,5 +1213,10 @@ article.partenaire p
 {
 	float: left;
 	width: 30px;
+}
+
+.events form select
+{
+	float:left;
 }
 /* ---------------  FIN ADMIN  ---------------- */

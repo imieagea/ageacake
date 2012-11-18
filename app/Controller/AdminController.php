@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
 	
-	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue','Post','Category','Partenaire');
+	var $uses = array('Contenus','User','Fiche','Critere','CritereCategory','CritereValue','Post','Category','Partenaire','Texte');
 	//var $helpers = array('Ck');
 	public function beforeFilter()
 	{
@@ -423,6 +423,21 @@ if ($this->request->is('post')) {
 		}
 		$this->set('recrut', $this->Post->read(null, $id));
 	}
+
+public function contact()
+	{
+		$id = 9;
+if ($this->request->is('post')) {
+			$this->Post->id = $id;
+			$this->Post->read(null,$id);			
+			if ($this->Post->save($this->request->data)) {
+				$this->Session->setFlash(__('La une a bien mise à jour.'));
+			} else {
+				$this->Session->setFlash(__('Impossible d\'enregistrer la une'));
+			}
+		}
+		$this->set('recrut', $this->Post->read(null, $id));
+	}
 	
 public function view_bruissement($id = null)
 	{
@@ -628,8 +643,10 @@ $categories = $this->Category->find('list',$options);
 
 	public function delete($type=null,$id=null)
 	{
+		$redir = array('action'=>'index');
 		switch ($type) {
 			case 'Fiche':
+					$redir = array('action'=>'fiches');
 					if(!empty($id))
 					{
 						$this->Fiche->delete($id);
@@ -645,6 +662,7 @@ $categories = $this->Category->find('list',$options);
 				break;
 
 			case 'Critere':
+					$redir = array('action'=>'criteres');
 					$this->Critere->id = $id;
 					$this->Critere->read(null,$id);
 					$this->CritereValue->deleteAll(array('CritereValue.critere_id'=>$id),false);
@@ -728,14 +746,47 @@ $categories = $this->Category->find('list',$options);
 					}
 				}
 
+			case 'Lien':
+			$redir = array('action'=>'menu');
+				if(!empty($id))
+				{
+					$this->Lien->delete($id);
+				}
+				else
+				{
+
+
+					foreach ($this->request->data['ids'] as $id) {
+						$this->Lien->delete($id);
+					}
+				}
+
+			case 'Image':
+				$redir = array('action'=>'images');
+				if(!empty($id))
+				{
+					$this->Image->delete($id);
+				}
+				else
+				{
+
+
+					foreach ($this->request->data['ids'] as $id) {
+						$this->Image->delete($id);
+					}
+				}
+
 			break;
 			
 			default:
 				# code...
 				break;
 		}
+		if(!isset($redir))
+			$redir = array('action'=>'index');
+
 		$this->Session->setFlash(__('Supression réussie.'));
-		$this->redirect(array('action'=>'index'));
+		$this->redirect($redir);
 	}
 
 	public function add_actualite()
@@ -952,6 +1003,141 @@ public function alaune()
 		$categories = $this->Category->find('list',$options);
 		$this->set(compact('categories'));
 	}
+
+	public function menu($id = null)
+	{
+		$this->set('editLien',null);
+		if (isset($id)) {
+			$this->Lien->id = $id;
+			$this->Lien->read(false,$id);
+			$this->set('editLien',$this->Lien->read(false,$id));
+			$this->set('action','Editer');
+		}else
+		{
+			$this->set('action','Ajouter');
+		}
+		$liens = $this->Lien->Find('all');
+		if ($this->request->is('post')) {
+			$data = $this->request->data;
+			if(isset($this->request->data['up']) || isset($this->request->data['down']) )
+			{
+				if(isset($this->request->data['up']))
+				{
+					$add = -1;
+					$text = '+1';
+					$reversetext = '-1';
+				}
+				elseif(isset($this->request->data['down']))
+				{
+					$add = 1;
+					$text = '-1';
+					$reversetext = '+1';
+				}
+				$this->Lien->query("UPDATE liens SET position = position".$text." WHERE position = ".($this->request->data['position']+$add));	
+				$this->Lien->query("UPDATE liens SET position = position".$reversetext." WHERE id = ".$this->request->data['id']);	# code...
+			}elseif (isset($data['ajouter'])) {
+				$this->Lien->set($data);
+				if(isset($data['manualLink']) && $data['manualLink'] != 'null')
+				{
+					$this->Lien->set('lien',$data['manualLink']);
+				}
+				$this->Lien->set('position',count($liens));
+				if(!$this->Lien->save())
+				{
+					$message = 'Sauvegarde du lien impossible';
+				}else
+				{
+					$message = 'Lien Ajouté';
+				}
+
+				$this->set('message',$message);
+			}
+		}	
+
+		$liens = $this->Lien->Find('all',array('order'=>'Lien.position ASC'));
+		$this->set('liens',$liens);
+	}
+
+	public function images($id = null)
+	{
+
+		
+		if ($this->request->is('post')) {
+			$data = $this->request->data;
+			if (isset($data['ajouter'])) {
+				$authTypes = array('image/jpeg','image/png','image/gif');
+				if(!empty($this->request->data['Image']['src']['name']))
+				{
+					$cv = $this->request->data['Image']['src'];
+					//var_dump($this->request->data);
+					if (in_array($cv['type'], $authTypes)) {
+						$chemin_destination = '../webroot/img/';
+						$name = AppController::slugify($cv['name'].microtime());
+						
+						$path_parts = pathinfo($cv['name']);
+						//var_dump($cv['tmp_name']);
+						$ext = $path_parts['extension'];
+						move_uploaded_file($cv['tmp_name'], $chemin_destination.$name.'.'.$ext);
+						$this->Image->set('src',$name.'.'.$ext);
+						if ($this->Image->save()) {
+							$message = __('L\'image a bien été enregistrée.');
+						}else
+						{
+							$message = __('L\'image n\'a pas pu être enregistrée.');		
+						}
+
+		 			}else
+		 			{
+		 				$message = __('L\'image n\'est pas au format autorisé.');
+		 			}
+				}else{
+					$message = __('L\'image n\'a pas pu être enregistrée.');
+				}
+
+				$this->set('message',$message);
+			}
+		}	
+
+		$liens = $this->Image->Find('all');
+		$this->set('images',$liens);
+	}
+
+	public function textes($id = null)
+	{
+
+		$this->set('editLien',null);
+		if (isset($id)) {
+			$this->Lien->id = $id;
+			$this->Lien->read(false,$id);
+			$this->set('editLien',$this->Texte->read(false,$id));
+			$this->set('action','Editer');
+		}else
+		{
+			$this->set('action','Ajouter');
+		}
+		if ($this->request->is('post')) {
+			$data = $this->request->data;
+			if (isset($data['ajouter'])) {
+				$this->Texte->set($data);
+				if($this->Texte->save())
+				{
+					$message = 'Texte enregistré';
+				}else{
+					$message = 'Impossible d\'enregistrer le texte';
+				}
+				$this->set('message',$message);
+			}
+		}	
+
+		$liens = $this->Texte->Find('all');
+		$this->set('liens',$liens);
+	}
+
+	public function agenda()
+	{
+		# code...
+	}
+
 }
 
 ?>

@@ -27,6 +27,8 @@ App::import('Lib', 'Routing/Route/CategorySlugRoute');
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
+	Router::connect('/partenaires', array('controller' => 'home','action'=>'partenaires'));
+	
 	Router::connect('/', array('controller' => 'home', 'action' => 'index'));
 
 
@@ -47,6 +49,10 @@ App::import('Lib', 'Routing/Route/CategorySlugRoute');
 	Router::connect('/actions', array('controller' => 'home','action'=>'actions'));
 
 	Router::connect('/actualites', array('controller' => 'home','action'=>'actualites'));
+
+	
+
+
 
 	//Router::connect('/partenaires', array('controller' => 'home','action'=>'partenaires'));
 

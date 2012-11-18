@@ -1,5 +1,8 @@
 <div id="toutesactus">
 <h1>Actions</h1>
+	<article>
+		<?php echo $texte['Texte']['contenu'] ?>
+	</article>
 <?php if(isset($actions[0])):?>	
 	<?php foreach ($actions as $une){
 			$une['Post']['pslug'] = $une['Category']['slug'];

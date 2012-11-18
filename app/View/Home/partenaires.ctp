@@ -1,3 +1,9 @@
+<div id="toutesactus">
+<h1>Partenaires</h1>
+
+	<article>
+		<?php echo $texte['Texte']['contenu'] ?>
+	</article>
 <?php foreach ($partenaires as $partenaire): ?>
 	<article class="partenaire">
 		<div class="bandeau">
@@ -18,3 +24,4 @@
 		</p>
 	</article>
 <?php endforeach ?>
+</div>

@@ -25,6 +25,11 @@ class AgentController extends AppController {
 
 	}
 
+	public function agenda()
+	{
+		$this->layout = 'agenda';
+	}
+
 	public function cvtheque()
 	{
 		$options = array();

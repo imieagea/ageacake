@@ -54,7 +54,7 @@
 
 			<?php echo $this->fetch('content'); ?>
 	</section>
-	<?php echo $this->element('sidebar'); ?>
+	<?php echo $this->element('sidebar_agenda'); ?>
 		<div class="clear"></div>
 </div>
 </div>
@@ -72,22 +72,6 @@
 		
 	</div>
 	<script type="text/javascript">
-	jQuery(function($){ 
- $('#list_actus') 
-  .anythingSlider({ 
-   toggleControls : true, 
-   theme          : 'min',  
-    buildArrows         : false,      // If true, builds the forwards and backwards buttons 
-	buildNavigation     : true,      // If true, builds a list of anchor links to link to each panel 
-	buildStartStop      : false,  
-toggleControls      : false,
- autoPlay            : true,    
-  pauseOnHover        : true,
-  hashTags            : false,
-    delay               : 3000
-  }) 
- 
-});
 	var cpt = 0;
 	function slide()
 	{

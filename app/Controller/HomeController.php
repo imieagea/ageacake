@@ -3,7 +3,7 @@ App::uses('AppController', 'Controller','CakeEmail', 'Network/Email');
 
 class HomeController extends AppController {
 	
-	var $uses = array('Post','Category','CritereCategory','Fiche','CritereValue','Partenaires');
+	var $uses = array('Post','Category','CritereCategory','Fiche','CritereValue','Partenaires','Texte');
 
 	var $docTypes = array('application/pdf','application/msword');
 
@@ -16,6 +16,11 @@ class HomeController extends AppController {
 
 	public function partenaires()
 	{
+		$options = array(
+		    'conditions' => array('Texte.slug' => 'partenaires')
+		);
+		$texte = $this->Texte->find('first',$options);
+		$this->set('texte',$texte);
 		$parts = $this->Partenaires->find('all');
 		$this->set('partenaires',$parts);
 	}
@@ -43,6 +48,11 @@ class HomeController extends AppController {
 
 	public function actions()
 	{
+		$options = array(
+		    'conditions' => array('Texte.slug' => 'actions')
+		);
+		$texte = $this->Texte->find('first',$options);
+		$this->set('texte',$texte);
 		$this->paginate = array(
 		    'joins' => array(
 		    	array(
@@ -65,6 +75,11 @@ class HomeController extends AppController {
 
 	public function actualites()
 	{
+		$options = array(
+		    'conditions' => array('Texte.slug' => 'actualites')
+		);
+		$texte = $this->Texte->find('first',$options);
+		$this->set('texte',$texte);
 		$this->paginate = array(
 		    'joins' => array(
 		    	array(
